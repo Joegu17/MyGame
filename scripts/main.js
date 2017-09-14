@@ -77,6 +77,8 @@ var flugzeug = {
             
         }
         
+        $('#flugzeug').css({top: flugzeug.coords+'px'});
+        
     },
     
     touchEnd: function(e) {
@@ -90,7 +92,7 @@ var flugzeug = {
                 
                 flugzeug.coords = flugzeug.realTimeCoords;
                 
-                $('#flugzeug').css({top: flugzeug.coords+'px'});
+                //$('#flugzeug').css({top: flugzeug.coords+'px'});
                 
             }
             
