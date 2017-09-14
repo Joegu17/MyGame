@@ -23,6 +23,8 @@ var game = {
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
         
+        alert(h/2-fh/2)
+        
         var hg = document.getElementById('hintergrund');
         hg.addEventListener('touchstart', flugzeug.touchStart);
         hg.addEventListener('touchmove', flugzeug.touchMove);
@@ -65,6 +67,8 @@ var flugzeug = {
                 var touch = e.touches[0],
                     moveCoords = touch.pageY,
                     dif = moveCoords - flugzeug.touchCoord.y;
+                
+                alert(e.touches[i].pageY +' '+ e.touches[0].pageY);
 
                 var y = parseInt((dif + flugzeug.coords)*10)/10;
                 
