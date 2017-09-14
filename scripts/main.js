@@ -65,12 +65,8 @@ var flugzeug = {
                 var touch = e.touches[0],
                     moveCoords = touch.pageY,
                     dif = moveCoords - flugzeug.touchCoord.y;
-                
-                //alert(e.touches[i].pageY +' '+ e.touches[0].pageY);
 
                 var y = parseInt((dif + flugzeug.coords)*10)/10;
-                
-                //alert(y);
                 
                 flugzeug.realTimeCoords = y;
 
@@ -89,11 +85,10 @@ var flugzeug = {
             
             if (e.changedTouches[i].identifier == flugzeug.touchCoord.id) {
                 
-                flugzeug.coords = e.changedTouches[0].pageY;
+                var dif = e.changedTouches[0].pageY - flugzeug.touchCoord.y,
+                    y = parseInt((dif + flugzeug.coords)*10)/10;
                 
-                alert(flugzeug.coords);
-                
-                
+                flugzeug.coords = y;
                 
             }
             
