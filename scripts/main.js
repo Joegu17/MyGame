@@ -47,7 +47,7 @@ var flugzeug = {
         
         if (e.touches.length == 1) {
             
-            flugzeug.touchCoord = {x: touch.pageX, id: touch.identifier};
+            flugzeug.touchCoord = {y: touch.pageY, id: touch.identifier};
             
         }
         
@@ -62,13 +62,13 @@ var flugzeug = {
             if (e.touches[i].identifier == flugzeug.touchCoord.id) {
             
                 var touch = e.touches[0],
-                    moveCoords = touch.pageX,
-                    dif = moveCoords - flugzeug.touchCoord.x;
+                    moveCoords = touch.pageY,
+                    dif = moveCoords - flugzeug.touchCoord.y;
 
-                var x = parseInt((dif + flugzeug.coords)*10)/10;
+                var y = parseInt((dif + flugzeug.coords)*10)/10;
 
-                $('#flugzeug').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
-                $('#flugzeug').css('transform', 'translate3d('+x+'px, 0px, 0px)');
+                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+y+'px, 0px)');
+                $('#flugzeug').css('transform', 'translate3d(0px, '+y+'px, 0px)');
                 
             }
             
