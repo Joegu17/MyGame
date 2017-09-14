@@ -39,8 +39,6 @@ var flugzeug = {
     touchCoord: null,
     touchStart: function(e) {
         
-        alert('start');
-        
         e.preventDefault();
         var touch = e.touches[0];
         
@@ -53,8 +51,6 @@ var flugzeug = {
     },
     
     touchMove: function(e) {
-        
-        alert('move');
         
         e.preventDefault();
         
