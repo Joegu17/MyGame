@@ -67,8 +67,8 @@ table {
 }
 #flugzeug {
     position: absolute;
-    left: 100px;
-    top: 500px;
+    left: 5%;
+    top: 0px;
     background-image: url(../images/flugzeug1.png);
-    background-size: contain;
+    background-size: cover;
 }
