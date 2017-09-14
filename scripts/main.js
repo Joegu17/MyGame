@@ -17,8 +17,8 @@ var game = {
         
         var w = window.innerWidth,
             h = window.innerHeight;
-        var fw = w/10,
-            fh = w/10*67/215;
+        var fw = h/10*215/67,
+            fh = h/10;
         
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
@@ -91,8 +91,6 @@ var flugzeug = {
                 flugzeug.coords = flugzeug.realTimeCoords;
                 
                 //$('#flugzeug').css({top: flugzeug.coords+'px'});
-                
-                alert(flugzeug.coords+'  '+flugzeug.realTimeCoords);
                 
             }
             
