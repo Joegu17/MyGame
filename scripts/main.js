@@ -91,8 +91,7 @@ var flugzeug = {
             
             if (e.changedTouches[i].identifier == flugzeug.touchCoord.id) {
                 
-                var endCoords = e.changedTouches[0].pageY,
-                    dif = endCoords - flugzeug.touchCoord.y;
+                flugzeug.coords = e.changedTouches[0].pageY;
                 
                 
                 
