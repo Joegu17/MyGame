@@ -24,7 +24,7 @@ var game = {
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
         
         var hg = document.getElementById('hintergrund');
-        hg.addEventListener('touchstart', flugzeug.touchStart);
+        //hg.addEventListener('touchstart', flugzeug.touchStart);
         hg.addEventListener('touchmove', flugzeug.touchMove);
         //hg.addEventListener('touchend', flugzeug.touchEnd);
         
@@ -40,7 +40,7 @@ var flugzeug = {
     
     
     touchCoord: null,
-    touchStart: function(e) {
+    /*touchStart: function(e) {
         
         e.preventDefault();
         var touch = e.touches[0];
@@ -51,17 +51,25 @@ var flugzeug = {
             
         }
         
-    },
+    },*/
     
     touchMove: function(e) {
         
         e.preventDefault();
         
+        var touch = e.touches[0];
+        
+        if (e.touches.length == 1) {
+            
+            flugzeug.touchCoord = {y: touch.pageY, id: touch.identifier};
+            
+        }
+        
         for (var i = 0; i < e.touches.length; i++) {
             
             if (e.touches[i].identifier == flugzeug.touchCoord.id) {
             
-                var touch = e.touches[0],
+                var touch = e.touches[i],
                     moveCoords = touch.pageY,
                     dif = moveCoords - flugzeug.touchCoord.y;
 
