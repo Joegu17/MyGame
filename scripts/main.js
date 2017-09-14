@@ -70,8 +70,8 @@ var flugzeug = {
                 
                 flugzeug.realTimeCoords = y;
 
-                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+                $('#flugzeug').css('-webkit-transform', 'translateY('+dif+'px)');
+                $('#flugzeug').css('transform', 'translateY('+dif+'px)');
                 
             }
             
