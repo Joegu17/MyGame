@@ -90,6 +90,8 @@ var flugzeug = {
                 
                 flugzeug.coords = flugzeug.realTimeCoords;
                 
+                $('#flugzeug').css({top: flugzeug.coords+'px'});
+                
                 alert(flugzeug.coords+'  '+flugzeug.realTimeCoords);
                 
             }
