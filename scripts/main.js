@@ -88,7 +88,9 @@ var flugzeug = {
                 var dif = e.changedTouches[0].pageY - flugzeug.touchCoord.y,
                     y = parseInt((dif + flugzeug.coords)*10)/10;
                 
-                flugzeug.coords = y;
+                flugzeug.coords = flugzeug.realTimeCoords;
+                
+                alert(flugzeug.coords+'  '+flugzeug.realTimeCoords);
                 
             }
             
