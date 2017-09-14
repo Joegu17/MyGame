@@ -23,10 +23,10 @@ var game = {
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
         
-        var hg = document.getElementById('hintergrund');
-        hg.addEventListener('touchstart', flugzeug.touchStart);
-        hg.addEventListener('touchmove', flugzeug.touchMove);
-        hg.addEventListener('touchend', flugzeug.touchEnd);
+        var f = document.getElementById('flugzeug');
+        f.addEventListener('touchstart', flugzeug.touchStart);
+        f.addEventListener('touchmove', flugzeug.touchMove);
+        f.addEventListener('touchend', flugzeug.touchEnd);
         
         //gameLoop();
         
@@ -90,7 +90,7 @@ var flugzeug = {
                 
                 flugzeug.coords = flugzeug.realTimeCoords;
                 
-                //$('#flugzeug').css({top: flugzeug.coords+'px'});
+                $('#flugzeug').css({top: flugzeug.coords+'px'});
                 
             }
             
