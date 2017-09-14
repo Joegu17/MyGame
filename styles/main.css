@@ -71,6 +71,5 @@ table {
     top: 0px;
     background-image: url(../images/flugzeug1.png);
     background-size: cover;
-    -webkit-transform:translate3d();
-    transform:translate3d();
+    background-repeat: no-repeat;
 }

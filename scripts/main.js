@@ -36,6 +36,9 @@ var game = {
 
 var flugzeug = {
     
+    coords: h = window.innerHeight/2-(window.innerWidth/10*67/215)/2,
+    
+    
     touchCoord: null,
     touchStart: function(e) {
         
@@ -62,7 +65,7 @@ var flugzeug = {
                     moveCoords = touch.pageX,
                     dif = moveCoords - flugzeug.touchCoord.x;
 
-                var x = parseInt((dif + flugzeug.coords.x)*10)/10;
+                var x = parseInt((dif + flugzeug.coords)*10)/10;
 
                 $('#flugzeug').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
                 $('#flugzeug').css('transform', 'translate3d('+x+'px, 0px, 0px)');
@@ -91,3 +94,5 @@ var flugzeug = {
     }*/
     
 }
+
+alert(flugzeug.coords);
