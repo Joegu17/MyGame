@@ -68,7 +68,7 @@ var flugzeug = {
 
                 var y = parseInt((dif + flugzeug.coords)*10)/10;
                 
-                flugzeug.coords = y;
+                flugzeug.realTimeCoords = y;
 
                 $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+y+'px, 0px)');
                 $('#flugzeug').css('transform', 'translate3d(0px, '+y+'px, 0px)');
