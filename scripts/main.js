@@ -28,7 +28,7 @@ var game = {
         var hg = document.getElementById('hintergrund');
         hg.addEventListener('touchstart', flugzeug.touchStart);
         hg.addEventListener('touchmove', flugzeug.touchMove);
-        //hg.addEventListener('touchend', flugzeug.touchEnd);
+        hg.addEventListener('touchend', flugzeug.touchEnd);
         
         //gameLoop();
         
