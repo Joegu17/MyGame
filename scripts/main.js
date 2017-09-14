@@ -68,16 +68,16 @@ var flugzeug = {
                     moveCoords = touch.pageY,
                     dif = moveCoords - flugzeug.touchCoord.y;
                 
-                alert(e.touches[i].pageY +' '+ e.touches[0].pageY);
+                //alert(e.touches[i].pageY +' '+ e.touches[0].pageY);
 
                 var y = parseInt((dif + flugzeug.coords)*10)/10;
                 
-                alert(y)
+                //alert(y);
                 
                 flugzeug.realTimeCoords = y;
 
-                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+y+'px, 0px)');
-                $('#flugzeug').css('transform', 'translate3d(0px, '+y+'px, 0px)');
+                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
+                $('#flugzeug').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
                 
             }
             
