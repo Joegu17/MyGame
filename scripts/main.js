@@ -24,7 +24,7 @@ var game = {
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
         
         var hg = document.getElementById('hintergrund');
-        //hg.addEventListener('touchstart', flugzeug.touchStart);
+        hg.addEventListener('touchstart', flugzeug.touchStart);
         hg.addEventListener('touchmove', flugzeug.touchMove);
         //hg.addEventListener('touchend', flugzeug.touchEnd);
         
@@ -36,11 +36,12 @@ var game = {
 
 var flugzeug = {
     
-    coords: h = window.innerHeight/2-(window.innerWidth/10*67/215)/2,
-    
+    coords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
+    realTimeCoords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
+    endCoords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
     
     touchCoord: null,
-    /*touchStart: function(e) {
+    touchStart: function(e) {
         
         e.preventDefault();
         var touch = e.touches[0];
@@ -51,29 +52,23 @@ var flugzeug = {
             
         }
         
-    },*/
+    },
     
     touchMove: function(e) {
         
         e.preventDefault();
         
-        var touch = e.touches[0];
-        
-        if (e.touches.length == 1) {
-            
-            flugzeug.touchCoord = {y: touch.pageY, id: touch.identifier};
-            
-        }
-        
         for (var i = 0; i < e.touches.length; i++) {
             
             if (e.touches[i].identifier == flugzeug.touchCoord.id) {
             
-                var touch = e.touches[i],
+                var touch = e.touches[0],
                     moveCoords = touch.pageY,
                     dif = moveCoords - flugzeug.touchCoord.y;
 
                 var y = parseInt((dif + flugzeug.coords)*10)/10;
+                
+                flugzeug.coords = y;
 
                 $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+y+'px, 0px)');
                 $('#flugzeug').css('transform', 'translate3d(0px, '+y+'px, 0px)');
@@ -90,7 +85,7 @@ var flugzeug = {
             
             if (e.changedTouches[i].identifier == flugzeug.touchCoord.id) {
                 
-                var endCoords = e.changedTouches[0].pageX,
+                var endCoords = e.changedTouches[0].pagey,
                     dif = endCoords - flugzeug.touchCoord.x;
                 
                 
