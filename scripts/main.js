@@ -30,9 +30,9 @@ var game = {
         
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
-        $('#berg').css({width: bergw+'px', height: bergh+'px'});
-        $('#turm').css({width: turmw+'px', height: turmh+'px'});
-        $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
+        //$('#berg').css({width: bergw+'px', height: bergh+'px'});
+        //$('#turm').css({width: turmw+'px', height: turmh+'px'});
+        //$('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
         
         var f = document.getElementById('flugzeug');
         f.addEventListener('touchstart', flugzeug.touchStart);
@@ -172,7 +172,7 @@ var flugzeug = {
     
 }
 
-/*var hindernis = {
+var hindernis = {
     
     generate: function(typ) {
         
