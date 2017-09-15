@@ -156,7 +156,7 @@ var flugzeug = {
                 $('#berg').css('-webkit-transform', 'none');
                 $('#berg').css('transform', 'none');
                 /*var wert = document.getElementById('berg').getAttribute('style');
-                alert(wert);*/
+                alert(wert);
                 break;
             case 2:
                 $('#turm').css('-webkit-transform', 'none');
