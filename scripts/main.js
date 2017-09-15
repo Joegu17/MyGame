@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-function gameLoop() {
+/*function gameLoop() {
         
     var typ = getRandomInt(1, 3);
     
@@ -11,7 +11,7 @@ function gameLoop() {
     
     //gameLoop();
     
-}
+}*/
 
 var game = {
     
@@ -39,7 +39,7 @@ var game = {
         f.addEventListener('touchmove', flugzeug.touchMove);
         f.addEventListener('touchend', flugzeug.touchEnd);
         
-        window.setTimeout(gameLoop, 1000);
+        //window.setTimeout(gameLoop, 1000);
         
         //gameLoop();
         
@@ -114,7 +114,7 @@ var flugzeug = {
     
 }
 
-var hindernis = {
+/*var hindernis = {
     
     move: function(typ) {
         
