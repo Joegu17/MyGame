@@ -136,7 +136,7 @@ var regler = {
             
             regler.touchCoord = {y: touch.pageY, id: touch.identifier};
             
-            $('#regler').css({'-webkit-transition-duration': 'none', 'transition-duration': 'none'});
+            $('#regler').css({'-webkit-transition-duration': 'initial', 'transition-duration': 'initial'});
             
         }
         
