@@ -156,7 +156,7 @@ var regler = {
                 
                 touch.realTimeCoordY = y;
                 
-                if (y > h/100 && y < h/100*99) {
+                if (y > h/100-reglerh && y < h/100*99-reglerh) {
 
                     $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
                     $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
