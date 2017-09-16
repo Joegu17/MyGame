@@ -153,6 +153,16 @@ var regler = {
                 var touch = e.touches[0],
                     moveCoords = touch.pageY,
                     dif = moveCoords - regler.touchCoord.y;
+                
+                switch (dif) {
+                    case (dif < 0):
+                        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+(-h/2-fh/2-h/10)+'px, 0px)');
+                        $('#flugzeug').css('transform', 'translate3d(0px, '+(-h/2-fh/2-h/10)+'px, 0px)');
+                        break;
+                    case (dif > 0):
+                        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+h/2+fh/2+h/10+'px, 0px)');
+                        $('#flugzeug').css('transform', 'translate3d(0px, '+h/2+fh/2+h/10+'px, 0px)');
+                } 
 
                 var y = parseInt((dif + regler.coordY)*10)/10;
                 
