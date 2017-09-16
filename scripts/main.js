@@ -182,6 +182,9 @@ var regler = {
                 
                 regler.coordY = regler.realTimeCoordY;
                 
+                $('#regler').css('-webkit-transform', 'none');
+                $('#regler').css('transform', 'none');
+                
             }
             
         }
