@@ -43,52 +43,52 @@ function steuerungLoop() {
             $('#flugzeug').css({top: h/100+'px'});
             break;
         case (reglerCoords > -(h/100+h*0.044) && reglerCoords < -(h/100+3*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({'-webkit-transition-duration': '2s'});
+            $('#flugzeug').css({'transition-duration': '2s'});
             $('#flugzeug').css({top: h/100+'px'});
             break;
         case (reglerCoords > -(h/100+3*h*0.044) && reglerCoords < -(h/100+5*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({'-webkit-transition-duration': '3s'});
+            $('#flugzeug').css({'transition-duration': '3s'});
             $('#flugzeug').css({top: h/100+'px'});
             break;
         case (reglerCoords > -(h/100+5*h*0.044) && reglerCoords < -(h/100+7*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({'-webkit-transition-duration': '4s'});
+            $('#flugzeug').css({'transition-duration': '4s'});
             $('#flugzeug').css({top: h/100+'px'});
             break;
         case (reglerCoords > -(h/100+7*h*0.044) && reglerCoords < -(h/100+9*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({'-webkit-transition-duration': '5s'});
+            $('#flugzeug').css({'transition-duration': '5s'});
             $('#flugzeug').css({top: h/100+'px'});
             break;
         case (reglerCoords > -(h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
             $('#flugzeug').css({top: flugzeugCoords+'px'});
             break;
         case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#flugzeug').css({'-webkit-transition-duration': '5s'});
+            $('#flugzeug').css({'transition-duration': '5s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             break;
         case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#flugzeug').css({'-webkit-transition-duration': '4s'});
+            $('#flugzeug').css({'transition-duration': '4s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             break;
         case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#flugzeug').css({'-webkit-transition-duration': '3s'});
+            $('#flugzeug').css({'transition-duration': '3s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             break;
         case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
-            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            $('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#flugzeug').css({'-webkit-transition-duration': '2s'});
+            $('#flugzeug').css({'transition-duration': '2s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             break;
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
             $('#flugzeug').css({'-webkit-transition-duration': '1s'});
             $('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             break;
     }
     
