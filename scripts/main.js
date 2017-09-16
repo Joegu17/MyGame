@@ -38,7 +38,9 @@ function steuerungLoop() {
     
     $('#test1').html('reglerCoors: '+reglerCoords);
     
-    switch (true) {
+    $('#flugzeug').css({top: reglerCoords+'px'});
+    
+    /*switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
             $('#flugzeug').css({top: flugzeugCoords+'px'});
             $('#flugzeug').css({'-webkit-transition-duration': '1s'});
@@ -113,7 +115,7 @@ function steuerungLoop() {
             $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             $('#test2').html('speed: 5');
             break;
-    }
+    }*/
     
     window.setTimeout(steuerungLoop, 17);
     
