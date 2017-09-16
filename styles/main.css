@@ -71,6 +71,8 @@ table {
     background-image: url(../images/flugzeug1.png);
     background-size: cover;
     background-repeat: no-repeat;
+    -webkit-transition-duration: 10s;
+    transition-duration: 10s;
 }
 #berg {
     position: absolute;
