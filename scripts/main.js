@@ -15,7 +15,7 @@ var reglerw = w/5,
 
 var score = 0;
 
-function gameLoop(typ) {
+function hindernisLoop(typ) {
     
     var newTyp = getRandomInt(1, 3);
     
@@ -27,7 +27,72 @@ function gameLoop(typ) {
     
     hindernis.move(newTyp);
         
-    window.setTimeout(gameLoop, 2000, newTyp);
+    window.setTimeout(hindernisLoop, 2000, newTyp);
+    
+}
+
+function steuerungLoop() {
+    
+    var reglerCoords = $('#regler').position().top,
+        flugzeugCoords = $('#flugzeug').position().top;
+    
+    switch (true) {
+        case (reglerCoords > -(h/100) && reglerCoords < -(h/100+h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > -(h/100+h*0.044) && reglerCoords < -(h/100+3*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > -(h/100+3*h*0.044) && reglerCoords < -(h/100+5*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > -(h/100+5*h*0.044) && reglerCoords < -(h/100+7*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > -(h/100+7*h*0.044) && reglerCoords < -(h/100+9*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > -(h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
+            $('#flugzeug').css({top: flugzeugCoords+'px'});
+            break;
+        case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+        case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
+            $('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            $('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            break;
+    }
+    
+    steuerungLoop();
     
 }
 
@@ -47,78 +112,13 @@ var game = {
         f.addEventListener('touchmove', regler.touchMove);
         f.addEventListener('touchend', regler.touchEnd);
         
-        window.setTimeout(gameLoop, 1000);
+        window.setTimeout(hindernisLoop, 1000);
+        
+        steuerungLoop();
         
     }
     
 }
-
-/*var flugzeug = {
-    
-    coords: h/2-(h/10*67/215)/2,
-    realTimeCoords: h/2-(h/10*67/215)/2,
-    endCoords: h/2-(h/10*67/215)/2,
-    
-    touchCoord: null,
-    touchStart: function(e) {
-        
-        e.preventDefault();
-        
-        var touch = e.touches[0];
-        
-        if (e.touches.length == 1) {
-            
-            flugzeug.touchCoord = {y: touch.pageY, id: touch.identifier};
-            
-        }
-        
-    },
-    
-    touchMove: function(e) {
-        
-        e.preventDefault();
-        
-        for (var i = 0; i < e.touches.length; i++) {
-            
-            if (e.touches[i].identifier == flugzeug.touchCoord.id) {
-            
-                var touch = e.touches[0],
-                    moveCoords = touch.pageY,
-                    dif = moveCoords - flugzeug.touchCoord.y;
-
-                var y = parseInt((dif + flugzeug.coords)*10)/10;
-                
-                flugzeug.realTimeCoords = y;
-
-                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                
-            }
-            
-        }
-        
-        $('#flugzeug').css({top: flugzeug.realTimeCoords+'px'});
-        
-    },
-    
-    touchEnd: function(e) {
-        
-        for (var i = 0; i < e.changedTouches.length; i++) {
-            
-            if (e.changedTouches[i].identifier == flugzeug.touchCoord.id) {
-                
-                var dif = e.changedTouches[0].pageY - flugzeug.touchCoord.y,
-                    y = parseInt((dif + flugzeug.coords)*10)/10;
-                
-                flugzeug.coords = flugzeug.realTimeCoords;
-                
-            }
-            
-        }
-        
-    }
-    
-}*/
 
 var regler = {
     
@@ -152,67 +152,7 @@ var regler = {
             
                 var touch = e.touches[0],
                     moveCoords = touch.pageY,
-                    dif = moveCoords - regler.touchCoord.y,
-                    moveUp = -(h/2+fh/2+h/10),
-                    moveDown = h/2+fh/2+h/10;
-                
-                switch (true) {
-                    case (dif > -(h/200*88) && dif < -(h/2000*88*9)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-                        $('#flugzeug').css({'transition-duration': '1s'});
-                        $('#flugzeug').css({top: h/100+'px'});
-                        break;
-                    case (dif > -(h/2000*88*9) && dif < -(h/2000*88*7)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '2s'});
-                        $('#flugzeug').css({'transition-duration': '2s'});
-                        $('#flugzeug').css({top: h/100+'px'});
-                        break;
-                    case (dif > -(h/2000*88*7) && dif < -(h/2000*88*5)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '3s'});
-                        $('#flugzeug').css({'transition-duration': '3s'});
-                        $('#flugzeug').css({top: h/100+'px'});
-                        break;
-                    case (dif > -(h/2000*88*5) && dif < -(h/2000*88*3)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '4s'});
-                        $('#flugzeug').css({'transition-duration': '4s'});
-                        $('#flugzeug').css({top: h/100+'px'});
-                        break;
-                    case (dif > -(h/2000*88*3) && dif < -(h/2000*88)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '5s'});
-                        $('#flugzeug').css({'transition-duration': '5s'});
-                        $('#flugzeug').css({top: h/100+'px'});
-                        break;
-                    case (dif > -(h/2000*88) && dif < (h/2000*88)):
-                        var flugzeugCoords = $('#flugzeug').position(),
-                            flugzeugY = flugzeugCoords.top;
-                        $('#flugzeug').css({top: flugzeugY+'px'});
-                        break;
-                    case (dif > (h/2000*88) && dif < (h/2000*88*3)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '5s'});
-                        $('#flugzeug').css({'transition-duration': '5s'});
-                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                        break;
-                    case (dif > (h/2000*88*3) && dif < (h/2000*88*5)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '4s'});
-                        $('#flugzeug').css({'transition-duration': '4s'});
-                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                        break;
-                    case (dif > (h/2000*88*5) && dif < (h/2000*88*7)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '3s'});
-                        $('#flugzeug').css({'transition-duration': '3s'});
-                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                        break;
-                    case (dif > (h/2000*88*7) && dif < (h/2000*88*9)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '2s'});
-                        $('#flugzeug').css({'transition-duration': '2s'});
-                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                        break;
-                    case (dif > (h/2000*88*9) && dif < (h/200*88)):
-                        $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-                        $('#flugzeug').css({'transition-duration': '1s'});
-                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                        break;
-                } 
+                    dif = moveCoords - regler.touchCoord.y;
 
                 var y = parseInt((dif + regler.coordY)*10)/10;
                 
@@ -244,7 +184,7 @@ var regler = {
                 
                 regler.coordY = regler.realTimeCoordY;
                 
-                $('#regler').css({'-webkit-transition-duration': '0.5s', 'transition-duration': '0.5s'});
+                $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
                 $('#regler').css('-webkit-transform', 'none');
                 $('#regler').css('transform', 'none');
                 
@@ -321,100 +261,3 @@ var hindernis = {
     }
     
 }
-
-/*var hindernis = {
-    
-    generate: function(typ) {
-        
-        var hindernisData = {},
-            w = window.innerWidth,
-            h = window.innerHeight,
-            x = w/10 + w;
-        
-        hindernisData.coordX = x;
-        
-        switch (typ) {
-            case 1:
-                var hh = h/10*7,
-                    hw = h/10*7/430*768,
-                    y = h - hh;
-                hindernisData.coordY = y;
-                hindernisData.id = 'berg';
-                $('#hindernisse').append('<div id="berg" class="berg" style="width: '+hw+'px; height: '+hh+'px; -webkit-transform:translate3d('+x+'px, '+y+'px, 0px); transform:translate3d('+x+'px, '+y+'px, 0px);"></div>');
-                break;
-            case 2:
-                var hh = h/10*7,
-                    hw = h/10*7/555*73,
-                    y = h - hh;
-                hindernisData.coordY = y;
-                hindernisData.id = 'turm';
-                $('#hindernisse').append('<div id="turm" class="turm" style="width: '+hw+'px; height: '+hh+'px; -webkit-transform:translate3d('+x+'px, '+y+'px, 0px); transform:translate3d('+x+'px, '+y+'px, 0px);"></div>');
-                break;
-            case 3:
-                var hh = h/10*7,
-                    hw = h/10*7/328*225,
-                    y = h - hh;
-                hindernisData.coordY = y;
-                hindernisData.id = 'ballon';
-                $('#hindernisse').append('<div id="ballon" class="ballon" style="width: '+hw+'px; height: '+hh+'px; -webkit-transform:translate3d('+x+'px, '+y+'px, 0px); transform:translate3d('+x+'px, '+y+'px, 0px);"></div>');
-                break;
-        }
-        
-        return(hindernisData);
-        
-    },
-    
-    move: function(data) {
-        
-        for (var i = 0; i < data.length; i++) {
-            
-            var x = data[i].coordX,
-                y = data[i].coordY;
-            
-            $('#'+data[i].id).css('-webkit-transform', 'translate3d(3000px, 0px, 0px)');
-            $('#'+data[i].id).css('transform', 'translate3d(3000px, 0px, 0px)');
-            
-            //alert(x+' '+y);
-            
-        }
-        
-    }
-    
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
