@@ -139,3 +139,15 @@ table {
     background-color: grey;
     transition-timing-function: ease-in-out;
 }
+#test1 {
+    position: fixed;
+    left: 40%;
+    top: 50%;
+    font-family: Lucida Sans Unicode;
+}
+#test2 {
+    position: fixed;
+    left: 60%;
+    top: 50%;
+    font-family: Lucida Sans Unicode;
+}
