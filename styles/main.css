@@ -68,7 +68,7 @@ table {
     position: absolute;
     left: 5%;
     top: 0px;
-    background-image: url(../images/flugzeug1.png);
+    background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
     -webkit-transition-duration: 10s;
@@ -78,7 +78,7 @@ table {
     position: absolute;
     left: 110%;
     bottom: 0px;
-    background-image: url(../images/berg.png);
+    background-image: url(../images/berg.svg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
@@ -91,7 +91,7 @@ table {
     position: absolute;
     left: 110%;
     bottom: 0px;
-    background-image: url(../images/turm.png);
+    background-image: url(../images/turm.svg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
@@ -104,7 +104,7 @@ table {
     position: absolute;
     left: 110%;
     top: 10%;
-    background-image: url(../images/ballon.png);
+    background-image: url(../images/ballon.svg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
