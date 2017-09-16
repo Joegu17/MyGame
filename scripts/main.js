@@ -53,7 +53,7 @@ var game = {
     
 }
 
-var flugzeug = {
+/*var flugzeug = {
     
     coords: h/2-(h/10*67/215)/2,
     realTimeCoords: h/2-(h/10*67/215)/2,
@@ -118,7 +118,7 @@ var flugzeug = {
         
     }
     
-}
+}*/
 
 var regler = {
     
@@ -155,9 +155,13 @@ var regler = {
                 var y = parseInt((dif + regler.coordY)*10)/10;
                 
                 touch.realTimeCoordY = y;
+                
+                if (y > h/100 && y < h/100*99) {
 
-                $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+                    $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
+                    $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+                    
+                }
                 
             }
             
