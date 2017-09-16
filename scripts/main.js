@@ -157,17 +157,17 @@ var regler = {
                     moveDown = h/2+fh/2+h/10;
                 
                 switch (true) {
-                    case (dif < 0):
+                    case (dif < -10):
                         $('#flugzeug').css({top: h/100+'px'});
                         //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+moveUp+'px, 0px)');
                         //$('#flugzeug').css('transform', 'translate3d(0px, '+moveUp+'px, 0px)');
                         break;
-                    case (dif == 0):
+                    case (dif > -10 && dif < 10):
                         var flugzeugCoords = $('#flugzeug').position(),
                             flugzeugY = flugzeugCoords.top;
                         $('#flugzeug').css({top: flugzeugY+'px'});
                         break;
-                    case (dif > 0):
+                    case (dif > 10):
                         $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+moveDown+'px, 0px)');
                         //$('#flugzeug').css('transform', 'translate3d(0px, '+moveDown+'px, 0px)');
