@@ -11,7 +11,7 @@ var turmw = h*0.5/555*73,
 var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
-    reglerh = h/5;
+    reglerh = h/10;
 
 var score = 0;
 
@@ -182,6 +182,7 @@ var regler = {
                 
                 regler.coordY = regler.realTimeCoordY;
                 
+                $('#regler').css({'-webkit-transition-duration': '0.5s', 'transition-duration: 2s': '0.5s'});
                 $('#regler').css('-webkit-transform', 'none');
                 $('#regler').css('transform', 'none');
                 
