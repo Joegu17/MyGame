@@ -1,17 +1,21 @@
 // JavaScript Document
 
 
-/*function gameLoop() {
+function gameLoop(typ) {
+    
+    var newTyp = getRandomInt(1, 3);
+    
+    while (newTyp == typ) {
         
-    var typ = getRandomInt(1, 3);
+        newTyp = getRandomInt(1, 3);
+            
+    }
     
-    hindernis.move(typ);
+    hindernis.move(newTyp);
+        
+    window.setTimeout(gameLoop, 2000, newTyp);
     
-    window.setTimeout(gameLoop, 3500);
-    
-    //gameLoop();
-    
-}*/
+}
 
 var game = {
     
@@ -30,18 +34,16 @@ var game = {
         
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
-        //$('#berg').css({width: bergw+'px', height: bergh+'px'});
-        //$('#turm').css({width: turmw+'px', height: turmh+'px'});
-        //$('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
+        $('#berg').css({width: bergw+'px', height: bergh+'px'});
+        $('#turm').css({width: turmw+'px', height: turmh+'px'});
+        $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
         
         var f = document.getElementById('flugzeug');
         f.addEventListener('touchstart', flugzeug.touchStart);
         f.addEventListener('touchmove', flugzeug.touchMove);
         f.addEventListener('touchend', flugzeug.touchEnd);
         
-        //window.setTimeout(gameLoop, 1000);
-        
-        //gameLoop();
+        window.setTimeout(gameLoop, 1000);
         
     }
     
@@ -114,9 +116,42 @@ var flugzeug = {
     
 }
 
-/*var hindernis = {
+var hindernis = {
     
     move: function(typ) {
+        
+        var w = window.innerWidth,
+            h = window.innerHeight,
+            bergw = h*0.7/430*768,
+            bergh = h*0.7,
+            x = -(w/5 + w + bergw);
+        
+        switch (typ) {
+            case 1:
+                $('#berg').css({'-webkit-transition-duration': '2s'});
+                $('#berg').css({'transition-duration': '2s'});
+                $('#berg').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+                $('#berg').css('transform', 'translate3d('+x+'px, 0px, 0px)');
+                break;
+            case 2:
+                $('#turm').css({'-webkit-transition-duration': '2s'});
+                $('#turm').css({'transition-duration': '2s'});
+                $('#turm').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+                $('#turm').css('transform', 'translate3d('+x+'px, 0px, 0px)');
+                break;
+            case 3:
+                $('#ballon').css({'-webkit-transition-duration': '2s'});
+                $('#ballon').css({'transition-duration': '2s'});
+                $('#ballon').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+                $('#ballon').css('transform', 'translate3d('+x+'px, 0px, 0px)');
+                break;
+        }
+    
+        window.setTimeout('hindernis.reset('+typ+')', 2010);
+                 
+    },
+    
+    reset: function(typ) {
         
         var w = window.innerWidth,
             h = window.innerHeight,
@@ -124,45 +159,20 @@ var flugzeug = {
         
         switch (typ) {
             case 1:
-                var moveX = -(x + w/10 + h*0.7/430*768);
-                //$('#berg').css('-webkit-transform', 'save');
-                //$('#berg').css('transform', 'save');
-                $('#berg').css('-webkit-transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                $('#berg').css('transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                break;
-            case 2:
-                var moveX = -(x + w/10 + h*0.5/555*73);
-                $('#turm').css('-webkit-transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                $('#turm').css('transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                break;
-            case 3:
-                var moveX = -(x + w/10 + h*0.6/328*225);
-                $('#ballon').css('-webkit-transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                $('#ballon').css('transform', 'translate3d('+moveX+'px, 0px, 0px)');
-                break;
-        }
-    
-        window.setTimeout('hindernis.reset('+typ+')', 3250);
-                 
-    },
-    
-    reset: function(typ) {
-        
-        var w = window.innerWidth,
-            x = w/10 + w;
-        
-        switch (typ) {
-            case 1:
+                $('#berg').css({'-webkit-transition-duration': '1ms'});
+                $('#berg').css({'transition-duration': '1ms'});
                 $('#berg').css('-webkit-transform', 'none');
                 $('#berg').css('transform', 'none');
-                /*var wert = document.getElementById('berg').getAttribute('style');
-                alert(wert);
                 break;
             case 2:
+                $('#turm').css({'-webkit-transition-duration': '1ms'});
+                $('#turm').css({'transition-duration': '1ms'});
                 $('#turm').css('-webkit-transform', 'none');
                 $('#turm').css('transform', 'none');
                 break;
             case 3:
+                $('#ballon').css({'-webkit-transition-duration': '1ms'});
+                $('#ballon').css({'transition-duration': '1ms'});
                 $('#ballon').css('-webkit-transform', 'none');
                 $('#ballon').css('transform', 'none');
                 break;
@@ -172,7 +182,7 @@ var flugzeug = {
     
 }
 
-var hindernis = {
+/*var hindernis = {
     
     generate: function(typ) {
         
