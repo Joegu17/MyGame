@@ -141,13 +141,13 @@ table {
 }
 #test1 {
     position: fixed;
-    left: 40%;
+    left: 30%;
     top: 50%;
     font-family: Lucida Sans Unicode;
 }
 #test2 {
     position: fixed;
-    left: 60%;
+    left: 70%;
     top: 50%;
     font-family: Lucida Sans Unicode;
 }
