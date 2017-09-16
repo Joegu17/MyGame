@@ -162,6 +162,11 @@ var regler = {
                         //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+moveUp+'px, 0px)');
                         //$('#flugzeug').css('transform', 'translate3d(0px, '+moveUp+'px, 0px)');
                         break;
+                    case (dif == 0):
+                        var flugzeugCoords = $('#flugzeug').position(),
+                            flugzeugY = flugzeugCoords.top;
+                        $('#flugzeug').css({top: flugzeugY+'px'});
+                        break;
                     case (dif > 0):
                         $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+moveDown+'px, 0px)');
