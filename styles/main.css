@@ -73,6 +73,8 @@ table {
     background-repeat: no-repeat;
     -webkit-transition-duration: 10s;
     transition-duration: 10s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
 }
 #berg {
     position: absolute;
