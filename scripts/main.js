@@ -1,5 +1,19 @@
 // JavaScript Document
 
+var w = window.innerWidth,
+    h = window.innerHeight;
+var fw = h/10*215/67,
+    fh = h/10;
+var bergw = h*0.7/430*768,
+    bergh = h*0.7;
+var turmw = h*0.5/555*73,
+    turmh = h*0.5;
+var ballonw = h*0.6/328*225,
+    ballonh = h*0.6;
+var reglerw = w/5,
+    reglerh = h/5;
+
+var score = 0;
 
 function gameLoop(typ) {
     
@@ -21,27 +35,17 @@ var game = {
     
     init: function() {
         
-        var w = window.innerWidth,
-            h = window.innerHeight;
-        var fw = h/10*215/67,
-            fh = h/10;
-        var bergw = h*0.7/430*768,
-            bergh = h*0.7;
-        var turmw = h*0.5/555*73,
-            turmh = h*0.5;
-        var ballonw = h*0.6/328*225,
-            ballonh = h*0.6;
-        
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
         $('#berg').css({width: bergw+'px', height: bergh+'px'});
         $('#turm').css({width: turmw+'px', height: turmh+'px'});
         $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
+        $('#score').css({'font-size': h/10+'px'});
         
-        var f = document.getElementById('flugzeug');
-        f.addEventListener('touchstart', flugzeug.touchStart);
-        f.addEventListener('touchmove', flugzeug.touchMove);
-        f.addEventListener('touchend', flugzeug.touchEnd);
+        var f = document.getElementById('regler');
+        f.addEventListener('touchstart', regler.touchStart);
+        f.addEventListener('touchmove', regler.touchMove);
+        f.addEventListener('touchend', regler.touchEnd);
         
         window.setTimeout(gameLoop, 1000);
         
@@ -51,9 +55,9 @@ var game = {
 
 var flugzeug = {
     
-    coords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
-    realTimeCoords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
-    endCoords: window.innerHeight/2-(window.innerWidth/10*67/215)/2,
+    coords: h/2-(h/10*67/215)/2,
+    realTimeCoords: h/2-(h/10*67/215)/2,
+    endCoords: h/2-(h/10*67/215)/2,
     
     touchCoord: null,
     touchStart: function(e) {
@@ -116,15 +120,77 @@ var flugzeug = {
     
 }
 
+var regler = {
+    
+    coordY: h/2 - reglerh/2,
+    realTimeCoordY: h/2 - reglerh/2,
+    
+    touchCoord: null,
+    touchStart: function(e) {
+        
+        e.preventDefault();
+        
+        var touch = e.touches[0];
+        
+        if (e.touches.length == 1) {
+            
+            regler.touchCoord = {y: touch.pageY, id: touch.identifier};
+            
+        }
+        
+    },
+    
+    touchMove: function(e) {
+        
+        e.preventDefault();
+        
+        for (var i = 0; i < e.touches.length; i++) {
+            
+            if (e.touches[i].identifier == regler.touchCoord.id) {
+            
+                var touch = e.touches[0],
+                    moveCoords = touch.pageY,
+                    dif = moveCoords - regler.touchCoord.y;
+
+                var y = parseInt((dif + regler.coordY)*10)/10;
+                
+                touch.realTimeCoordY = y;
+
+                $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
+                $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+                
+            }
+            
+        }
+        
+        $('#regler').css({top: flugzeug.realTimeCoords+'px'});
+        
+    },
+    
+    touchEnd: function(e) {
+        
+        for (var i = 0; i < e.changedTouches.length; i++) {
+            
+            if (e.changedTouches[i].identifier == regler.touchCoord.id) {
+                
+                var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
+                    y = parseInt((dif + regler.coordY)*10)/10;
+                
+                regler.coordY = regler.realTimeCoordY;
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
 var hindernis = {
     
     move: function(typ) {
         
-        var w = window.innerWidth,
-            h = window.innerHeight,
-            bergw = h*0.7/430*768,
-            bergh = h*0.7,
-            x = -(w/5 + w + bergw);
+        var x = -(w/5 + w + bergw);
         
         switch (typ) {
             case 1:
@@ -152,6 +218,10 @@ var hindernis = {
     },
     
     reset: function(typ) {
+        
+        score += 1;
+        
+        $('#score').html('Score: '+score);
         
         var w = window.innerWidth,
             h = window.innerHeight,

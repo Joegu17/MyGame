@@ -111,3 +111,26 @@ table {
     -webkit-transition-timing-function: linear;
     transition-timing-function: linear;
 }
+#score {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    font-family: Lucida Sans Unicode;
+}
+#balken {
+    position: fixed;
+    right: 3%;
+    top: 3%;
+    bottom: 3%;
+    height: 94%;
+    width: 1%;
+    background-color: gainsboro;
+}
+#regler {
+    position: absolute;
+    right: 1%;
+    top: 47.5%;
+    width: 5%;
+    height: 5%;
+    background-color: grey;
+}
