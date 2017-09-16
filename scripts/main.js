@@ -136,6 +136,8 @@ var regler = {
             
             regler.touchCoord = {y: touch.pageY, id: touch.identifier};
             
+            $('#regler').css({'-webkit-transition-duration': 'none', 'transition-duration': 'none'});
+            
         }
         
     },
@@ -156,7 +158,7 @@ var regler = {
                 
                 touch.realTimeCoordY = y;
                 
-                if (y > h/100-reglerh && y < h/100*99-reglerh) {
+                if (y > h/100 && y < h/100*99-reglerh) {
 
                     $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
                     $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
@@ -182,7 +184,7 @@ var regler = {
                 
                 regler.coordY = regler.realTimeCoordY;
                 
-                $('#regler').css({'-webkit-transition-duration': '0.5s', 'transition-duration: 2s': '0.5s'});
+                $('#regler').css({'-webkit-transition-duration': '0.5s', 'transition-duration': '0.5s'});
                 $('#regler').css('-webkit-transform', 'none');
                 $('#regler').css('transform', 'none');
                 

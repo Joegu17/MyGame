@@ -133,4 +133,5 @@ table {
     width: 5%;
     height: 10%;
     background-color: grey;
+    transition-timing-function: ease-in-out;
 }
