@@ -184,19 +184,19 @@ var regler = {
                         break;
                     case (dif > (h/2000*88) && dif < (h/2000*88*3)):
                         $('#flugzeug').css({'-webkit-transition-duration': '3s', 'transition-duration': '3s'})
-                        $('#flugzeug').css({top: h/100+'px'});
+                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         break;
                     case (dif > (h/2000*88*3) && dif < (h/2000*88*5)):
                         $('#flugzeug').css({'-webkit-transition-duration': '2.5s', 'transition-duration': '2.5s'})
-                        $('#flugzeug').css({top: h/100+'px'});
+                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         break;
                     case (dif > (h/2000*88*5) && dif < (h/2000*88*7)):
                         $('#flugzeug').css({'-webkit-transition-duration': '2s', 'transition-duration': '2s'})
-                        $('#flugzeug').css({top: h/100+'px'});
+                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         break;
                     case (dif > (h/2000*88*7) && dif < (h/2000*88*9)):
                         $('#flugzeug').css({'-webkit-transition-duration': '1.5s', 'transition-duration': '1.5s'})
-                        $('#flugzeug').css({top: h/100+'px'});
+                        $('#flugzeug').css({top: (h/100*99-fh)+'px'});
                         break;
                     case (dif > (h/2000*88*9) && dif < (h/200*88)):
                         $('#flugzeug').css({top: (h/100*99-fh)+'px'});
