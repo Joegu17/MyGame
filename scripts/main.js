@@ -79,6 +79,8 @@ var regler = {
                 newSpeed = speed - 1;
             }
             
+            $('#test1').html('Speed: '+newSpeed);
+            
             var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
             
             $('#flugzeug').css({'-webkit-transition-duration': time+'s'});
@@ -105,6 +107,8 @@ var regler = {
             if (speed < 5) {
                 newSpeed = speed + 1;
             }
+            
+            $('#test1').html('Speed: '+newSpeed);
             
             var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
             
