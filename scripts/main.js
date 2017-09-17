@@ -31,7 +31,7 @@ function hindernisLoop(typ) {
     
 }
 
-function steuerungLoop() {
+/*function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top,
         flugzeugCoords = $('#flugzeug').position().top;
@@ -119,7 +119,7 @@ function steuerungLoop() {
     
     window.setTimeout(steuerungLoop, 17);
     
-}
+}*/
 
 var game = {
     
@@ -134,14 +134,16 @@ var game = {
         $('#flugzeug').css({'-webkit-transition-duration': '2s'});
         $('#flugzeug').css({'transition-duration': '2s'});
         
-        var f = document.getElementById('regler');
-        f.addEventListener('touchstart', regler.touchStart);
-        f.addEventListener('touchmove', regler.touchMove);
-        f.addEventListener('touchend', regler.touchEnd);
+        var r1 = document.getElementById('regler1'),
+            r2 = document.getElementById('regler2');
+        r1.addEventListener('touchstart', regler.touchStartUp);
+        r2.addEventListener('touchstart', regler.touchStartDown);
+        //f.addEventListener('touchmove', regler.touchMove);
+        //f.addEventListener('touchend', regler.touchEnd);
         
         window.setTimeout(hindernisLoop, 1000);
         
-        steuerungLoop();
+        //steuerungLoop();
         
     }
     
@@ -153,7 +155,7 @@ var regler = {
     realTimeCoordY: h/2 - reglerh/2,
     
     touchCoord: null,
-    touchStart: function(e) {
+    touchStartUp: function(e) {
         
         e.preventDefault();
         
@@ -161,15 +163,27 @@ var regler = {
         
         if (e.touches.length == 1) {
             
-            regler.touchCoord = {y: touch.pageY, id: touch.identifier};
-            
-            $('#regler').css({'-webkit-transition-duration': 'initial', 'transition-duration': 'initial'});
+            $('#flugzeug').css({top: h/100+'px'});
             
         }
         
     },
     
-    touchMove: function(e) {
+    touchStartDown: function(e) {
+        
+        e.preventDefault();
+        
+        var touch = e.touches[0];
+        
+        if (e.touches.length == 1) {
+            
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            
+        }
+        
+    },
+    
+    /*touchMove: function(e) {
         
         e.preventDefault();
         
@@ -219,7 +233,7 @@ var regler = {
             
         }
         
-    }
+    }*/
     
 }
 
