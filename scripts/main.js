@@ -12,8 +12,6 @@ var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
     reglerh = h/10;
-var speed = 0,
-    newSpeed = 0;
 
 var score = 0;
 
@@ -33,7 +31,7 @@ function hindernisLoop(typ) {
     
 }
 
-function steuerungLoop(speed) {
+function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top,
         flugzeugCoords = $('#flugzeug').position().top;
@@ -44,115 +42,82 @@ function steuerungLoop(speed) {
     
     switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
-            newSpeed = -5;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-                $('#flugzeug').css({'transition-duration': '1s'});
-                $('#flugzeug').css({top: h/100+'px'});
-                $('#test2').html('speed: -5');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            //$('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            $('#test2').html('speed: -5');
             break;
         case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
-            newSpeed = -4;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '2s'});
-                $('#flugzeug').css({'transition-duration': '2s'});
-                $('#flugzeug').css({top: h/100+'px'});
-                $('#test2').html('speed: -4');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '2s'});
+            //$('#flugzeug').css({'transition-duration': '2s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            $('#test2').html('speed: -4');
             break;
         case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
-            newSpeed = -3;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '3s'});
-                $('#flugzeug').css({'transition-duration': '3s'});
-                $('#flugzeug').css({top: h/100+'px'});
-                $('#test2').html('speed: -3');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '3s'});
+            //$('#flugzeug').css({'transition-duration': '3s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            $('#test2').html('speed: -3');
             break;
         case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
-            newSpeed = -2;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '4s'});
-                $('#flugzeug').css({'transition-duration': '4s'});
-                $('#flugzeug').css({top: h/100+'px'});
-                $('#test2').html('speed: -2');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '4s'});
+            //$('#flugzeug').css({'transition-duration': '4s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            $('#test2').html('speed: -2');
             break;
         case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
-            newSpeed = -1;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '5s'});
-                $('#flugzeug').css({'transition-duration': '5s'});
-                $('#flugzeug').css({top: h/100+'px'});
-                $('#test2').html('speed: -1');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '5s'});
+            //$('#flugzeug').css({'transition-duration': '5s'});
+            $('#flugzeug').css({top: h/100+'px'});
+            $('#test2').html('speed: -1');
             break;
         case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
-            newSpeed = 0;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#test2').html('speed: 0');
-            }
+            $('#flugzeug').css({top: flugzeugCoords+'px'});
+            $('#test2').html('speed: 0');
             break;
         case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
-            newSpeed = 1;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '5s'});
-                $('#flugzeug').css({'transition-duration': '5s'});
-                $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                $('#test2').html('speed: 1');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '5s'});
+            //$('#flugzeug').css({'transition-duration': '5s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            $('#test2').html('speed: 1');
             break;
         case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
-            newSpeed = 2;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '4s'});
-                $('#flugzeug').css({'transition-duration': '4s'});
-                $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                $('#test2').html('speed: 2');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '4s'});
+            //$('#flugzeug').css({'transition-duration': '4s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            $('#test2').html('speed: 2');
             break;
         case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
-            newSpeed = 3;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '3s'});
-                $('#flugzeug').css({'transition-duration': '3s'});
-                $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                $('#test2').html('speed: 3');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '3s'});
+            //$('#flugzeug').css({'transition-duration': '3s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            $('#test2').html('speed: 3');
             break;
         case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
-            newSpeed = 4;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '2s'});
-                $('#flugzeug').css({'transition-duration': '2s'});
-                $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                $('#test2').html('speed: 4');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '2s'});
+            //$('#flugzeug').css({'transition-duration': '2s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            $('#test2').html('speed: 4');
             break;
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
-            newSpeed = 5;
-            if (speed != newSpeed) {
-                $('#flugzeug').css({top: flugzeugCoords+'px'});
-                $('#flugzeug').css({'-webkit-transition-duration': '1s'});
-                $('#flugzeug').css({'transition-duration': '1s'});
-                $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-                $('#test2').html('speed: 5');
-            }
+            //$('#flugzeug').css({top: flugzeugCoords+'px'});
+            //$('#flugzeug').css({'-webkit-transition-duration': '1s'});
+            //$('#flugzeug').css({'transition-duration': '1s'});
+            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            $('#test2').html('speed: 5');
             break;
     }
     
-    window.setTimeout(steuerungLoop, 17, newSpeed);
+    window.setTimeout(steuerungLoop, 17);
     
 }
 
@@ -176,7 +141,7 @@ var game = {
         
         window.setTimeout(hindernisLoop, 1000);
         
-        steuerungLoop(newSpeed);
+        steuerungLoop();
         
     }
     
