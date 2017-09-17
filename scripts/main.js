@@ -38,9 +38,9 @@ function steuerungLoop() {
     
     $('#test1').html('reglerCoors: '+reglerCoords);
     
-    $('#flugzeug').css({top: reglerCoords+'px'});
+    //$('#flugzeug').css({top: reglerCoords+'px'});
     
-    /*switch (true) {
+    switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
             $('#flugzeug').css({top: flugzeugCoords+'px'});
             $('#flugzeug').css({'-webkit-transition-duration': '1s'});
@@ -115,7 +115,7 @@ function steuerungLoop() {
             $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             $('#test2').html('speed: 5');
             break;
-    }*/
+    }
     
     window.setTimeout(steuerungLoop, 17);
     
@@ -131,6 +131,8 @@ var game = {
         $('#turm').css({width: turmw+'px', height: turmh+'px'});
         $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
         $('#score').css({'font-size': h/10+'px'});
+        $('#flugzeug').css({'-webkit-transition-duration': '2s'});
+        $('#flugzeug').css({'transition-duration': '2s'});
         
         var f = document.getElementById('regler');
         f.addEventListener('touchstart', regler.touchStart);
