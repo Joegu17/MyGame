@@ -12,6 +12,8 @@ var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
     reglerh = h/10;
+var speed = 0,
+    newSpeed = 0;
 
 var score = 0;
 
@@ -31,96 +33,6 @@ function hindernisLoop(typ) {
     
 }
 
-/*function steuerungLoop() {
-    
-    var reglerCoords = $('#regler').position().top,
-        flugzeugCoords = $('#flugzeug').position().top;
-    
-    $('#test1').html('reglerCoors: '+reglerCoords);
-    
-    //$('#flugzeug').css({top: reglerCoords+'px'});
-    
-    switch (true) {
-        case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            //$('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: h/100+'px'});
-            $('#test2').html('speed: -5');
-            break;
-        case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '2s'});
-            //$('#flugzeug').css({'transition-duration': '2s'});
-            $('#flugzeug').css({top: h/100+'px'});
-            $('#test2').html('speed: -4');
-            break;
-        case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '3s'});
-            //$('#flugzeug').css({'transition-duration': '3s'});
-            $('#flugzeug').css({top: h/100+'px'});
-            $('#test2').html('speed: -3');
-            break;
-        case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '4s'});
-            //$('#flugzeug').css({'transition-duration': '4s'});
-            $('#flugzeug').css({top: h/100+'px'});
-            $('#test2').html('speed: -2');
-            break;
-        case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '5s'});
-            //$('#flugzeug').css({'transition-duration': '5s'});
-            $('#flugzeug').css({top: h/100+'px'});
-            $('#test2').html('speed: -1');
-            break;
-        case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
-            $('#flugzeug').css({top: flugzeugCoords+'px'});
-            $('#test2').html('speed: 0');
-            break;
-        case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '5s'});
-            //$('#flugzeug').css({'transition-duration': '5s'});
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-            $('#test2').html('speed: 1');
-            break;
-        case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '4s'});
-            //$('#flugzeug').css({'transition-duration': '4s'});
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-            $('#test2').html('speed: 2');
-            break;
-        case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '3s'});
-            //$('#flugzeug').css({'transition-duration': '3s'});
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-            $('#test2').html('speed: 3');
-            break;
-        case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '2s'});
-            //$('#flugzeug').css({'transition-duration': '2s'});
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-            $('#test2').html('speed: 4');
-            break;
-        case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
-            //$('#flugzeug').css({top: flugzeugCoords+'px'});
-            //$('#flugzeug').css({'-webkit-transition-duration': '1s'});
-            //$('#flugzeug').css({'transition-duration': '1s'});
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
-            $('#test2').html('speed: 5');
-            break;
-    }
-    
-    window.setTimeout(steuerungLoop, 17);
-    
-}*/
-
 var game = {
     
     init: function() {
@@ -138,12 +50,8 @@ var game = {
             r2 = document.getElementById('regler2');
         r1.addEventListener('touchstart', regler.touchStartUp);
         r2.addEventListener('touchstart', regler.touchStartDown);
-        //f.addEventListener('touchmove', regler.touchMove);
-        //f.addEventListener('touchend', regler.touchEnd);
         
         window.setTimeout(hindernisLoop, 1000);
-        
-        //steuerungLoop();
         
     }
     
@@ -163,6 +71,19 @@ var regler = {
         
         if (e.touches.length == 1) {
             
+            var flugzeugCoords = $('#flugzeug').position().top;
+            
+            speed = newSpeed;
+            
+            if (speed > -5) {
+                newSpeed = speed - 1;
+            }
+            
+            var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
+            
+            $('#flugzeug').css({'-webkit-transition-duration': time+'s'});
+            $('#flugzeug').css({'transition-duration': time+'s'});
+            
             $('#flugzeug').css({top: h/100+'px'});
             
         }
@@ -177,63 +98,24 @@ var regler = {
         
         if (e.touches.length == 1) {
             
+            var flugzeugCoords = $('#flugzeug').position().top;
+            
+            speed = newSpeed;
+            
+            if (speed < 5) {
+                newSpeed = speed + 1;
+            }
+            
+            var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
+            
+            $('#flugzeug').css({'-webkit-transition-duration': time+'s'});
+            $('#flugzeug').css({'transition-duration': time+'s'});
+            
             $('#flugzeug').css({top: (h/100*99-fh)+'px'});
             
         }
         
-    },
-    
-    /*touchMove: function(e) {
-        
-        e.preventDefault();
-        
-        for (var i = 0; i < e.touches.length; i++) {
-            
-            if (e.touches[i].identifier == regler.touchCoord.id) {
-            
-                var touch = e.touches[0],
-                    moveCoords = touch.pageY,
-                    dif = moveCoords - regler.touchCoord.y;
-
-                var y = parseInt((dif + regler.coordY)*10)/10;
-                
-                touch.realTimeCoordY = y;
-                
-                if (y > h/100 && y < h/100*99-reglerh) {
-
-                    $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                    $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                    
-                }
-                
-            }
-            
-        }
-        
-        $('#regler').css({top: flugzeug.realTimeCoords+'px'});
-        
-    },
-    
-    touchEnd: function(e) {
-        
-        for (var i = 0; i < e.changedTouches.length; i++) {
-            
-            if (e.changedTouches[i].identifier == regler.touchCoord.id) {
-                
-                var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
-                    y = parseInt((dif + regler.coordY)*10)/10;
-                
-                regler.coordY = regler.realTimeCoordY;
-                
-                $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
-                $('#regler').css('-webkit-transform', 'none');
-                $('#regler').css('transform', 'none');
-                
-            }
-            
-        }
-        
-    }*/
+    }
     
 }
 
