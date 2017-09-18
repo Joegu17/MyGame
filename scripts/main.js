@@ -12,7 +12,8 @@ var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
     reglerh = h/10;
-var speed = 0;
+var speed = 0,
+    yFlugzeug = h*8.8/10;
 
 var score = 0;
 
@@ -91,7 +92,7 @@ function steuerungLoop() {
 
 function animation() {
     
-    var dist = speed * 0.02,
+    var dist = speed * 0.02 * yFlugzeug,
         flugzeugCoords = $('#flugzeug').position().top,
         newFlugzeugCoords = flugzeugCoords + dist;
     
