@@ -71,10 +71,6 @@ table {
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    /*-webkit-transition-duration: 10s;
-    transition-duration: 10s;*/
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
 }
 #berg {
     position: absolute;
@@ -121,19 +117,19 @@ table {
     top: 5%;
     font-family: Lucida Sans Unicode;
 }
-#regler1 {
-    position: absolute;
-    right: 1%;
-    top: 37.5%;
-    width: 5%;
-    height: 10%;
-    background-color: grey;
-    transition-timing-function: ease-in-out;
+#balken {
+    position: fixed;
+    right: 3%;
+    top: 3%;
+    bottom: 3%;
+    height: 94%;
+    width: 1%;
+    background-color: gainsboro;
 }
-#regler2 {
+#regler {
     position: absolute;
     right: 1%;
-    top: 52.5%;
+    top: 45%;
     width: 5%;
     height: 10%;
     background-color: grey;

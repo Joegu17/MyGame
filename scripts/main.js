@@ -12,8 +12,7 @@ var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
     reglerh = h/10;
-var speed = 0,
-    newSpeed = 0;
+var speed = 0;
 
 var score = 0;
 
@@ -33,6 +32,75 @@ function hindernisLoop(typ) {
     
 }
 
+function steuerungLoop() {
+    
+    var reglerCoords = $('#regler').position().top;
+    
+    $('#test1').html('reglerCoors: '+reglerCoords);
+    
+    switch (true) {
+        case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
+            speed = -5;
+            $('#test2').html('speed: -5');
+            break;
+        case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
+            speed = -4;
+            $('#test2').html('speed: -4');
+            break;
+        case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
+            speed = -3;
+            $('#test2').html('speed: -3');
+            break;
+        case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
+            speed = -2;
+            $('#test2').html('speed: -2');
+            break;
+        case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
+            speed = -1;
+            $('#test2').html('speed: -1');
+            break;
+        case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
+            speed = 0;
+            $('#test2').html('speed: 0');
+            break;
+        case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
+            speed = 1;
+            $('#test2').html('speed: 1');
+            break;
+        case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
+            speed = 2;
+            $('#test2').html('speed: 2');
+            break;
+        case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
+            speed = 3;
+            $('#test2').html('speed: 3');
+            break;
+        case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
+            speed = 4;
+            $('#test2').html('speed: 4');
+            break;
+        case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
+            speed = 5;
+            $('#test2').html('speed: 5');
+            break;
+    }
+    
+    window.setTimeout(steuerungLoop, 20);
+    
+}
+
+function animation() {
+    
+    var dist = speed * 0.02,
+        flugzeugCoords = $('#flugzeug').position().top,
+        newFlugzeugCoords = flugzeugCoords + dist;
+    
+    $('#flugzeug').css({top: newFlugzeugCoords+'px'});
+    
+    window.setTimeout(animation, 20);
+    
+}
+
 var game = {
     
     init: function() {
@@ -43,15 +111,17 @@ var game = {
         $('#turm').css({width: turmw+'px', height: turmh+'px'});
         $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
         $('#score').css({'font-size': h/10+'px'});
-        $('#flugzeug').css({'-webkit-transition-duration': '2s'});
-        $('#flugzeug').css({'transition-duration': '2s'});
         
-        var r1 = document.getElementById('regler1'),
-            r2 = document.getElementById('regler2');
-        r1.addEventListener('touchstart', regler.touchStartUp);
-        r2.addEventListener('touchstart', regler.touchStartDown);
+        var f = document.getElementById('regler');
+        f.addEventListener('touchstart', regler.touchStart);
+        f.addEventListener('touchmove', regler.touchMove);
+        f.addEventListener('touchend', regler.touchEnd);
         
         window.setTimeout(hindernisLoop, 1000);
+        
+        steuerungLoop();
+        
+        animation();
         
     }
     
@@ -63,7 +133,7 @@ var regler = {
     realTimeCoordY: h/2 - reglerh/2,
     
     touchCoord: null,
-    touchStartUp: function(e) {
+    touchStart: function(e) {
         
         e.preventDefault();
         
@@ -71,51 +141,61 @@ var regler = {
         
         if (e.touches.length == 1) {
             
-            var flugzeugCoords = $('#flugzeug').position().top;
+            regler.touchCoord = {y: touch.pageY, id: touch.identifier};
             
-            speed = newSpeed;
-            
-            if (speed > -5) {
-                newSpeed = speed - 1;
-            }
-            
-            $('#test1').html('Speed: '+newSpeed);
-            
-            var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
-            
-            $('#flugzeug').css({'-webkit-transition-duration': time+'s'});
-            $('#flugzeug').css({'transition-duration': time+'s'});
-            
-            $('#flugzeug').css({top: h/100+'px'});
+            $('#regler').css({'-webkit-transition-duration': 'initial', 'transition-duration': 'initial'});
             
         }
         
     },
     
-    touchStartDown: function(e) {
+    touchMove: function(e) {
         
         e.preventDefault();
         
-        var touch = e.touches[0];
-        
-        if (e.touches.length == 1) {
+        for (var i = 0; i < e.touches.length; i++) {
             
-            var flugzeugCoords = $('#flugzeug').position().top;
+            if (e.touches[i].identifier == regler.touchCoord.id) {
             
-            speed = newSpeed;
-            
-            if (speed < 5) {
-                newSpeed = speed + 1;
+                var touch = e.touches[0],
+                    moveCoords = touch.pageY,
+                    dif = moveCoords - regler.touchCoord.y;
+
+                var y = parseInt((dif + regler.coordY)*10)/10;
+                
+                touch.realTimeCoordY = y;
+                
+                if (y > h/100 && y < h/100*99-reglerh) {
+
+                    $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
+                    $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+                    
+                }
+                
             }
             
-            $('#test1').html('Speed: '+newSpeed);
+        }
+        
+        $('#regler').css({top: flugzeug.realTimeCoords+'px'});
+        
+    },
+    
+    touchEnd: function(e) {
+        
+        for (var i = 0; i < e.changedTouches.length; i++) {
             
-            var time = (100/h * (flugzeugCoords - h/100))/(15+newSpeed*5)
-            
-            $('#flugzeug').css({'-webkit-transition-duration': time+'s'});
-            $('#flugzeug').css({'transition-duration': time+'s'});
-            
-            $('#flugzeug').css({top: (h/100*99-fh)+'px'});
+            if (e.changedTouches[i].identifier == regler.touchCoord.id) {
+                
+                var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
+                    y = parseInt((dif + regler.coordY)*10)/10;
+                
+                regler.coordY = regler.realTimeCoordY;
+                
+                $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
+                $('#regler').css('-webkit-transform', 'none');
+                $('#regler').css('transform', 'none');
+                
+            }
             
         }
         
