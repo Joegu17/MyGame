@@ -42,46 +42,68 @@ function steuerungLoop() {
     switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
             speed = -100;
+            $('#flugzeug').css('-webkit-transform', 'rotate(-25)');
+            $('#flugzeug').css('transform', 'rotate(-25)');
             $('#test2').html('speed: -25');
             break;
         case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
             speed = -80;
+            $('#flugzeug').css('-webkit-transform', 'rotate(-20)');
+            $('#flugzeug').css('transform', 'rotate(-20)');
             $('#test2').html('speed: -20');
             break;
         case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
             speed = -60;
+            $('#flugzeug').css('-webkit-transform', 'rotate(-15)');
+            $('#flugzeug').css('transform', 'rotate(-15)');
             $('#test2').html('speed: -15');
             break;
         case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
             speed = -40;
+            $('#flugzeug').css('-webkit-transform', 'rotate(-10)');
+            $('#flugzeug').css('transform', 'rotate(-10)');
             $('#test2').html('speed: -10');
             break;
         case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
             speed = -20;
+            $('#flugzeug').css('-webkit-transform', 'rotate(-5)');
+            $('#flugzeug').css('transform', 'rotate(-5)');
             $('#test2').html('speed: -5');
             break;
         case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
             speed = 0;
+            $('#flugzeug').css('-webkit-transform', 'rotate(0)');
+            $('#flugzeug').css('transform', 'rotate(0)');
             $('#test2').html('speed: 0');
             break;
         case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
             speed = 20;
+            $('#flugzeug').css('-webkit-transform', 'rotate(5)');
+            $('#flugzeug').css('transform', 'rotate(5)');
             $('#test2').html('speed: 5');
             break;
         case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
             speed = 40;
+            $('#flugzeug').css('-webkit-transform', 'rotate(10)');
+            $('#flugzeug').css('transform', 'rotate(10)');
             $('#test2').html('speed: 10');
             break;
         case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
             speed = 60;
+            $('#flugzeug').css('-webkit-transform', 'rotate(15)');
+            $('#flugzeug').css('transform', 'rotate(15)');
             $('#test2').html('speed: 15');
             break;
         case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
             speed = 80;
+            $('#flugzeug').css('-webkit-transform', 'rotate(20)');
+            $('#flugzeug').css('transform', 'rotate(20)');
             $('#test2').html('speed: 20');
             break;
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
             speed = 100;
+            $('#flugzeug').css('-webkit-transform', 'rotate(25)');
+            $('#flugzeug').css('transform', 'rotate(25)');
             $('#test2').html('speed: 25');
             break;
     }
