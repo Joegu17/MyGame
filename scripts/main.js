@@ -212,7 +212,7 @@ var flugzeugAuswahl = {
                 var dif = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y,
                     y = parseInt((dif + flugzeugAuswahl.coordY)*10)/10;
                 
-                flugzeugAuswahl.newDistance = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y;
+                flugzeugAuswahl.newDistance = -(e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y);
                 
                 flugzeugAuswahl.distance += flugzeugAuswahl.newDistance;
                 
