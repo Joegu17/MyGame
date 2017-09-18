@@ -177,40 +177,47 @@ table {
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug6 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug5 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug4 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug3 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug2 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 #flugzeug1 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }

@@ -130,6 +130,8 @@ var flugzeugAuswahl = {
     
     init: function() {
         
+        alert('hallo');
+        
         $('#startBild').css({visibility: 'hidden'});
         $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
