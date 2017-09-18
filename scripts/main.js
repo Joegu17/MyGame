@@ -13,7 +13,7 @@ var ballonw = h*0.6/328*225,
 var reglerw = w/5,
     reglerh = h/10;
 var speed = 0,
-    yFlugzeug = h*8.8/10;
+    yFlugzeug = h*8.8/1000;
 
 var score = 0;
 
