@@ -154,6 +154,8 @@ var flugzeugAuswahl = {
     touchCoord: null,
     touchStart: function() {
         
+        alert('lul');
+        
         e.preventDefault();
         
         var touch = e.touches[0];
@@ -212,7 +214,7 @@ var flugzeugAuswahl = {
                 var dif = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y,
                     y = parseInt((dif + flugzeugAuswahl.coordY)*10)/10;
                 
-                flugzeugAuswahl.distance += flugzeugAuswahl.newDistance
+                flugzeugAuswahl.distance += flugzeugAuswahl.newDistance;
                 
                 flugzeugAuswahl.newDistance = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y;
                 
