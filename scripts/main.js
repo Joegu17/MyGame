@@ -152,9 +152,7 @@ var flugzeugAuswahl = {
     },
     
     touchCoord: null,
-    touchStart: function() {
-        
-        alert('lul');
+    touchStart: function(e) {
         
         e.preventDefault();
         
@@ -168,7 +166,7 @@ var flugzeugAuswahl = {
         
     },
     
-    touchMove: function() {
+    touchMove: function(e) {
         
         e.preventDefault();
         
@@ -205,7 +203,7 @@ var flugzeugAuswahl = {
         
     },
     
-    touchEnd: function() {
+    touchEnd: function(e) {
         
         for (var i = 0; i < e.changedTouches.length; i++) {
             
