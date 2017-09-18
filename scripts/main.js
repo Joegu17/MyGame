@@ -135,6 +135,7 @@ var flugzeugAuswahl = {
         $('#startBild').css({visibility: 'hidden'});
         $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
+        $('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
         $('#flugzeug1').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2-fh+'px'});
         $('#flugzeug2').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+2*fh+'px'});
         $('#flugzeug3').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+5*fh+'px'});
