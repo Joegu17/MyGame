@@ -96,8 +96,14 @@ function animation() {
         flugzeugCoords = $('#flugzeug').position().top,
         newFlugzeugCoords = flugzeugCoords + dist;
     
-    if (flugzeugCoords > h*0.05 && flugzeugCoords < h*0.95-fh) {
+    if (flugzeugCoords > h*0.05 && speed < 0) {
     
+        $('#flugzeug').css({top: newFlugzeugCoords+'px'});
+        
+    }
+    
+    if (flugzeugCoords < h*0.95-fh && speed > 0) {
+        
         $('#flugzeug').css({top: newFlugzeugCoords+'px'});
         
     }
