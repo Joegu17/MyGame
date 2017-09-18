@@ -163,3 +163,54 @@ table {
 #money {
     
 }
+
+#flugzeugAuswahl {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: skyblue;
+    visibility: hidden;
+}
+#flugzeug7 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug6 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug5 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug4 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug3 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug2 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#flugzeug1 {
+    position: absolute;
+    background-image: url(../images/flugzeug1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
