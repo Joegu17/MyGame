@@ -218,6 +218,8 @@ var flugzeugAuswahl = {
                 
                 flugzeugAuswahl.coordY = flugzeugAuswahl.realTimeCoordY;
                 
+                alert(flugzeugAuswahl.distance);
+                
                 switch(true) {
                     case (flugzeugAuswahl.distance < 1.5*fh):
                         var focus = -(flugzeugAuswahl.distance);
