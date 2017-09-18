@@ -12,8 +12,12 @@ var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
 var reglerw = w/5,
     reglerh = h/10;
+var startButtonw = w/5,
+    startButtonh = h/5;
 var speed = 0,
     yFlugzeug = h*8.8/1000;
+var iconw = h*0.15,
+    iconh = h*0.15;
 
 var score = 0;
 
@@ -37,74 +41,39 @@ function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top;
     
-    $('#test1').html('reglerCoors: '+reglerCoords);
-    
     switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
             speed = -100;
-            $('#flugzeug').css('-webkit-transform', 'rotate(-25)');
-            $('#flugzeug').css('transform', 'rotate(-25)');
-            $('#test2').html('speed: -25');
             break;
         case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
             speed = -80;
-            $('#flugzeug').css('-webkit-transform', 'rotate(-20)');
-            $('#flugzeug').css('transform', 'rotate(-20)');
-            $('#test2').html('speed: -20');
             break;
         case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
             speed = -60;
-            $('#flugzeug').css('-webkit-transform', 'rotate(-15)');
-            $('#flugzeug').css('transform', 'rotate(-15)');
-            $('#test2').html('speed: -15');
             break;
         case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
             speed = -40;
-            $('#flugzeug').css('-webkit-transform', 'rotate(-10)');
-            $('#flugzeug').css('transform', 'rotate(-10)');
-            $('#test2').html('speed: -10');
             break;
         case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
             speed = -20;
-            $('#flugzeug').css('-webkit-transform', 'rotate(-5)');
-            $('#flugzeug').css('transform', 'rotate(-5)');
-            $('#test2').html('speed: -5');
             break;
         case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
             speed = 0;
-            $('#flugzeug').css('-webkit-transform', 'rotate(0)');
-            $('#flugzeug').css('transform', 'rotate(0)');
-            $('#test2').html('speed: 0');
             break;
         case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
             speed = 20;
-            $('#flugzeug').css('-webkit-transform', 'rotate(5)');
-            $('#flugzeug').css('transform', 'rotate(5)');
-            $('#test2').html('speed: 5');
             break;
         case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
             speed = 40;
-            $('#flugzeug').css('-webkit-transform', 'rotate(10)');
-            $('#flugzeug').css('transform', 'rotate(10)');
-            $('#test2').html('speed: 10');
             break;
         case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
             speed = 60;
-            $('#flugzeug').css('-webkit-transform', 'rotate(15)');
-            $('#flugzeug').css('transform', 'rotate(15)');
-            $('#test2').html('speed: 15');
             break;
         case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
             speed = 80;
-            $('#flugzeug').css('-webkit-transform', 'rotate(20)');
-            $('#flugzeug').css('transform', 'rotate(20)');
-            $('#test2').html('speed: 20');
             break;
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
             speed = 100;
-            $('#flugzeug').css('-webkit-transform', 'rotate(25)');
-            $('#flugzeug').css('transform', 'rotate(25)');
-            $('#test2').html('speed: 25');
             break;
     }
     
@@ -134,9 +103,28 @@ function animation() {
     
 }
 
+var startBild = {
+    
+    init: function() {
+        
+        $('#startBild').css({width: w+'px', height: h+'px'});
+        $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
+        $('#options').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
+        $('#choosePlane').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
+        
+        var s = document.getElementById('startButton');
+        s.addEventListener('touchstart', game.init);
+        
+    }
+    
+}
+
 var game = {
     
     init: function() {
+        
+        $('#startBild').css({visibility: 'hidden'});
+        $('#hintergrund').css({visibility: 'inherit'});
         
         $('#hintergrund').css({width: w+'px', height: h+'px'});
         $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});

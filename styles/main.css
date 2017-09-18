@@ -63,6 +63,7 @@ table {
     right: 0px;
     overflow: hidden;
     background-color: skyblue;
+    visibility: hidden;
 }
 #flugzeug {
     position: absolute;
@@ -135,15 +136,30 @@ table {
     background-color: grey;
     transition-timing-function: ease-in-out;
 }
-#test1 {
+
+#startBild {
     position: fixed;
-    left: 30%;
-    top: 50%;
-    font-family: Lucida Sans Unicode;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: skyblue;
 }
-#test2 {
+#startButton {
     position: fixed;
-    left: 70%;
-    top: 50%;
     font-family: Lucida Sans Unicode;
+    background-color: blue;
+    opacity: 0.5;
+}
+#options {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#choosePlane {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#money {
+    
 }
