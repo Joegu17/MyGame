@@ -212,15 +212,17 @@ var flugzeugAuswahl = {
                 var dif = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y,
                     y = parseInt((dif + flugzeugAuswahl.coordY)*10)/10;
                 
-                flugzeugAuswahl.distance += flugzeugAuswahl.newDistance;
-                
                 flugzeugAuswahl.newDistance = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y;
+                
+                flugzeugAuswahl.distance += flugzeugAuswahl.newDistance;
                 
                 flugzeugAuswahl.coordY = flugzeugAuswahl.realTimeCoordY;
                 
                 switch(true) {
                     case (flugzeugAuswahl.distance < 1.5*fh):
                         var focus = -(flugzeugAuswahl.distance);
+                        flugzeugAuswahl.distance = 0;
+                        flugzeugAuswahl.coordY = h/2-fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -238,6 +240,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 1.5*fh && flugzeugAuswahl.distance < 4.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 3*fh);
+                        flugzeugAuswahl.distance = 3*fh;
+                        flugzeugAuswahl.coordY = h/2+2*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -255,6 +259,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 4.5*fh && flugzeugAuswahl.distance < 7.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 6*fh);
+                        flugzeugAuswahl.distance = 6*fh;
+                        flugzeugAuswahl.coordY = h/2+5*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -272,6 +278,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 7.5*fh && flugzeugAuswahl.distance < 10.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 9*fh);
+                        flugzeugAuswahl.distance = 9*fh;
+                        flugzeugAuswahl.coordY = h/2+8*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -289,6 +297,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 10.5*fh && flugzeugAuswahl.distance < 13.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 12*fh);
+                        flugzeugAuswahl.distance = 12*fh;
+                        flugzeugAuswahl.coordY = h/2+11*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -306,6 +316,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 13.5*fh && flugzeugAuswahl.distance < 16.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 15*fh);
+                        flugzeugAuswahl.distance = 15*fh;
+                        flugzeugAuswahl.coordY = h/2+14*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
@@ -323,6 +335,8 @@ var flugzeugAuswahl = {
                         break;
                     case (flugzeugAuswahl.distance > 16.5*fh):
                         var focus = -(flugzeugAuswahl.distance - 18*fh);
+                        flugzeugAuswahl.distance = 18*fh;
+                        flugzeugAuswahl.coordY = h/2+17*fh;
                         $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
                         $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
