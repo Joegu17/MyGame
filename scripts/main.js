@@ -92,7 +92,7 @@ function steuerungLoop() {
 
 function animation() {
     
-    var dist = speed * 0.02 * yFlugzeug,
+    var dist = speed /60 * yFlugzeug,
         flugzeugCoords = $('#flugzeug').position().top,
         newFlugzeugCoords = flugzeugCoords + dist;
     
@@ -108,7 +108,7 @@ function animation() {
         
     }
     
-    window.setTimeout(animation, 20);
+    window.setTimeout(animation, 16);
     
 }
 
