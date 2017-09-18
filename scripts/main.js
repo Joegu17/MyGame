@@ -41,23 +41,23 @@ function steuerungLoop() {
     
     switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
-            speed = -50;
+            speed = -75;
             $('#test2').html('speed: -25');
             break;
         case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
-            speed = -40;
+            speed = -60;
             $('#test2').html('speed: -20');
             break;
         case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
-            speed = -30;
+            speed = -45;
             $('#test2').html('speed: -15');
             break;
         case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
-            speed = -20;
+            speed = -30;
             $('#test2').html('speed: -10');
             break;
         case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
-            speed = -10;
+            speed = -15;
             $('#test2').html('speed: -5');
             break;
         case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
@@ -65,23 +65,23 @@ function steuerungLoop() {
             $('#test2').html('speed: 0');
             break;
         case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
-            speed = 10;
+            speed = 15;
             $('#test2').html('speed: 5');
             break;
         case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
-            speed = 20;
+            speed = 30;
             $('#test2').html('speed: 10');
             break;
         case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
-            speed = 30;
+            speed = 45;
             $('#test2').html('speed: 15');
             break;
         case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
-            speed = 40;
+            speed = 60;
             $('#test2').html('speed: 20');
             break;
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
-            speed = 50;
+            speed = 75;
             $('#test2').html('speed: 25');
             break;
     }
@@ -96,13 +96,13 @@ function animation() {
         flugzeugCoords = $('#flugzeug').position().top,
         newFlugzeugCoords = flugzeugCoords + dist;
     
-    if (flugzeugCoords > h*0.05 && speed < 0) {
+    if (flugzeugCoords > h*speed*0.0002 && speed < 0) {
     
         $('#flugzeug').css({top: newFlugzeugCoords+'px'});
         
     }
     
-    if (flugzeugCoords < h*0.95-fh && speed > 0) {
+    if (flugzeugCoords < h*(1-speed*0.0002)-fh && speed > 0) {
         
         $('#flugzeug').css({top: newFlugzeugCoords+'px'});
         
