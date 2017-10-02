@@ -172,12 +172,26 @@ table {
     background-color: skyblue;
     visibility: hidden;
 }
+#up {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#down {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
 #flugzeug7 {
     position: absolute;
     background-image: url(../images/flugzeug1.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug6 {
     position: absolute;
@@ -185,6 +199,10 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug5 {
     position: absolute;
@@ -192,6 +210,10 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug4 {
     position: absolute;
@@ -199,6 +221,10 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug3 {
     position: absolute;
@@ -206,6 +232,10 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug2 {
     position: absolute;
@@ -213,6 +243,10 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 #flugzeug1 {
     position: absolute;
@@ -220,4 +254,8 @@ table {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
