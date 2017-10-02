@@ -22,7 +22,7 @@ var iconw = h*0.15,
 var score = 0;
 
 var fAPosition = 1,
-    div = 0;
+    fAPos = 0;
 
 function hindernisLoop(typ) {
     
@@ -170,22 +170,22 @@ var flugzeugAuswahl = {
             
             fAPosition -= 1;
             
-            var dif += 3*fh;
+            fAPos += 3*fh;
             
-            $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug2').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug3').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug4').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug5').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug6').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug7').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+            $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug1').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug2').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug3').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug4').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug5').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug6').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             
         }
         
@@ -199,22 +199,22 @@ var flugzeugAuswahl = {
             
             fAPosition += 1;
             
-            var dif -= 3*fh;
+            fAPos -= 3*fh;
             
-            $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug2').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug3').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug4').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug5').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug6').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-            $('#flugzeug7').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
+            $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug1').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug2').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug3').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug4').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug5').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug6').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
+            $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             
         }
         
