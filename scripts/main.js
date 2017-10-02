@@ -21,7 +21,8 @@ var iconw = h*0.15,
 
 var score = 0;
 
-var fAPosition = 1;
+var fAPosition = 1,
+    div = 0;
 
 function hindernisLoop(typ) {
     
@@ -169,7 +170,7 @@ var flugzeugAuswahl = {
             
             fAPosition -= 1;
             
-            var dif = 3*fh;
+            var dif += 3*fh;
             
             $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
             $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
@@ -198,7 +199,7 @@ var flugzeugAuswahl = {
             
             fAPosition += 1;
             
-            var dif = -(3*fh);
+            var dif -= 3*fh;
             
             $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
             $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
