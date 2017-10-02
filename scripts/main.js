@@ -165,11 +165,11 @@ var flugzeugAuswahl = {
         
         e.preventDefault();
         
-        if (fAPosition != 0) {
+        if (fAPosition != 1) {
             
             fAPosition -= 1;
             
-            var dif = -(3*fh);
+            var dif = 3*fh;
             
             $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
             $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
@@ -198,7 +198,7 @@ var flugzeugAuswahl = {
             
             fAPosition += 1;
             
-            var dif = 3*fh;
+            var dif = -(3*fh);
             
             $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
             $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
