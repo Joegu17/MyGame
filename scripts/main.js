@@ -234,6 +234,9 @@ var game = {
     
     init: function() {
         
+        s.removeEventListener('touchstart', game.init);
+        f.removeEventListener('touchstart', flugzeugAuswahl.init);
+        
         $('#startBild').css({visibility: 'hidden'});
         $('#hintergrund').css({visibility: 'inherit'});
         
