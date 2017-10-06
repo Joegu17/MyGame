@@ -24,6 +24,13 @@ var score = 0;
 var fAPosition = 1,
     fAPos = 0;
 
+var s = document.getElementById('startButton'),
+    f = document.getElementById('choosePlane'),
+    up = document.getElementById('up'),
+    down = document.getElementById('down'),
+    back = document.getElementById('back1'),
+    re = document.getElementById('regler');
+
 function hindernisLoop(typ) {
     
     var newTyp = getRandomInt(1, 3);
@@ -110,18 +117,20 @@ var startBild = {
     
     init: function() {
         
+        $('#flugzeugAuswahl').css({visibility: 'hidden'});
+        $('#startBild').css({visibility: 'inherit'});
+        
+        up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp);
+        down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown);
+        back.removeEventListener('touchstart', startBild.init);
+        
         $('#startBild').css({width: w+'px', height: h+'px'});
         $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
         $('#options').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
         $('#choosePlane').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
         
-        var s = document.getElementById('startButton'),
-            f = document.getElementById('choosePlane');
         s.addEventListener('touchstart', game.init);
         f.addEventListener('touchstart', flugzeugAuswahl.init);
-        
-        s.removeEventListener('touchstart', game.init);
-        f.removeEventListener('touchstart', flugzeugAuswahl.init);
         
     }
     
@@ -139,6 +148,9 @@ var flugzeugAuswahl = {
         $('#startBild').css({visibility: 'hidden'});
         $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
+        s.removeEventListener('touchstart', game.init);
+        f.removeEventListener('touchstart', flugzeugAuswahl.init);
+        
         $('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
         $('#up').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', top: w/100+'px'});
         $('#down').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
@@ -151,17 +163,9 @@ var flugzeugAuswahl = {
         $('#flugzeug6').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+14*fh+'px'});
         $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+17*fh+'px'});
         
-        /*var fA = document.getElementById('flugzeugAuswahl');
-        fA.addEventListener('touchstart', flugzeugAuswahl.touchStart);
-        fA.addEventListener('touchmove', flugzeugAuswahl.touchMove);
-        fA.addEventListener('touchend', flugzeugAuswahl.touchEnd);*/
-        
-        var up = document.getElementById('up'),
-            down = document.getElementById('down'),
-            back = document.getElementById('back1');
         up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back.addEventListener('touchstart', flugzeugAuswahl.touchStartBack);
+        back.addEventListener('touchstart', startBild.init);
         
     },
     
@@ -190,9 +194,6 @@ var flugzeugAuswahl = {
             $('#flugzeug6').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
-            
-            //$('#flugzeug1').css('-webkit-transform', 'scale3d(0.5, 0.5, 0.5)');
-            //$('#flugzeug1').css('-webkit-transform', 'scale3d(1, 1, 1)');
             
         }
         
@@ -225,14 +226,6 @@ var flugzeugAuswahl = {
             
         }
         
-    },
-    
-    tochStartBack: function(e) {
-        
-        e.preventDefault();
-        
-        
-        
     }
     
 }
@@ -251,7 +244,6 @@ var game = {
         $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
         $('#score').css({'font-size': h/10+'px'});
         
-        var re = document.getElementById('regler');
         re.addEventListener('touchstart', regler.touchStart);
         re.addEventListener('touchmove', regler.touchMove);
         re.addEventListener('touchend', regler.touchEnd);
