@@ -133,14 +133,13 @@ var flugzeugAuswahl = {
     
     init: function() {
         
-        alert('hallo');
-        
         $('#startBild').css({visibility: 'hidden'});
         $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
         $('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
         $('#up').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', top: w/100+'px'});
         $('#down').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
+        $('#back1').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
         $('#flugzeug1').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2-fh+'px'});
         $('#flugzeug2').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+2*fh+'px'});
         $('#flugzeug3').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+5*fh+'px'});
@@ -187,6 +186,9 @@ var flugzeugAuswahl = {
             $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             
+            //$('#flugzeug1').css('-webkit-transform', 'scale3d(0.5, 0.5, 0.5)');
+            //$('#flugzeug1').css('-webkit-transform', 'scale3d(1, 1, 1)');
+            
         }
         
     },
@@ -218,204 +220,7 @@ var flugzeugAuswahl = {
             
         }
         
-    },
-    
-    /*touchMove: function(e) {
-        
-        e.preventDefault();
-        
-        for (var i = 0; i < e.touches.length; i++) {
-            
-            if (e.touches[i].identifier == flugzeugAuswahl.touchCoord.id) {
-            
-                var touch = e.touches[0],
-                    moveCoords = touch.pageY,
-                    dif = moveCoords - flugzeugAuswahl.touchCoord.y;
-
-                var y = parseInt((dif + flugzeugAuswahl.coordY)*10)/10;
-                
-                flugzeugAuswahl.realTimeCoordY = y;
-                
-                $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug1').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug2').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug3').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug4').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug5').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug6').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                $('#flugzeug7').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                
-            }
-            
-        }
-        
-    },
-    
-    touchEnd: function(e) {
-        
-        for (var i = 0; i < e.changedTouches.length; i++) {
-            
-            if (e.changedTouches[i].identifier == flugzeugAuswahl.touchCoord.id) {
-                
-                var dif = e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y,
-                    y = parseInt((dif + flugzeugAuswahl.coordY)*10)/10;
-                
-                flugzeugAuswahl.newDistance = -(e.changedTouches[0].pageY - flugzeugAuswahl.touchCoord.y);
-                
-                flugzeugAuswahl.distance += flugzeugAuswahl.newDistance;
-                
-                flugzeugAuswahl.coordY = flugzeugAuswahl.realTimeCoordY;
-                
-                alert(flugzeugAuswahl.distance);
-                
-                switch(true) {
-                    case (flugzeugAuswahl.distance < 1.5*fh):
-                        var focus = -(flugzeugAuswahl.distance);
-                        flugzeugAuswahl.distance = 0;
-                        flugzeugAuswahl.coordY = h/2-fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 1.5*fh && flugzeugAuswahl.distance < 4.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 3*fh);
-                        flugzeugAuswahl.distance = 3*fh;
-                        flugzeugAuswahl.coordY = h/2+2*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 4.5*fh && flugzeugAuswahl.distance < 7.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 6*fh);
-                        flugzeugAuswahl.distance = 6*fh;
-                        flugzeugAuswahl.coordY = h/2+5*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 7.5*fh && flugzeugAuswahl.distance < 10.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 9*fh);
-                        flugzeugAuswahl.distance = 9*fh;
-                        flugzeugAuswahl.coordY = h/2+8*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 10.5*fh && flugzeugAuswahl.distance < 13.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 12*fh);
-                        flugzeugAuswahl.distance = 12*fh;
-                        flugzeugAuswahl.coordY = h/2+11*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 13.5*fh && flugzeugAuswahl.distance < 16.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 15*fh);
-                        flugzeugAuswahl.distance = 15*fh;
-                        flugzeugAuswahl.coordY = h/2+14*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    case (flugzeugAuswahl.distance > 16.5*fh):
-                        var focus = -(flugzeugAuswahl.distance - 18*fh);
-                        flugzeugAuswahl.distance = 18*fh;
-                        flugzeugAuswahl.coordY = h/2+17*fh;
-                        $('#flugzeug1').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug1').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug2').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug3').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug4').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug5').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug6').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('-webkit-transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        $('#flugzeug7').css('transform', 'translate3d(0px, '+focus+'px, 0px)');
-                        break;
-                    
-                }
-                
-            }
-        
-        }
-            
-    }*/
+    }
     
 }
 

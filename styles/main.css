@@ -182,9 +182,14 @@ table {
     background-color: blue;
     opacity: 0.5;
 }
+#back1 {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
 #flugzeug7 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug7.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -195,7 +200,7 @@ table {
 }
 #flugzeug6 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug6.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -206,7 +211,7 @@ table {
 }
 #flugzeug5 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug5.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -217,7 +222,7 @@ table {
 }
 #flugzeug4 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug4.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -228,7 +233,7 @@ table {
 }
 #flugzeug3 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug3.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -239,7 +244,7 @@ table {
 }
 #flugzeug2 {
     position: absolute;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug2.svg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
