@@ -120,6 +120,9 @@ var startBild = {
         s.addEventListener('touchstart', game.init);
         f.addEventListener('touchstart', flugzeugAuswahl.init);
         
+        s.removeEventListener('touchstart', game.init);
+        f.removeEventListener('touchstart', flugzeugAuswahl.init);
+        
     }
     
 }
@@ -154,9 +157,11 @@ var flugzeugAuswahl = {
         fA.addEventListener('touchend', flugzeugAuswahl.touchEnd);*/
         
         var up = document.getElementById('up'),
-            down = document.getElementById('down');
+            down = document.getElementById('down'),
+            back = document.getElementById('back1');
         up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
+        back.addEventListener('touchstart', flugzeugAuswahl.touchStartBack);
         
     },
     
@@ -219,6 +224,14 @@ var flugzeugAuswahl = {
             $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             
         }
+        
+    },
+    
+    tochStartBack: function(e) {
+        
+        e.preventDefault();
+        
+        
         
     }
     
