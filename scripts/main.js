@@ -28,8 +28,10 @@ var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
     up = document.getElementById('up'),
     down = document.getElementById('down'),
-    back = document.getElementById('back1'),
+    back = document.getElementsByClassName('back'),
     re = document.getElementById('regler');
+
+$('.back').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
 
 function hindernisLoop(typ) {
     
@@ -117,12 +119,16 @@ var startBild = {
     
     init: function() {
         
-        $('#flugzeugAuswahl').css({visibility: 'hidden'});
-        $('#startBild').css({visibility: 'inherit'});
-        
         up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back.removeEventListener('touchstart', startBild.init);
+        
+        re.removeEventListener('touchstart', regler.touchStart);
+        re.removeEventListener('touchmove', regler.touchMove);
+        re.removeEventListener('touchend', regler.touchEnd);
+        
+        $('#flugzeugAuswahl').css({visibility: 'hidden'});
+        $('#hintergrund').css({visibility: 'hidden'});
+        $('#startBild').css({visibility: 'inherit'});
         
         $('#startBild').css({width: w+'px', height: h+'px'});
         $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -131,6 +137,7 @@ var startBild = {
         
         s.addEventListener('touchstart', game.init);
         f.addEventListener('touchstart', flugzeugAuswahl.init);
+        back.addEventListener('touchstart', startBild.init);
         
     }
     
@@ -145,16 +152,15 @@ var flugzeugAuswahl = {
     
     init: function() {
         
-        $('#startBild').css({visibility: 'hidden'});
-        $('#flugzeugAuswahl').css({visibility: 'inherit'});
-        
         s.removeEventListener('touchstart', game.init);
         f.removeEventListener('touchstart', flugzeugAuswahl.init);
+        
+        $('#startBild').css({visibility: 'hidden'});
+        $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
         $('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
         $('#up').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', top: w/100+'px'});
         $('#down').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
-        $('#back1').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
         $('#flugzeug1').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2-fh+'px'});
         $('#flugzeug2').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+2*fh+'px'});
         $('#flugzeug3').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+5*fh+'px'});
@@ -165,7 +171,9 @@ var flugzeugAuswahl = {
         
         up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back.addEventListener('touchstart', startBild.init);
+        /*back1.addEventListener('touchstart', function() {
+            up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp); down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown)});
+        back1.addEventListener('touchstart', startBild.init);*/
         
     },
     
@@ -250,6 +258,7 @@ var game = {
         re.addEventListener('touchstart', regler.touchStart);
         re.addEventListener('touchmove', regler.touchMove);
         re.addEventListener('touchend', regler.touchEnd);
+        back2.addEventListener('touchstart', startBild.init);
         
         window.setTimeout(hindernisLoop, 1000);
         
