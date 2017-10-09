@@ -63,7 +63,7 @@ table {
     right: 0px;
     overflow: hidden;
     background-color: skyblue;
-    visibility: hidden;
+    display: none;
 }
 #flugzeug {
     position: absolute;
@@ -170,7 +170,7 @@ table {
     right: 0px;
     overflow: hidden;
     background-color: skyblue;
-    visibility: hidden;
+    display: none;
 }
 #up {
     position: fixed;
