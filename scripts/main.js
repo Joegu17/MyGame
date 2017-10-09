@@ -141,9 +141,9 @@ var startBild = {
     
     init: function() {
         
-        up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp);
-        down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back1.removeEventListener('touchstart', startBild.init);
+        up.removeEventListener('touchend', flugzeugAuswahl.touchStartUp);
+        down.removeEventListener('touchend', flugzeugAuswahl.touchStartDown);
+        back1.removeEventListener('touchend', startBild.init);
         
         re.removeEventListener('touchstart', regler.touchStart);
         re.removeEventListener('touchmove', regler.touchMove);
@@ -153,8 +153,10 @@ var startBild = {
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
         
-        s.addEventListener('touchend', game.init);
-        f.addEventListener('touchend', flugzeugAuswahl.init);
+        s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
+        s.addEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
+        f.addEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
+        f.addEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
         
     }
     
@@ -169,15 +171,17 @@ var flugzeugAuswahl = {
     
     init: function() {
         
-        s.removeEventListener('touchstart', game.init);
-        f.removeEventListener('touchstart', flugzeugAuswahl.init);
+        s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
+        s.removeEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
+        f.removeEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
+        f.removeEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
         
         $('#startBild').css({display: 'none'});
         $('#flugzeugAuswahl').css({display: 'inherit'});
         
-        up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
-        down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back1.addEventListener('touchstart', startBild.init);
+        up.addEventListener('touchend', flugzeugAuswahl.touchStartUp);
+        down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
+        back1.addEventListener('touchend', startBild.init);
         
     },
     
