@@ -191,7 +191,7 @@ var flugzeugAuswahl = {
         down.addEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
         down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
         back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
-        back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})});
+        back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5}); $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})});
         
     },
     
