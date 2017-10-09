@@ -50,6 +50,7 @@ $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top
 
 $('#hintergrund').css({width: w+'px', height: h+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
+$('#flugzeug').css({'background-image': 'url(../images/flugzeug'+5+'.svg)'})
 $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
@@ -191,7 +192,7 @@ var flugzeugAuswahl = {
         down.addEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
         down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
         back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
-        back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5}); $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})});
+        back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
         
     },
     
