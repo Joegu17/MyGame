@@ -153,8 +153,8 @@ var startBild = {
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
         
-        s.addEventListener('touchstart', game.init);
-        f.addEventListener('touchstart', flugzeugAuswahl.init);
+        s.addEventListener('touchend', game.init);
+        f.addEventListener('touchend', flugzeugAuswahl.init);
         
     }
     
