@@ -142,9 +142,11 @@ var startBild = {
     init: function() {
         
         up.removeEventListener('touchstart', function(){$('#up').css({opacity: 0.1})});
-        up.removeEventListener('touchend', function(){flugzeugAuswahl.touchStartUp(); $('#up').css({opacity: 0.5})});
+        up.removeEventListener('touchend', function(){$('#up').css({opacity: 0.5})});
+        up.removeEventListener('touchend', flugzeugAuswahl.touchStartUp);
         down.removeEventListener('touchstart', function(){$('#down').css({opacity: 0.1})});
-        down.removeEventListener('touchend', function(){flugzeugAuswahl.touchStartDown(); $('#down').css({opacity: 0.5})});
+        down.removeEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
+        down.removeEventListener('touchend', flugzeugAuswahl.touchStartDown);
         back1.removeEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
         back1.removeEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})});
         
@@ -183,9 +185,11 @@ var flugzeugAuswahl = {
         $('#flugzeugAuswahl').css({display: 'inherit'});
         
         up.addEventListener('touchstart', function(){$('#up').css({opacity: 0.1})});
-        up.addEventListener('touchend', function(){flugzeugAuswahl.touchStartUp; $('#up').css({opacity: 0.5})});
+        up.addEventListener('touchend', function(){$('#up').css({opacity: 0.5})});
+        up.addEventListener('touchend', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', function(){$('#down').css({opacity: 0.1})});
-        down.addEventListener('touchend', function(){flugzeugAuswahl.touchStartDown; $('#down').css({opacity: 0.5})});
+        down.addEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
+        down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
         back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
         back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})});
         
