@@ -141,7 +141,7 @@ var startBild = {
     
     init: function() {
         
-        up.removeEventListener('touchstart', function(){$('#up').css({opacity: 0.1})});
+        /*up.removeEventListener('touchstart', function(){$('#up').css({opacity: 0.1})});
         up.removeEventListener('touchend', function(){flugzeugAuswahl.touchStartUp(); $('#up').css({opacity: 0.5})});
         down.removeEventListener('touchstart', function(){$('#down').css({opacity: 0.1})});
         down.removeEventListener('touchend', function(){flugzeugAuswahl.touchStartDown(); $('#down').css({opacity: 0.5})});
@@ -150,7 +150,7 @@ var startBild = {
         
         re.removeEventListener('touchstart', regler.touchStart);
         re.removeEventListener('touchmove', regler.touchMove);
-        re.removeEventListener('touchend', regler.touchEnd);
+        re.removeEventListener('touchend', regler.touchEnd);*/
         
         $('#flugzeugAuswahl').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
@@ -174,10 +174,12 @@ var flugzeugAuswahl = {
     
     init: function() {
         
-        s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
+        alert('dfk');
+        
+        /*s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
         s.removeEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
         f.removeEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
-        f.removeEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
+        f.removeEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});*/
         
         $('#startBild').css({display: 'none'});
         $('#flugzeugAuswahl').css({display: 'inherit'});
@@ -256,10 +258,10 @@ var game = {
     
     init: function() {
         
-        s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
+        /*s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
         s.removeEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
         f.removeEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
-        f.removeEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
+        f.removeEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});*/
         
         $('#startBild').css({display: 'none'});
         $('#hintergrund').css({display: 'inherit'});
