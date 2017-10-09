@@ -57,12 +57,6 @@ table {
     display: none;
 }
 
-.back {
-    position: fixed;
-    background-color: blue;
-    opacity: 0.5;
-}
-
 #hintergrund {
     position: fixed;
     left: 0px;
@@ -70,11 +64,6 @@ table {
     overflow: hidden;
     background-color: skyblue;
     visibility: hidden;
-}
-#back2 {
-    position: fixed;
-    background-color: blue;
-    opacity: 0.5;
 }
 #flugzeug {
     position: absolute;

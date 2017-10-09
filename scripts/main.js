@@ -28,10 +28,32 @@ var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
     up = document.getElementById('up'),
     down = document.getElementById('down'),
-    back = document.getElementsByClassName('back'),
+    back1 = document.getElementById('back1'),
     re = document.getElementById('regler');
 
-$('.back').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
+$('#startBild').css({width: w+'px', height: h+'px'});
+$('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
+$('#options').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
+$('#choosePlane').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
+
+$('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
+$('#up').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', top: w/100+'px'});
+$('#down').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
+$('#back1').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
+$('#flugzeug1').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2-fh+'px'});
+$('#flugzeug2').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+2*fh+'px'});
+$('#flugzeug3').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+5*fh+'px'});
+$('#flugzeug4').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+8*fh+'px'});
+$('#flugzeug5').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+11*fh+'px'});
+$('#flugzeug6').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+14*fh+'px'});
+$('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+17*fh+'px'});
+
+$('#hintergrund').css({width: w+'px', height: h+'px'});
+$('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
+$('#berg').css({width: bergw+'px', height: bergh+'px'});
+$('#turm').css({width: turmw+'px', height: turmh+'px'});
+$('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
+$('#score').css({'font-size': h/10+'px'});
 
 function hindernisLoop(typ) {
     
@@ -121,6 +143,7 @@ var startBild = {
         
         up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown);
+        back1.removeEventListener('touchstart', startBild.init);
         
         re.removeEventListener('touchstart', regler.touchStart);
         re.removeEventListener('touchmove', regler.touchMove);
@@ -130,14 +153,8 @@ var startBild = {
         $('#hintergrund').css({visibility: 'hidden'});
         $('#startBild').css({visibility: 'inherit'});
         
-        $('#startBild').css({width: w+'px', height: h+'px'});
-        $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
-        $('#options').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
-        $('#choosePlane').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
-        
         s.addEventListener('touchstart', game.init);
         f.addEventListener('touchstart', flugzeugAuswahl.init);
-        back.addEventListener('touchstart', startBild.init);
         
     }
     
@@ -158,22 +175,11 @@ var flugzeugAuswahl = {
         $('#startBild').css({visibility: 'hidden'});
         $('#flugzeugAuswahl').css({visibility: 'inherit'});
         
-        $('#flugzeugAuswahl').css({width: w+'px', height: h+'px'});
-        $('#up').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', top: w/100+'px'});
-        $('#down').css({width: iconw+'px', height: iconh+'px', right: w/100+'px', bottom: w/100+'px'});
-        $('#flugzeug1').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2-fh+'px'});
-        $('#flugzeug2').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+2*fh+'px'});
-        $('#flugzeug3').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+5*fh+'px'});
-        $('#flugzeug4').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+8*fh+'px'});
-        $('#flugzeug5').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+11*fh+'px'});
-        $('#flugzeug6').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+14*fh+'px'});
-        $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+17*fh+'px'});
+        
         
         up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        /*back1.addEventListener('touchstart', function() {
-            up.removeEventListener('touchstart', flugzeugAuswahl.touchStartUp); down.removeEventListener('touchstart', flugzeugAuswahl.touchStartDown)});
-        back1.addEventListener('touchstart', startBild.init);*/
+        back1.addEventListener('touchstart', startBild.init);
         
     },
     
@@ -248,17 +254,9 @@ var game = {
         $('#startBild').css({visibility: 'hidden'});
         $('#hintergrund').css({visibility: 'inherit'});
         
-        $('#hintergrund').css({width: w+'px', height: h+'px'});
-        $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
-        $('#berg').css({width: bergw+'px', height: bergh+'px'});
-        $('#turm').css({width: turmw+'px', height: turmh+'px'});
-        $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
-        $('#score').css({'font-size': h/10+'px'});
-        
         re.addEventListener('touchstart', regler.touchStart);
         re.addEventListener('touchmove', regler.touchMove);
         re.addEventListener('touchend', regler.touchEnd);
-        back2.addEventListener('touchstart', startBild.init);
         
         window.setTimeout(hindernisLoop, 1000);
         
