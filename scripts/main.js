@@ -182,7 +182,7 @@ var flugzeugAuswahl = {
         
         up.addEventListener('touchstart', flugzeugAuswahl.touchStartUp);
         down.addEventListener('touchstart', flugzeugAuswahl.touchStartDown);
-        back1.addEventListener('touchstart', startBild.init(1));
+        back1.addEventListener('touchstart', function() {startBild.init(1)});
         
     },
     
