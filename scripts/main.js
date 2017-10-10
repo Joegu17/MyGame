@@ -14,12 +14,11 @@ var reglerw = w/5,
     reglerh = h/10;
 var startButtonw = w/5,
     startButtonh = h/5;
-var speed = 0,
-    yFlugzeug = h*8.8/1000,
-    flugzeugCoords = 0;
 var iconw = h*0.15,
     iconh = h*0.15;
-
+var speed = 0,
+    yFlugzeug = h*8.8/1000,
+    flugzeugCoords = h/2-fh/2;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -29,7 +28,8 @@ var fAPosition = 1,
     fAPos = 0;
 
 var lastFrameTimeMs = 0,
-    maxFPS = 10;
+    maxFPS = 10,
+    delta = 0;
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
@@ -100,24 +100,21 @@ function steuerungLoop() {
     
 }
 
-function animation() {
+function animation(delta) {
     
-    var dist = speed /60 * yFlugzeug,
-        realFlugzeugCoords = $('#flugzeug').position().top;
+    var dist = speed /960 * yFlugzeug * delta;
     
-    if (realFlugzeugCoords > h*0.03 && speed < 0) {
+    if (flugzeugCoords > h*0.03 && speed < 0) {
         
-        flugzeugCoords = flugzeugCoords + dist;
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        flugzeugCoords += dist;
+        $('#flugzeug').css({top: flugzeugCoords+'px'});
         
     }
     
-    if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
+    if (flugzeugCoords < h*0.97-fh && speed > 0) {
         
-        flugzeugCoords = flugzeugCoords + dist;
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        flugzeugCoords += dist;
+        $('#flugzeug').css({top: flugzeugCoords+'px'});
         
     }
     
@@ -132,10 +129,11 @@ function gameLoop(timestamp) {
         
     }
     
+    delta = timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
     steuerungLoop();
-    animation();
+    animation(delta);
     
     requestAnimationFrame(gameLoop);
     
