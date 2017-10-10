@@ -23,6 +23,8 @@ var iconw = h*0.15,
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
+$('#test1').html(fac);
+
 var score = 0;
 
 var fAPosition = 1,
@@ -91,7 +93,7 @@ function hindernisLoop(typ) {
 //Erkennung der Position des Reglers
 function steuerungLoop() {
     
-    var reglerCoords = $('#regler').position().top;
+    var reglerCoords = $('#regler').position().top - h*9/20;
     
     speed = reglerCoords*fac;
     
