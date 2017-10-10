@@ -23,8 +23,6 @@ var iconw = h*0.15,
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
-$('#test1').html(fac);
-
 var score = 0;
 
 var fAPosition = 1,
@@ -96,46 +94,6 @@ function steuerungLoop() {
     var reglerCoords = $('#regler').position().top - h*9/20;
     
     speed = Math.round(reglerCoords*fac);
-    
-    $('#test1').html(speed);
-    
-    $('#test2').html(reglerCoords);
-    
-    /*switch (true) {
-        case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
-            speed = -100;
-            break;
-        case (reglerCoords > (h/100+h*0.044) && reglerCoords < (h/100+3*h*0.044)):
-            speed = -80;
-            break;
-        case (reglerCoords > (h/100+3*h*0.044) && reglerCoords < (h/100+5*h*0.044)):
-            speed = -60;
-            break;
-        case (reglerCoords > (h/100+5*h*0.044) && reglerCoords < (h/100+7*h*0.044)):
-            speed = -40;
-            break;
-        case (reglerCoords > (h/100+7*h*0.044) && reglerCoords < (h/100+9*h*0.044)):
-            speed = -20;
-            break;
-        case (reglerCoords > (h/100+9*h*0.044) && reglerCoords < (h/100+11*h*0.044)):
-            speed = 0;
-            break;
-        case (reglerCoords > (h/100+11*h*0.044) && reglerCoords < (h/100+13*h*0.044)):
-            speed = 20;
-            break;
-        case (reglerCoords > (h/100+13*h*0.044) && reglerCoords < (h/100+15*h*0.044)):
-            speed = 40;
-            break;
-        case (reglerCoords > (h/100+15*h*0.044) && reglerCoords < (h/100+17*h*0.044)):
-            speed = 60;
-            break;
-        case (reglerCoords > (h/100+17*h*0.044) && reglerCoords < (h/100+19*h*0.044)):
-            speed = 80;
-            break;
-        case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
-            speed = 100;
-            break;
-    }*/
     
     window.setTimeout(steuerungLoop, 20);
     
@@ -339,8 +297,6 @@ var regler = {
             
         }
         
-        //$('#regler').css({top: flugzeug.realTimeCoords+'px'});
-        
     },
     
     touchEnd: function(e) {
@@ -351,8 +307,6 @@ var regler = {
                 
                 var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
                     y = parseInt((dif + regler.coordY)*10)/10;
-                
-                //regler.coordY = regler.realTimeCoordY;
                 
                 $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
                 $('#regler').css('-webkit-transform', 'none');
