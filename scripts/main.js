@@ -60,10 +60,10 @@ $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
-$('#musicText').css({width: iconw*2+'px', height: iconh+'px', left: h/10*3+'px', top: h/10*3+'px'});
-$('#musicIcon').css({width: iconw+'px', height: iconh+'px', left: h/10*6+'px', top: h/10*3+'px'});
-$('#soundText').css({width: iconw*2+'px', height: iconh+'px', left: h/10*3+'px', top: h/10*5+'px'});
-$('#soundIcon').css({width: iconw+'px', height: iconh+'px', left: h/10*6+'px', top: h/10*5+'px'});
+$('#musicText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*3+'px'});
+$('#musicIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*3+'px'});
+$('#soundText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*5+'px'});
+$('#soundIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*5+'px'});
 
 function hindernisLoop(typ) {
     
