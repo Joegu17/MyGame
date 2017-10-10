@@ -281,6 +281,11 @@ table {
     background-color: skyblue;
     display: none;
 }
+#back2 {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
 #musicText {
     position: fixed;
     background-color: blue;

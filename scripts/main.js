@@ -60,6 +60,7 @@ $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
+$('#back2').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
 $('#musicText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*3+'px'});
 $('#musicIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*3+'px'});
 $('#soundText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*5+'px'});
@@ -424,3 +425,6 @@ back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css(
 re.addEventListener('touchstart', regler.touchStart);
 re.addEventListener('touchmove', regler.touchMove);
 re.addEventListener('touchend', regler.touchEnd);
+
+back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
+back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
