@@ -101,6 +101,8 @@ function steuerungLoop() {
 
 function animation() {
     
+    window.setTimeout(animation, 16);
+    
     var dist = speed /60 * yFlugzeug,
         realFlugzeugCoords = $('#flugzeug').position().top;
     
@@ -119,8 +121,6 @@ function animation() {
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
-    
-    window.setTimeout(animation, 10);
     
 }
 
