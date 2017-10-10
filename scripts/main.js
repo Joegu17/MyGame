@@ -36,7 +36,7 @@ var s = document.getElementById('startButton'),
     back1 = document.getElementById('back1'),
     re = document.getElementById('regler'),
     mu = document.getElementById('musicIcon'),
-    so = document.getElementById('soundIcon');
+    so = document.getElementById('soundIcon'); 
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -95,7 +95,9 @@ function steuerungLoop() {
     
     speed = reglerCoords*fac;
     
-    $('#test').html(speed);
+    $('#test1').html(speed);
+    
+    $('#test2').html(reglerCoords);
     
     /*switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
