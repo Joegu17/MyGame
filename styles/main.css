@@ -57,6 +57,8 @@ table {
     display: none;
 }
 
+-----------------------------------------------------------------
+
 #hintergrund {
     position: fixed;
     left: 0px;
@@ -137,6 +139,8 @@ table {
     transition-timing-function: ease-in-out;
 }
 
+-----------------------------------------------------------------
+
 #startBild {
     position: fixed;
     left: 0px;
@@ -163,6 +167,8 @@ table {
 #money {
     
 }
+
+-----------------------------------------------------------------
 
 #flugzeugAuswahl {
     position: fixed;
@@ -263,4 +269,35 @@ table {
     transition-duration: 0.5s;
     -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
+}
+
+-----------------------------------------------------------------
+
+#optionen {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: skyblue;
+    display: none;
+}
+#musicText {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#musicIcon {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#soundText {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
+}
+#soundIcon {
+    position: fixed;
+    background-color: blue;
+    opacity: 0.5;
 }

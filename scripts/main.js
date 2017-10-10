@@ -26,10 +26,13 @@ var fAPosition = 1,
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
+    op = document.getElementById('options'),
     up = document.getElementById('up'),
     down = document.getElementById('down'),
     back1 = document.getElementById('back1'),
-    re = document.getElementById('regler');
+    re = document.getElementById('regler'),
+    mu = document.getElementById('musicIcon'),
+    so = document.getElementById('soundIcon');
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -55,6 +58,12 @@ $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
+
+$('#optionen').css({width: w+'px', height: h+'px'});
+$('#musicText').css({width: iconw*2+'px', height: iconh+'px', left: h/10*3+'px', top: h/10*3+'px'});
+$('#musicIcon').css({width: iconw+'px', height: iconh+'px', left: h/10*6+'px', top: h/10*3+'px'});
+$('#soundText').css({width: iconw*2+'px', height: iconh+'px', left: h/10*3+'px', top: h/10*5+'px'});
+$('#soundIcon').css({width: iconw+'px', height: iconh+'px', left: h/10*6+'px', top: h/10*5+'px'});
 
 function hindernisLoop(typ) {
     
@@ -143,6 +152,7 @@ var startBild = {
     init: function() {
         
         $('#flugzeugAuswahl').css({display: 'none'});
+        $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
         
@@ -158,8 +168,6 @@ var flugzeugAuswahl = {
     newDistance: 0,
     
     init: function() {
-        
-        alert('hai');
         
         $('#startBild').css({display: 'none'});
         $('#flugzeugAuswahl').css({display: 'inherit'});
@@ -222,6 +230,17 @@ var flugzeugAuswahl = {
             $('#flugzeug7').css('transform', 'translate3d(0px, '+fAPos+'px, 0px)');
             
         }
+        
+    }
+    
+}
+
+var optionen = {
+    
+    init: function() {
+        
+        $('#startBild').css({display: 'none'});
+        $('#optionen').css({display: 'inherit'});
         
     }
     
@@ -390,6 +409,8 @@ s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1}
 s.addEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
 f.addEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
 f.addEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
+op.addEventListener('touchstart', function(){$('#options').css({opacity: 0.1})});
+op.addEventListener('touchend', function(){optionen.init(); $('#options').css({opacity: 0.5})});
 
 up.addEventListener('touchstart', function(){$('#up').css({opacity: 0.1})});
 up.addEventListener('touchend', function(){$('#up').css({opacity: 0.5})});
