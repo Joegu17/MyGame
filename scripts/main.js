@@ -50,7 +50,7 @@ $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top
 
 $('#hintergrund').css({width: w+'px', height: h+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
-$('#flugzeug').css('background-image', 'url(../images/flugzeug5.svg)');
+//$('#flugzeug').css('background-image', 'url(../images/flugzeug5.svg)');
 $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
@@ -176,6 +176,8 @@ var flugzeugAuswahl = {
     newDistance: 0,
     
     init: function() {
+        
+        alert('hai');
         
         s.removeEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
         s.removeEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
