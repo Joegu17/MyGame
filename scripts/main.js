@@ -28,6 +28,9 @@ var score = 0;
 var fAPosition = 1,
     fAPos = 0;
 
+var lastFrameTimeMs = 0,
+    maxFPS = 10;
+
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
     op = document.getElementById('options'),
@@ -95,13 +98,9 @@ function steuerungLoop() {
     
     speed = Math.round(reglerCoords*fac);
     
-    window.setTimeout(steuerungLoop, 20);
-    
 }
 
 function animation() {
-    
-    window.setTimeout(animation, 16);
     
     var dist = speed /60 * yFlugzeug,
         realFlugzeugCoords = $('#flugzeug').position().top;
@@ -121,6 +120,24 @@ function animation() {
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
+    
+}
+
+function gameLoop(timestamp) {
+    
+    if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
+        
+        requestAnimationFrame(gameLoop);
+        return;
+        
+    }
+    
+    lastFrameTimeMs = timestamp;
+    
+    steuerungLoop();
+    animation();
+    
+    requestAnimationFrame(gameLoop);
     
 }
 
@@ -240,9 +257,7 @@ var game = {
         
         window.setTimeout(hindernisLoop, 1000);
         
-        steuerungLoop();
-        
-        animation();
+        requestAnimationFrame(gameLoop);
         
     }
     
