@@ -20,7 +20,7 @@ var speed = 0,
 var iconw = h*0.15,
     iconh = h*0.15;
 
-var ursprung = h/100 + (h - h/100 - (h/100*99-reglerh))/2;
+var ursprung = (h - h/100 - h/100*99 + reglerh)/2;
 
 var score = 0;
 
@@ -90,7 +90,7 @@ function hindernisLoop(typ) {
 //Erkennung der Position des Reglers
 function steuerungLoop() {
     
-    var reglerCoords = $('#regler').position().top;
+    var reglerCoords = $('#regler').position().top - h/100;
     
     speed = reglerCoords - ursprung;
     
