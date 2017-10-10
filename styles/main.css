@@ -130,7 +130,7 @@ table {
     background-color: gainsboro;
 }
 #regler {
-    position: absolute;
+    position: relative;
     right: 1%;
     top: 45%;
     width: 5%;
