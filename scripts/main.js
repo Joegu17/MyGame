@@ -18,7 +18,8 @@ var iconw = h*0.15,
     iconh = h*0.15;
 var speed = 0,
     yFlugzeug = h*8.8/1000,
-    flugzeugCoords = h/2-fh/2;
+    flugzeugCoords = 0,
+    realFlugzeugCoords = h/2-fh/2;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -28,7 +29,7 @@ var fAPosition = 1,
     fAPos = 0;
 
 var lastFrameTimeMs = 0,
-    maxFPS = 10,
+    maxFPS = 60,
     delta = 0;
 
 var s = document.getElementById('startButton'),
@@ -104,17 +105,21 @@ function animation(delta) {
     
     var dist = speed /960 * yFlugzeug * delta;
     
-    if (flugzeugCoords > h*0.03 && speed < 0) {
+    if (realFlugzeugCoords > h*0.03 && speed < 0) {
         
         flugzeugCoords += dist;
-        $('#flugzeug').css({top: flugzeugCoords+'px'});
+        realFlugzeugCoords += dist;
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
     
-    if (flugzeugCoords < h*0.97-fh && speed > 0) {
+    if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
         
         flugzeugCoords += dist;
-        $('#flugzeug').css({top: flugzeugCoords+'px'});
+        realFlugzeugCoords += dist;
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
     
