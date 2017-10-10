@@ -134,10 +134,10 @@ function animation() {
     
     var dist = speed /60 * yFlugzeug,
         realFlugzeugCoords = $('#flugzeug').position().top;
-    flugzeugCoords = flugzeugCoords + dist;
     
     if (realFlugzeugCoords > h*0.03 && speed < 0) {
-    
+        
+        flugzeugCoords = flugzeugCoords + dist;
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
@@ -145,6 +145,7 @@ function animation() {
     
     if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
         
+        flugzeugCoords = flugzeugCoords + dist;
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
@@ -308,7 +309,7 @@ var regler = {
             
             if (e.touches[i].identifier == regler.touchCoord.id) {
             
-                var touch = e.touches[0],
+                var touch = e.touches[i],
                     moveCoords = touch.pageY,
                     dif = moveCoords - regler.touchCoord.y;
 
@@ -327,7 +328,7 @@ var regler = {
             
         }
         
-        $('#regler').css({top: flugzeug.realTimeCoords+'px'});
+        //$('#regler').css({top: flugzeug.realTimeCoords+'px'});
         
     },
     
@@ -340,7 +341,7 @@ var regler = {
                 var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
                     y = parseInt((dif + regler.coordY)*10)/10;
                 
-                regler.coordY = regler.realTimeCoordY;
+                //regler.coordY = regler.realTimeCoordY;
                 
                 $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
                 $('#regler').css('-webkit-transform', 'none');
