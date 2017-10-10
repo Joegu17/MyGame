@@ -20,6 +20,8 @@ var speed = 0,
 var iconw = h*0.15,
     iconh = h*0.15;
 
+var ursprung = h/100 + (h - h/100 - (h/100*99-reglerh))/2;
+
 var score = 0;
 
 var fAPosition = 1,
@@ -90,7 +92,11 @@ function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top;
     
-    switch (true) {
+    speed = reglerCoords - ursprung;
+    
+    $('#test').html(speed);
+    
+    /*switch (true) {
         case (reglerCoords > (h/100) && reglerCoords < (h/100+h*0.044)):
             speed = -100;
             break;
@@ -124,7 +130,7 @@ function steuerungLoop() {
         case (reglerCoords > (h/100+19*h*0.044) && reglerCoords < (h/100+20*h*0.044)):
             speed = 100;
             break;
-    }
+    }*/
     
     window.setTimeout(steuerungLoop, 20);
     
