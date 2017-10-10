@@ -120,7 +120,7 @@ function animation() {
         
     }
     
-    window.setTimeout(animation, 16);
+    window.setTimeout(animation, 10);
     
 }
 
