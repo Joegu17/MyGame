@@ -15,7 +15,8 @@ var reglerw = w/5,
 var startButtonw = w/5,
     startButtonh = h/5;
 var speed = 0,
-    yFlugzeug = h*8.8/1000;
+    yFlugzeug = h*8.8/1000,
+    flugzeugCoords = 0;
 var iconw = h*0.15,
     iconh = h*0.15;
 
@@ -66,6 +67,8 @@ $('#musicIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top
 $('#soundText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*5+'px'});
 $('#soundIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*5+'px'});
 
+/*-------------------------------------------------------------------------------*/
+
 function hindernisLoop(typ) {
     
     var newTyp = getRandomInt(1, 3);
@@ -82,6 +85,7 @@ function hindernisLoop(typ) {
     
 }
 
+//Erkennung der Position des Reglers
 function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top;
@@ -129,24 +133,28 @@ function steuerungLoop() {
 function animation() {
     
     var dist = speed /60 * yFlugzeug,
-        flugzeugCoords = $('#flugzeug').position().top,
-        newFlugzeugCoords = flugzeugCoords + dist;
+        realFlugzeugCoords = $('#flugzeug').position().top;
+    flugzeugCoords = flugzeugCoords + dist;
     
-    if (flugzeugCoords > h*0.03 && speed < 0) {
+    if (realFlugzeugCoords > h*0.03 && speed < 0) {
     
-        $('#flugzeug').css({top: newFlugzeugCoords+'px'});
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
     
-    if (flugzeugCoords < h*0.97-fh && speed > 0) {
+    if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
         
-        $('#flugzeug').css({top: newFlugzeugCoords+'px'});
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
     
     window.setTimeout(animation, 16);
     
 }
+
+/*-------------------------------------------------------------------------------*/
 
 var startBild = {
     
@@ -160,6 +168,8 @@ var startBild = {
     }
     
 }
+
+/*-------------------------------------------------------------------------------*/
 
 var flugzeugAuswahl = {
     
@@ -236,6 +246,8 @@ var flugzeugAuswahl = {
     
 }
 
+/*-------------------------------------------------------------------------------*/
+
 var optionen = {
     
     init: function() {
@@ -246,6 +258,8 @@ var optionen = {
     }
     
 }
+
+/*-------------------------------------------------------------------------------*/
 
 var game = {
     
@@ -405,6 +419,8 @@ var hindernis = {
     }
     
 }
+
+/*-------------------------------------------------------------------------------*/
 
 s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
 s.addEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
