@@ -97,7 +97,7 @@ function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top - h*9/20;
     
-    speed = Math.round(reglerCoords*fac);
+    speed = reglerCoords*fac;
     
 }
 
@@ -107,7 +107,7 @@ function animation(delta) {
     
     if (realFlugzeugCoords > h*0.03 && speed < 0) {
         
-        flugzeugCoords += dist;
+        flugzeugCoords = Math.round(flugzeugCoords + dist);
         realFlugzeugCoords += dist;
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
@@ -116,7 +116,7 @@ function animation(delta) {
     
     if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
         
-        flugzeugCoords += dist;
+        flugzeugCoords = Math.round(flugzeugCoords + dist);
         realFlugzeugCoords += dist;
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
