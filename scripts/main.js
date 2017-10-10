@@ -95,7 +95,7 @@ function steuerungLoop() {
     
     var reglerCoords = $('#regler').position().top - h*9/20;
     
-    speed = reglerCoords*fac;
+    speed = Math.round(reglerCoords*fac);
     
     $('#test1').html(speed);
     
