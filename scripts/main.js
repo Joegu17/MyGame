@@ -44,8 +44,7 @@ var s = document.getElementById('startButton'),
     back1 = document.getElementById('back1'),
     re = document.getElementById('regler'),
     mu = document.getElementById('musicIcon'),
-    so = document.getElementById('soundIcon'),
-    test1 = document.getElementById('test1'); 
+    so = document.getElementById('soundIcon');
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -106,9 +105,9 @@ function steuerungLoop() {
     
 }
 
-function animation(delta) {
+function animation() {
     
-    var dist = speed /960 * yFlugzeug * delta;
+    var dist = speed /60 * yFlugzeug;
     
     if (realFlugzeugCoords > h*0.03 && speed < 0) {
         
@@ -124,21 +123,18 @@ function animation(delta) {
         
     }
     
+    window.setTimeout(animation, 1000/60);
+    
 }
 
 function draw() {
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#test1').html(Math.round(fps) + 'FPS');
     
 }
 
-function panic() {
-    
-    delta = 0;
-    
-}
+
 
 function gameLoop(timestamp) {
     
@@ -148,35 +144,10 @@ function gameLoop(timestamp) {
         return;
         
     }
-    
-    delta += timestamp - lastFrameTimeMs;
-    lastFrameTimeMs = timestamp;
-    
-    if (timestamp > lastFpsUpdate + 1000) {
         
-        fps = 0.25 * framesThisSecond + 0.75 * fps;
-        lastFpsUpdate = timestamp;
-        framesThisSecond = 0;
-        
-    }
-    framesThisSecond++;
-    
-    var numUpdateSteps = 0;
-    while (delta >= timestep) {
-        
-        steuerungLoop();
-        animation(timestep);
-        delta -= timestep;
-        if (++numUpdateSteps >= 240) {
-            
-            panic();
-            break;
-            
-        }
-        
-    }
-    
+    steuerungLoop();
     draw();
+    
     requestAnimationFrame(gameLoop);
     
 }
@@ -298,6 +269,8 @@ var game = {
         window.setTimeout(hindernisLoop, 1000);
         
         requestAnimationFrame(gameLoop);
+        
+        animation();
         
     }
     
