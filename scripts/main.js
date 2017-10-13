@@ -30,7 +30,11 @@ var fAPosition = 1,
 
 var lastFrameTimeMs = 0,
     maxFPS = 60,
-    delta = 0;
+    delta = 0,
+    timestep = 1000/60,
+    fps = 60,
+    framesThisSecond = 0,
+    lastFpsUpdate = 0;
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
@@ -40,7 +44,8 @@ var s = document.getElementById('startButton'),
     back1 = document.getElementById('back1'),
     re = document.getElementById('regler'),
     mu = document.getElementById('musicIcon'),
-    so = document.getElementById('soundIcon'); 
+    so = document.getElementById('soundIcon'),
+    test1 = document.getElementById('test1'); 
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -109,8 +114,6 @@ function animation(delta) {
         
         flugzeugCoords = Math.round(flugzeugCoords + dist);
         realFlugzeugCoords += dist;
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
     
@@ -118,10 +121,22 @@ function animation(delta) {
         
         flugzeugCoords = Math.round(flugzeugCoords + dist);
         realFlugzeugCoords += dist;
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
         
     }
+    
+}
+
+function draw() {
+    
+    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#test1').html(Math.round(fps) + 'FPS');
+    
+}
+
+function panic() {
+    
+    delta = 0;
     
 }
 
@@ -134,12 +149,34 @@ function gameLoop(timestamp) {
         
     }
     
-    delta = timestamp - lastFrameTimeMs;
+    delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
-    steuerungLoop();
-    animation(delta);
+    if (timestamp > lastFpsUpdate + 1000) {
+        
+        fps = 0.25 * framesThisSecond + 0.75 * fps;
+        lastFpsUpdate = timestamp;
+        framesThisSecond = 0;
+        
+    }
+    framesThisSecond++;
     
+    var numUpdateSteps = 0;
+    while (delta >= timestep) {
+        
+        steuerungLoop();
+        animation(timestep);
+        delta -= timestep;
+        if (++numUpdateSteps >= 240) {
+            
+            panic();
+            break;
+            
+        }
+        
+    }
+    
+    draw();
     requestAnimationFrame(gameLoop);
     
 }
