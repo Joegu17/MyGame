@@ -19,7 +19,10 @@ var iconw = h*0.15,
 var speed = 0,
     yFlugzeug = h*8.8/1000,
     flugzeugCoords = 0,
-    realFlugzeugCoords = h/2-fh/2;
+    realFlugzeugCoords = h/2-fh/2,
+    flugzeugMax = (h - 0.16*h) / 2,
+    hindernisSpeed = 0.01,
+    hindernisMove = 0;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -34,7 +37,10 @@ var lastFrameTimeMs = 0,
     timestep = 1000/60,
     fps = 60,
     framesThisSecond = 0,
-    lastFpsUpdate = 0;
+    lastFpsUpdate = 0,
+    lastHindernis = 0,
+    hindernisTime = 2000,
+    hindernisTyp = 0;
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
@@ -80,22 +86,6 @@ $('#soundIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top
 
 /*-------------------------------------------------------------------------------*/
 
-function hindernisLoop(typ) {
-    
-    var newTyp = getRandomInt(1, 3);
-    
-    while (newTyp == typ) {
-        
-        newTyp = getRandomInt(1, 3);
-            
-    }
-    
-    hindernis.move(newTyp);
-        
-    window.setTimeout(hindernisLoop, 2000, newTyp);
-    
-}
-
 //Erkennung der Position des Reglers
 function steuerungLoop() {
     
@@ -105,36 +95,55 @@ function steuerungLoop() {
     
 }
 
-function animation() {
+function animation(typ) {
     
     var dist = speed /60 * yFlugzeug;
     
-    if (realFlugzeugCoords > h*0.03 && speed < 0) {
+    if (flugzeugCoords > -flugzeugMax && speed < 0) {
         
         flugzeugCoords = Math.round(flugzeugCoords + dist);
-        realFlugzeugCoords += dist;
         
     }
     
-    if (realFlugzeugCoords < h*0.97-fh && speed > 0) {
+    if (flugzeugCoords < flugzeugMax && speed > 0) {
         
         flugzeugCoords = Math.round(flugzeugCoords + dist);
-        realFlugzeugCoords += dist;
         
     }
     
-    window.setTimeout(animation, 1000/60);
+    hindernisMove -= hindernisSpeed;
     
 }
 
 function draw() {
     
+    
+    switch (hindernisTyp) {
+        case 1:
+            $('#berg').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            $('#berg').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            break;
+        case 2:
+            $('#turm').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            $('#turm').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            break;
+        case 3:
+            $('#ballon').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            $('#ballon').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
+            break;
+    }
+    
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#test1').html('FPS: '+Math.round(fps));
     
 }
 
-
+function panic() {
+    
+    delta = 0;
+    
+}
 
 function gameLoop(timestamp) {
     
@@ -144,8 +153,66 @@ function gameLoop(timestamp) {
         return;
         
     }
+    
+    if (timestamp - lastHindernis >= hindernisTime) {
         
-    steuerungLoop();
+        var newTyp = getRandomInt(1, 3);
+        
+        while (newTyp == hindernisTyp) {
+            
+            newTyp = getRandomInt(1, 3); 
+            
+        }
+        
+        switch (hindernisTyp) {
+            case 1:
+                $('#berg').css('-webkit-transform', 'none');
+                $('#berg').css('transform', 'none');
+                break;
+            case 2:
+                $('#turm').css('-webkit-transform', 'none');
+                $('#turm').css('transform', 'none');
+                break;
+            case 3:
+                $('#ballon').css('-webkit-transform', 'none');
+                $('#ballon').css('transform', 'none');
+                break;
+        }
+        
+        hindernisMove = 0;
+        hindernisTyp = newTyp;
+        lastHindernis = timestamp;
+        
+    }
+    
+    delta += timestamp - lastFrameTimeMs;
+    lastFrameTimeMs = timestamp;
+    
+    if (timestamp > lastFpsUpdate + 1000) {
+        
+        fps = 0.25 * framesThisSecond + 0.75 * fps;
+        lastFpsUpdate = timestamp;
+        framesThisSecond = 0;
+        
+    }
+    
+    framesThisSecond++;
+    
+    var numUpdatesSteps = 0;
+    while (delta >= timestep) {
+        
+        steuerungLoop();
+        animation();
+        delta -= timestep;
+        if (++numUpdatesSteps >= 240) {
+            
+            panic();
+            break;
+            
+        }
+        
+    }
+    
     draw();
     
     requestAnimationFrame(gameLoop);
@@ -266,11 +333,7 @@ var game = {
         $('#startBild').css({display: 'none'});
         $('#hintergrund').css({display: 'inherit'});
         
-        window.setTimeout(hindernisLoop, 1000);
-        
         requestAnimationFrame(gameLoop);
-        
-        animation();
         
     }
     
@@ -348,7 +411,7 @@ var regler = {
     
 }
 
-var hindernis = {
+/*var hindernis = {
     
     move: function(typ) {
         
@@ -412,7 +475,7 @@ var hindernis = {
         
     }
     
-}
+}*/
 
 /*-------------------------------------------------------------------------------*/
 
