@@ -111,14 +111,14 @@ function animation(typ) {
         
     }
     
-    hindernisMove -= hindernisSpeed;
+    //hindernisMove -= hindernisSpeed;
     
 }
 
 function draw() {
     
     
-    switch (hindernisTyp) {
+    /*switch (hindernisTyp) {
         case 1:
             $('#berg').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
             $('#berg').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
@@ -131,7 +131,7 @@ function draw() {
             $('#ballon').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
             $('#ballon').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
             break;
-    }
+    }*/
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
@@ -154,7 +154,7 @@ function gameLoop(timestamp) {
         
     }
     
-    if (timestamp - lastHindernis >= hindernisTime) {
+    /*if (timestamp - lastHindernis >= hindernisTime) {
         
         var newTyp = getRandomInt(1, 3);
         
@@ -183,7 +183,7 @@ function gameLoop(timestamp) {
         hindernisTyp = newTyp;
         lastHindernis = timestamp;
         
-    }
+    }*/
     
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
