@@ -101,13 +101,13 @@ function animation(typ) {
     
     if (flugzeugCoords > -flugzeugMax && speed < 0) {
         
-        flugzeugCoords = Math.round(flugzeugCoords + dist);
+        flugzeugCoords += dist;
         
     }
     
     if (flugzeugCoords < flugzeugMax && speed > 0) {
         
-        flugzeugCoords = Math.round(flugzeugCoords + dist);
+        flugzeugCoords += dist;
         
     }
     
@@ -135,7 +135,7 @@ function draw() {
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#test1').html('FPS: '+Math.round(fps));
+    $('#test1').html('FPS: '+fps);
     
 }
 
