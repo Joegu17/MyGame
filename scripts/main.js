@@ -28,6 +28,8 @@ var ursprung = h*11/25,
 
 var score = 0;
 
+//var worker = new Worker('regler.js');
+
 var fAPosition = 1,
     fAPos = 0;
 
@@ -188,7 +190,7 @@ function gameLoop(timestamp) {
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
-    if (timestamp > lastFpsUpdate + 1000) {
+    /*if (timestamp > lastFpsUpdate + 1000) {
         
         fps = 0.25 * framesThisSecond + 0.75 * fps;
         lastFpsUpdate = timestamp;
@@ -196,7 +198,7 @@ function gameLoop(timestamp) {
         
     }
     
-    framesThisSecond++;
+    framesThisSecond++;*/
     
     var numUpdatesSteps = 0;
     while (delta >= timestep) {
