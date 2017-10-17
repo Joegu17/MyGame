@@ -19,7 +19,7 @@ var iconw = h*0.15,
 var speed = 50,
     yFlugzeug = h*8.8/1000,
     flugzeugCoords = 0,
-    realFlugzeugCoords = h/2-fh/2,
+    realFlugzeugCoords = 100 / h * (h/2-fh/2),
     flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
     hindernisMove = 0;
@@ -74,7 +74,7 @@ $('#flugzeug6').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top
 $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+17*fh+'px'});
 
 $('#hintergrund').css({width: w+'px', height: h+'px'});
-$('#flugzeug').css({width: fw+'px', height: fh+'px', top: h/2-fh/2+'px'});
+$('#flugzeug').css({width: fw+'px', height: fh+'px', top: realFlugzeugCoords+'%'});
 //$('#flugzeug').css('background-image', 'url(../images/flugzeug5.svg)');
 $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
@@ -117,27 +117,27 @@ function animation() {
         
     }*/
     
-    var dist = speed /60 * yFlugzeug;
+    var dist = speed /60;
     
-    if (flugzeugCoords > -flugzeugMax && speed < 0) {
+    if (realFlugzeugCoords > 2/*-flugzeugMax*/ && speed < 0) {
         
-        flugzeugCoords += dist;
+        //flugzeugCoords += dist;
         realFlugzeugCoords += dist;
         
     }
-    if (flugzeugCoords < -flugzeugMax && speed < 0) {
+    if (realFlugzeugCoords < 2/*-flugzeugMax*/ && speed < 0) {
         
         speed = speed * (-1);
         
     }
     
-    if (flugzeugCoords < flugzeugMax && speed > 0) {
+    if (realFlugzeugCoords < 88/*flugzeugMax*/ && speed > 0) {
         
-        flugzeugCoords += dist;
+        //flugzeugCoords += dist;
         realFlugzeugCoords += dist;
         
     }
-    if (flugzeugCoords > flugzeugMax && speed > 0) {
+    if (realFlugzeugCoords > 88/*flugzeugMax*/ && speed > 0) {
         
         speed = speed * (-1);
         
@@ -167,7 +167,7 @@ function draw() {
             break;
     }*/
     
-    plane.style.top = realFlugzeugCoords + 'px';
+    plane.style.top = realFlugzeugCoords + '%';
     
     //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     //$('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
