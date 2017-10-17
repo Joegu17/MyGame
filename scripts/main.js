@@ -167,10 +167,8 @@ function draw() {
             break;
     }*/
     
-    plane.style.top = realFlugzeugCoords + 'px';
-    
-    //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    //$('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
     $('#test3').html(realFlugzeugCoords);
     $('#score').html('Score: '+score);

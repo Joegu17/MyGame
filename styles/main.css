@@ -142,24 +142,28 @@ table {
     position: fixed;
     left: 5%;
     top: 20%;
+    font-size: 5%;
     font-family: Lucida Sans Unicode;
 }
 #test2 {
     position: fixed;
     left: 5%;
     top: 35%;
+    font-size: 5%;
     font-family: Lucida Sans Unicode;
 }
 #test3 {
     position: fixed;
     left: 5%;
     top: 50%;
+    font-size: 5%;
     font-family: Lucida Sans Unicode;
 }
 #test4 {
     position: fixed;
     left: 5%;
     top: 65%;
+    font-size: 5%;
     font-family: Lucida Sans Unicode;
 }
 
