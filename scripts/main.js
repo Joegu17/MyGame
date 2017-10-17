@@ -221,9 +221,9 @@ function gameLoop(timestamp) {
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
-    if (timestamp > lastFpsUpdate + 100) {
+    if (timestamp > lastFpsUpdate + 1000) {
         
-        fpsw = framesThisSecond * 10 //0.25 * framesThisSecond + 0.75 * fpsw;
+        fpsw = framesThisSecond //0.25 * framesThisSecond + 0.75 * fpsw;
         lastFpsUpdate = timestamp;
         framesThisSecond = 0;
         
@@ -514,7 +514,7 @@ var regler = {
 
 s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
 s.addEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
-f.addEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
+/*f.addEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
 f.addEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
 op.addEventListener('touchstart', function(){$('#options').css({opacity: 0.1})});
 op.addEventListener('touchend', function(){optionen.init(); $('#options').css({opacity: 0.5})});
@@ -526,11 +526,11 @@ down.addEventListener('touchstart', function(){$('#down').css({opacity: 0.1})});
 down.addEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
 down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
 back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
-back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
+back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*//*});
 
 /*re.addEventListener('touchstart', regler.touchStart);
 re.addEventListener('touchmove', regler.touchMove);
-re.addEventListener('touchend', regler.touchEnd);*/
+re.addEventListener('touchend', regler.touchEnd);*//*
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
-back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
+back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*//*});*/
