@@ -221,9 +221,9 @@ function gameLoop(timestamp) {
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
-    if (timestamp > lastFpsUpdate + 1000) {
+    if (timestamp > lastFpsUpdate + 100) {
         
-        fpsw = framesThisSecond //0.25 * framesThisSecond + 0.75 * fpsw;
+        fpsw = framesThisSecond * 10 //0.25 * framesThisSecond + 0.75 * fpsw;
         lastFpsUpdate = timestamp;
         framesThisSecond = 0;
         
