@@ -28,6 +28,8 @@ var ursprung = h*11/25,
 
 var score = 0;
 
+var fps = 0;
+
 //var worker = new Worker('regler.js');
 
 var fAPosition = 1,
@@ -37,7 +39,6 @@ var lastFrameTimeMs = 0,
     maxFPS = 60,
     delta = 0,
     timestep = 1000/60,
-    fps = 60,
     framesThisSecond = 0,
     lastFpsUpdate = 0,
     lastHindernis = 0,
