@@ -156,6 +156,12 @@ table {
     top: 50%;
     font-family: Lucida Sans Unicode;
 }
+#test4 {
+    position: fixed;
+    left: 5%;
+    top: 65%;
+    font-family: Lucida Sans Unicode;
+}
 
 /*-------------------------------------------------------------------------------*/
 

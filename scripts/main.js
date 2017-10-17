@@ -88,8 +88,7 @@ $('#musicIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top
 $('#soundText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*5+'px'});
 $('#soundIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*5+'px'});
 
-$('#test2').html('height: '+h);
-$('#test3').html('width: '+w);
+$('#test2').html('height: '+h+' - width: '+w);
 
 /*-------------------------------------------------------------------------------*/
 
@@ -144,6 +143,8 @@ function animation() {
         
     }
     
+    $('#test4').html(dist);
+    
     //hindernisMove -= hindernisSpeed;
     
 }
@@ -171,6 +172,7 @@ function draw() {
     //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     //$('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
+    $('#test3').html(realFlugzeugCoords);
     $('#score').html('Score: '+score);
     
 }
