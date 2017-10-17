@@ -162,6 +162,7 @@ function draw() {
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#test1').html('FPS: '+fps);
+    $('#score').html('Score: '+score);
     
 }
 
