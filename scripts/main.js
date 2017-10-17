@@ -28,7 +28,7 @@ var ursprung = h*11/25,
 
 var score = 0;
 
-var fps = 0;
+var fpsw = 0;
 
 //var worker = new Worker('regler.js');
 
@@ -79,6 +79,7 @@ $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
+$('#test1').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
 $('#back2').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
@@ -162,7 +163,7 @@ function draw() {
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#test1').html('FPS: '+fps);
+    $('#test1').html('FPS: '+fpsw);
     $('#score').html('Score: '+score);
     
 }
