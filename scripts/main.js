@@ -16,7 +16,7 @@ var startButtonw = w/5,
     startButtonh = h/5;
 var iconw = h*0.15,
     iconh = h*0.15;
-var speed = 0,
+var speed = 50,
     yFlugzeug = h*8.8/1000,
     flugzeugCoords = 0,
     realFlugzeugCoords = h/2-fh/2,
@@ -99,7 +99,7 @@ function steuerungLoop() {
 
 function animation(typ) {
     
-    var dist = speed /60 * yFlugzeug;
+    /*var dist = speed /60 * yFlugzeug;
     
     if (flugzeugCoords > -flugzeugMax && speed < 0) {
         
@@ -110,6 +110,28 @@ function animation(typ) {
     if (flugzeugCoords < flugzeugMax && speed > 0) {
         
         flugzeugCoords += dist;
+        
+    }*/
+    
+    var dist = speed /60 * yFlugzeug;
+    
+    if (flugzeugCoords > -flugzeugMax && speed < 0) {
+        
+        flugzeugCoords += dist;
+        
+    } else {
+        
+        speed = speed * (-1);
+        
+    }
+    
+    if (flugzeugCoords < flugzeugMax && speed > 0) {
+        
+        flugzeugCoords += dist;
+        
+    } else {
+        
+        speed = speed * (-1);
         
     }
     
@@ -203,7 +225,7 @@ function gameLoop(timestamp) {
     var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
-        steuerungLoop();
+        //steuerungLoop();
         animation();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
@@ -497,9 +519,9 @@ down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
 back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
 back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
-re.addEventListener('touchstart', regler.touchStart);
+/*re.addEventListener('touchstart', regler.touchStart);
 re.addEventListener('touchmove', regler.touchMove);
-re.addEventListener('touchend', regler.touchEnd);
+re.addEventListener('touchend', regler.touchEnd);*/
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
