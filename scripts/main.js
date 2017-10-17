@@ -79,7 +79,6 @@ $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
-$('#test1').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
 $('#back2').css({width: iconw+'px', height: iconh+'px', left: w/100+'px', bottom: w/100+'px'});
@@ -163,7 +162,7 @@ function draw() {
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#test1').html('FPS: '+fpsw);
+    $('#test1').html('FPS: '+Math.round(fpsw));
     $('#score').html('Score: '+score);
     
 }
@@ -217,15 +216,15 @@ function gameLoop(timestamp) {
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
     
-    /*if (timestamp > lastFpsUpdate + 1000) {
+    if (timestamp > lastFpsUpdate + 1000) {
         
-        fps = 0.25 * framesThisSecond + 0.75 * fps;
+        fpsw = framesThisSecond //0.25 * framesThisSecond + 0.75 * fpsw;
         lastFpsUpdate = timestamp;
         framesThisSecond = 0;
         
     }
     
-    framesThisSecond++;*/
+    framesThisSecond++;
     
     var numUpdatesSteps = 0;
     while (delta >= timestep) {
