@@ -119,6 +119,7 @@ function animation() {
     if (flugzeugCoords > -flugzeugMax && speed < 0) {
         
         flugzeugCoords += dist;
+        realFlugzeugCoords += dist;
         
     }
     if (flugzeugCoords < -flugzeugMax && speed < 0) {
@@ -130,6 +131,7 @@ function animation() {
     if (flugzeugCoords < flugzeugMax && speed > 0) {
         
         flugzeugCoords += dist;
+        realFlugzeugCoords += dist;
         
     }
     if (flugzeugCoords > flugzeugMax && speed > 0) {
@@ -160,8 +162,10 @@ function draw() {
             break;
     }*/
     
-    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    box.style.top = realFlugzeugCoords + 'px';
+    
+    //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    //$('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
     $('#score').html('Score: '+score);
     
