@@ -53,7 +53,8 @@ var s = document.getElementById('startButton'),
     back1 = document.getElementById('back1'),
     re = document.getElementById('regler'),
     mu = document.getElementById('musicIcon'),
-    so = document.getElementById('soundIcon');
+    so = document.getElementById('soundIcon'),
+    plane = document.getElementById('flugzeug');
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -162,7 +163,7 @@ function draw() {
             break;
     }*/
     
-    box.style.top = realFlugzeugCoords + 'px';
+    plane.style.top = realFlugzeugCoords + 'px';
     
     //$('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     //$('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
