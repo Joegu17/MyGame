@@ -95,6 +95,22 @@ $('#test4').css({'font-size': h/20+'px'});
 
 /*-------------------------------------------------------------------------------*/
 
+function hindernisLoop(typ) {
+    
+    var newTyp = getRandomInt(1, 3);
+    
+    while (newTyp == typ) {
+        
+        newTyp = getRandomInt(1, 3);
+            
+    }
+    
+    hindernis.move(newTyp);
+        
+    window.setTimeout(hindernisLoop, 2000, newTyp);
+    
+}
+
 //Erkennung der Position des Reglers
 function steuerungLoop() {
     
@@ -120,27 +136,9 @@ function animation() {
         
     }
     
-    //hindernisMove -= hindernisSpeed;
-    
 }
 
 function draw() {
-    
-    
-    /*switch (hindernisTyp) {
-        case 1:
-            $('#berg').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            $('#berg').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            break;
-        case 2:
-            $('#turm').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            $('#turm').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            break;
-        case 3:
-            $('#ballon').css('-webkit-transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            $('#ballon').css('transform', 'translate3d('+hindernisMove+'px, 0px, 0px)');
-            break;
-    }*/
     
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
@@ -162,37 +160,6 @@ function gameLoop(timestamp) {
         return;
         
     }
-    
-    /*if (timestamp - lastHindernis >= hindernisTime) {
-        
-        var newTyp = getRandomInt(1, 3);
-        
-        while (newTyp == hindernisTyp) {
-            
-            newTyp = getRandomInt(1, 3); 
-            
-        }
-        
-        switch (hindernisTyp) {
-            case 1:
-                $('#berg').css('-webkit-transform', 'none');
-                $('#berg').css('transform', 'none');
-                break;
-            case 2:
-                $('#turm').css('-webkit-transform', 'none');
-                $('#turm').css('transform', 'none');
-                break;
-            case 3:
-                $('#ballon').css('-webkit-transform', 'none');
-                $('#ballon').css('transform', 'none');
-                break;
-        }
-        
-        hindernisMove = 0;
-        hindernisTyp = newTyp;
-        lastHindernis = timestamp;
-        
-    }*/
     
     delta += timestamp - lastFrameTimeMs;
     lastFrameTimeMs = timestamp;
@@ -342,6 +309,8 @@ var game = {
         $('#startBild').css({display: 'none'});
         $('#hintergrund').css({display: 'inherit'});
         
+        window.setTimeout(hindernisLoop, 1000);
+        
         requestAnimationFrame(gameLoop);
         
     }
@@ -420,7 +389,7 @@ var regler = {
     
 }
 
-/*var hindernis = {
+var hindernis = {
     
     move: function(typ) {
         
@@ -484,7 +453,7 @@ var regler = {
         
     }
     
-}*/
+}
 
 /*-------------------------------------------------------------------------------*/
 
