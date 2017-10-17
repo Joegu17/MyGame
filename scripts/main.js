@@ -97,7 +97,7 @@ function steuerungLoop() {
     
 }
 
-function animation(typ) {
+function animation() {
     
     /*var dist = speed /60 * yFlugzeug;
     
@@ -119,7 +119,8 @@ function animation(typ) {
         
         flugzeugCoords += dist;
         
-    } else {
+    }
+    if (flugzeugCoords < -flugzeugMax && speed < 0) {
         
         speed = speed * (-1);
         
@@ -129,7 +130,8 @@ function animation(typ) {
         
         flugzeugCoords += dist;
         
-    } else {
+    }
+    if (flugzeugCoords > flugzeugMax && speed > 0) {
         
         speed = speed * (-1);
         
