@@ -16,7 +16,7 @@ var startButtonw = w/5,
     startButtonh = h/5;
 var iconw = h*0.15,
     iconh = h*0.15;
-var speed = 50,
+var speed = 0,
     yFlugzeug = h*8.8/1000,
     flugzeugCoords = 0,
     realFlugzeugCoords = h/2-fh/2,
@@ -93,8 +93,6 @@ $('#test2').css({'font-size': h/20+'px'});
 $('#test3').css({'font-size': h/20+'px'});
 $('#test4').css({'font-size': h/20+'px'});
 
-$('#test2').html('height: '+h+' - width: '+w);
-
 /*-------------------------------------------------------------------------------*/
 
 //Erkennung der Position des Reglers
@@ -108,47 +106,19 @@ function steuerungLoop() {
 
 function animation() {
     
-    /*var dist = speed /60 * yFlugzeug;
-    
-    if (flugzeugCoords > -flugzeugMax && speed < 0) {
-        
-        flugzeugCoords += dist;
-        
-    }
-    
-    if (flugzeugCoords < flugzeugMax && speed > 0) {
-        
-        flugzeugCoords += dist;
-        
-    }*/
-    
     var dist = speed /60 * yFlugzeug;
     
     if (flugzeugCoords > -flugzeugMax && speed < 0) {
         
         flugzeugCoords += dist;
-        realFlugzeugCoords += dist;
-        
-    }
-    if (flugzeugCoords < -flugzeugMax && speed < 0) {
-        
-        speed = speed * (-1);
         
     }
     
     if (flugzeugCoords < flugzeugMax && speed > 0) {
         
         flugzeugCoords += dist;
-        realFlugzeugCoords += dist;
         
     }
-    if (flugzeugCoords > flugzeugMax && speed > 0) {
-        
-        speed = speed * (-1);
-        
-    }
-    
-    $('#test4').html(dist);
     
     //hindernisMove -= hindernisSpeed;
     
@@ -175,8 +145,6 @@ function draw() {
     $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
-    $('#test3').html(realFlugzeugCoords);
-    $('#score').html('Score: '+score);
     
 }
 
@@ -242,7 +210,7 @@ function gameLoop(timestamp) {
     var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
-        //steuerungLoop();
+        steuerungLoop();
         animation();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
@@ -270,8 +238,6 @@ var startBild = {
         $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
-        
-        game.init();
         
     }
     
@@ -522,7 +488,7 @@ var regler = {
 
 /*-------------------------------------------------------------------------------*/
 
-/*s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
+s.addEventListener('touchstart', function(){$('#startButton').css({opacity: 0.1})});
 s.addEventListener('touchend', function(){game.init(); $('#startButton').css({opacity: 0.5})});
 f.addEventListener('touchstart', function(){$('#choosePlane').css({opacity: 0.1})});
 f.addEventListener('touchend', function(){flugzeugAuswahl.init(); $('#choosePlane').css({opacity: 0.5})});
@@ -536,11 +502,11 @@ down.addEventListener('touchstart', function(){$('#down').css({opacity: 0.1})});
 down.addEventListener('touchend', function(){$('#down').css({opacity: 0.5})});
 down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
 back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
-back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*//*});
+back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
 re.addEventListener('touchstart', regler.touchStart);
 re.addEventListener('touchmove', regler.touchMove);
-re.addEventListener('touchend', regler.touchEnd);*/
+re.addEventListener('touchend', regler.touchEnd);
 
-/*back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
-back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*//*});*/
+back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
+back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
