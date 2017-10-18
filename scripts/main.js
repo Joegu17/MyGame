@@ -163,7 +163,7 @@ function gameLoop(timestamp) {
     
     framesThisSecond++;
     
-    var numUpdatesSteps = 0;
+    /*var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
         steuerungLoop();
@@ -176,7 +176,10 @@ function gameLoop(timestamp) {
             
         }
         
-    }
+    }*/
+    
+    steuerungLoop();
+    animation();
     
     requestAnimationFrame(gameLoop);
     
