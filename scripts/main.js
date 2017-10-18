@@ -17,9 +17,10 @@ var startButtonw = w/5,
 var iconw = h*0.15,
     iconh = h*0.15;
 var speed = 0,
-    yFlugzeug = h*8.8/1000,
-    flugzeugCoords = 0,
+    yFlugzeug = h - 0.12*h,
     realFlugzeugCoords = h/2-fh/2,
+    facFlugzeug = 100/yFlugzeug,
+    flugzeugDist = 0,
     flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
     hindernisMove = 0;
@@ -122,26 +123,14 @@ function steuerungLoop() {
 
 function animation() {
     
-    var dist = speed /60 * yFlugzeug;
+    var flugzeugCoords = $('#flugzeug').position().top
     
-    if (flugzeugCoords > -flugzeugMax && speed < 0) {
-        
-        flugzeugCoords += dist;
-        
-    }
+    var dist = speed * yFlugzeug;
     
-    if (flugzeugCoords < flugzeugMax && speed > 0) {
-        
-        flugzeugCoords += dist;
-        
-    }
+    flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
     
-}
-
-function draw() {
-    
-    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
-    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugCoords+'px, 0px)');
+    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
     
 }
@@ -188,8 +177,6 @@ function gameLoop(timestamp) {
         }
         
     }
-    
-    draw();
     
     requestAnimationFrame(gameLoop);
     
