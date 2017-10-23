@@ -305,12 +305,12 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = -0.116 * yFlugzeug;
+        var dist = -0.232 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
-        $('#flugzeug').css({'transition-duration': '0.2s'});
+        $('#flugzeug').css({'-webkit-transition-duration': '0.4s'});
+        $('#flugzeug').css({'transition-duration': '0.4s'});
         
         $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
         $('#flugzeug').css({'transition-timing-function': 'ease-in'});
@@ -318,7 +318,7 @@ var flying = {
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
-        window.setTimeout(flying.touchStartUpMove, 200);
+        window.setTimeout(flying.touchStartUpMove, 400);
         
     },
     
