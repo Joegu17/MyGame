@@ -21,7 +21,8 @@ var speed = 100,
     flugzeugDist = 0,
     flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
-    hindernisMove = 0;
+    hindernisMove = 0,
+    stillTouching = 0;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -303,6 +304,8 @@ var flying = {
         
         e.preventDefault();
         
+        stillTouching = 1;
+        
         var flugzeugCoords = $('#flugzeug').position().top;
     
         var dist = -0.232 * yFlugzeug;
@@ -324,20 +327,24 @@ var flying = {
     
     touchStartUpMove: function() {
         
-        var flugzeugCoords = $('#flugzeug').position().top;
-    
-        var dist = -100 * yFlugzeug;
-    
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+        if (stillTouching == 1) {
+
+            var flugzeugCoords = $('#flugzeug').position().top;
+
+            var dist = -100 * yFlugzeug;
+
+            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+
+            $('#flugzeug').css({'-webkit-transition-duration': '100s'});
+            $('#flugzeug').css({'transition-duration': '100s'});
+
+            $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
+            $('#flugzeug').css({'transition-timing-function': 'linear'});
+
+            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)')
         
-        $('#flugzeug').css({'-webkit-transition-duration': '100s'});
-        $('#flugzeug').css({'transition-duration': '100s'});
-        
-        $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
-        $('#flugzeug').css({'transition-timing-function': 'linear'});
-        
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)')
+        }
     
     },
     
@@ -359,6 +366,8 @@ var flying = {
     touchEnd: function(e) {
         
         e.preventDefault();
+        
+        stillTouching = 0;
         
         var flugzeugCoords = $('#flugzeug').position().top;
         
