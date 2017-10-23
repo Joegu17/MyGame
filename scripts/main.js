@@ -369,9 +369,23 @@ var flying = {
         
         stillTouching = 0;
         
+    },
+    
+    touchEndUp: function() {
+        
+        e.preventDefault();
+        
         var flugzeugCoords = $('#flugzeug').position().top;
         
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+        var dist = -0.232 * yFlugzeug;
+    
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+        
+        $('#flugzeug').css({'-webkit-transition-duration': '0.4s'});
+        $('#flugzeug').css({'transition-duration': '0.4s'});
+        
+        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-out'});
+        $('#flugzeug').css({'transition-timing-function': 'ease-out'});
         
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
