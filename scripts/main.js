@@ -344,6 +344,10 @@ var flying = {
             $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
             $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)')
         
+        } else {
+            
+            flying.touchEndUp();
+            
         }
     
     },
