@@ -185,8 +185,6 @@ var startBild = {
         $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
-        
-        game.init();
     
     }
     
@@ -307,13 +305,40 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = -100 * yFlugzeug;
+        var dist = -0.116 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-    
+        
+        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
+        $('#flugzeug').css({'transition-duration': '0.2s'});
+        
+        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
+        $('#flugzeug').css({'transition-timing-function': 'ease-in'});
+        
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
+        window.setTimeout(flying.touchStartUpMove, 200);
+        
+    },
+    
+    touchStartUpMove: function() {
+        
+        var flugzeugCoords = $('#flugzeug').position().top;
+    
+        var dist = -100 * yFlugzeug;
+    
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+        
+        $('#flugzeug').css({'-webkit-transition-duration': '100s'});
+        $('#flugzeug').css({'transition-duration': '100s'});
+        
+        $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
+        $('#flugzeug').css({'transition-timing-function': 'linear'});
+        
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)')
+    
     },
     
     touchStartDown: function(e) {
