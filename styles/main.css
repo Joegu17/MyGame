@@ -71,7 +71,7 @@ table {
     position: absolute;
     left: 5%;
     top: 0px;
-    background-image: url(../images/flugzeug1.svg);
+    background-image: url(../images/flugzeug1.png);
     background-size: cover;
     background-repeat: no-repeat;
     -webkit-transition-duration: 100s;
@@ -124,23 +124,21 @@ table {
     top: 5%;
     font-family: Lucida Sans Unicode;
 }
-#balken {
+#flyUp {
     position: fixed;
-    right: 3%;
-    top: 3%;
-    bottom: 3%;
-    height: 94%;
-    width: 1%;
-    background-color: gainsboro;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: yellow;
+    opacity: 0;
 }
-#regler {
-    position: absolute;
-    right: 1%;
-    top: 45%;
-    width: 5%;
-    height: 10%;
-    background-color: grey;
-    transition-timing-function: ease-in-out;
+#flyDown {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: red;
+    opacity: 0;
 }
 #test1 {
     position: fixed;

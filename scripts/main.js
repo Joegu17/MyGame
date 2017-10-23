@@ -10,13 +10,11 @@ var turmw = h*0.5/555*73,
     turmh = h*0.5;
 var ballonw = h*0.6/328*225,
     ballonh = h*0.6;
-var reglerw = w/5,
-    reglerh = h/10;
 var startButtonw = w/5,
     startButtonh = h/5;
 var iconw = h*0.15,
     iconh = h*0.15;
-var speed = 0,
+var speed = 100,
     yFlugzeug = h - 0.12*h,
     realFlugzeugCoords = h/2-fh/2,
     facFlugzeug = 100/yFlugzeug,
@@ -30,8 +28,6 @@ var ursprung = h*11/25,
 var score = 0;
 
 var fpsw = 0;
-
-//var worker = new Worker('regler.js');
 
 var fAPosition = 1,
     fAPos = 0;
@@ -52,10 +48,11 @@ var s = document.getElementById('startButton'),
     up = document.getElementById('up'),
     down = document.getElementById('down'),
     back1 = document.getElementById('back1'),
-    re = document.getElementById('regler'),
     mu = document.getElementById('musicIcon'),
     so = document.getElementById('soundIcon'),
-    plane = document.getElementById('flugzeug');
+    plane = document.getElementById('flugzeug'),
+    flyUp = document.getElementById('flyUp'),
+    flyDown = document.getElementById('flyDown');
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
@@ -75,8 +72,10 @@ $('#flugzeug6').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top
 $('#flugzeug7').css({width: fw*2+'px', height: fh*2+'px', left: w/2-fw+'px', top: h/2+17*fh+'px'});
 
 $('#hintergrund').css({width: w+'px', height: h+'px'});
+$('#flyUp').css({width: w+'px', height: h/2+'px', top: '0px'});
+$('#flyDown').css({width: w+'px', height: h/2+'px', top: h/2+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: realFlugzeugCoords+'px'});
-//$('#flugzeug').css('background-image', 'url(../images/flugzeug5.svg)');
+//$('#flugzeug').css('background-image', 'url(flugzeug1.png)');
 $('#berg').css({width: bergw+'px', height: bergh+'px'});
 $('#turm').css({width: turmw+'px', height: turmh+'px'});
 $('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
@@ -123,14 +122,6 @@ function steuerungLoop() {
 
 function animation() {
     
-    var flugzeugCoords = $('#flugzeug').position().top
-    
-    var dist = speed * yFlugzeug;
-    
-    flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-    
-    $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-    $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
     $('#test1').html('FPS: '+Math.round(fpsw));
     
 }
@@ -178,7 +169,6 @@ function gameLoop(timestamp) {
         
     }*/
     
-    steuerungLoop();
     animation();
     
     requestAnimationFrame(gameLoop);
@@ -196,6 +186,8 @@ var startBild = {
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
         
+        game.init();
+    
     }
     
 }
@@ -307,73 +299,48 @@ var game = {
     
 }
 
-var regler = {
+var flying = {
     
-    coordY: h/2 - reglerh/2,
-    realTimeCoordY: h/2 - reglerh/2,
-    
-    touchCoord: null,
-    touchStart: function(e) {
+    touchStartUp: function(e) {
         
         e.preventDefault();
         
-        var touch = e.touches[0];
-        
-        if (e.touches.length == 1) {
-            
-            regler.touchCoord = {y: touch.pageY, id: touch.identifier};
-            
-            $('#regler').css({'-webkit-transition-duration': 'initial', 'transition-duration': 'initial'});
-            
-        }
+        var flugzeugCoords = $('#flugzeug').position().top;
+    
+        var dist = -100 * yFlugzeug;
+    
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+    
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
     },
     
-    touchMove: function(e) {
+    touchStartDown: function(e) {
         
         e.preventDefault();
         
-        for (var i = 0; i < e.touches.length; i++) {
-            
-            if (e.touches[i].identifier == regler.touchCoord.id) {
-            
-                var touch = e.touches[i],
-                    moveCoords = touch.pageY,
-                    dif = moveCoords - regler.touchCoord.y;
-
-                var y = parseInt((dif + regler.coordY)*10)/10;
-                
-                regler.realTimeCoordY = y;
-                
-                if (y > h/100 && y < h/100*99-reglerh) {
-
-                    $('#regler').css('-webkit-transform', 'translate3d(0px, '+dif+'px, 0px)');
-                    $('#regler').css('transform', 'translate3d(0px, '+dif+'px, 0px)');
-                    
-                }
-                
-            }
-            
-        }
+        var flugzeugCoords = $('#flugzeug').position().top;
+    
+        var dist = 100 * yFlugzeug;
+    
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+    
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
     },
     
     touchEnd: function(e) {
         
-        for (var i = 0; i < e.changedTouches.length; i++) {
-            
-            if (e.changedTouches[i].identifier == regler.touchCoord.id) {
-                
-                var dif = e.changedTouches[0].pageY - regler.touchCoord.y,
-                    y = parseInt((dif + regler.coordY)*10)/10;
-                
-                $('#regler').css({'-webkit-transition-duration': '0.2s', 'transition-duration': '0.2s'});
-                $('#regler').css('-webkit-transform', 'none');
-                $('#regler').css('transform', 'none');
-                
-            }
-            
-        }
+        e.preventDefault();
+        
+        var flugzeugCoords = $('#flugzeug').position().top;
+        
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+        
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
     }
     
@@ -463,9 +430,10 @@ down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
 back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
 back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
-re.addEventListener('touchstart', regler.touchStart);
-re.addEventListener('touchmove', regler.touchMove);
-re.addEventListener('touchend', regler.touchEnd);
+flyUp.addEventListener('touchstart', function(){flying.touchStartUp});
+flyUp.addEventListener('touchend', function(){flying.touchEnd});
+flyDown.addEventListener('touchstart', function(){flying.touchStartDown});
+flyDown.addEventListener('touchend', function(){flying.touchEnd});
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
