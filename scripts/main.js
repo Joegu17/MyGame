@@ -430,10 +430,10 @@ down.addEventListener('touchend', flugzeugAuswahl.touchStartDown);
 back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})});
 back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
-flyUp.addEventListener('touchstart', function(){flying.touchStartUp});
-flyUp.addEventListener('touchend', function(){flying.touchEnd});
-flyDown.addEventListener('touchstart', function(){flying.touchStartDown});
-flyDown.addEventListener('touchend', function(){flying.touchEnd});
+flyUp.addEventListener('touchstart', flying.touchStartUp);
+flyUp.addEventListener('touchend', flying.touchEnd);
+flyDown.addEventListener('touchstart', flying.touchStartDown);
+flyDown.addEventListener('touchend', flying.touchEnd);
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
