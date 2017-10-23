@@ -22,7 +22,8 @@ var speed = 100,
     flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
     hindernisMove = 0,
-    stillTouching = 0;
+    stillTouching = 0,
+    onSpeed = 0;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -308,12 +309,12 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = -0.232 * yFlugzeug;
+        var dist = -0.116 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css({'-webkit-transition-duration': '0.4s'});
-        $('#flugzeug').css({'transition-duration': '0.4s'});
+        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
+        $('#flugzeug').css({'transition-duration': '0.2s'});
         
         $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
         $('#flugzeug').css({'transition-timing-function': 'ease-in'});
@@ -321,11 +322,13 @@ var flying = {
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
-        window.setTimeout(flying.touchStartUpMove, 400);
+        window.setTimeout(flying.touchStartUpMove, 200);
         
     },
     
     touchStartUpMove: function() {
+        
+        onSpeed = 1;
         
         if (stillTouching == 1) {
 
@@ -356,38 +359,120 @@ var flying = {
         
         e.preventDefault();
         
+        stillTouching = 1;
+        
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = 100 * yFlugzeug;
+        var dist = 0.116 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-    
+        
+        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
+        $('#flugzeug').css({'transition-duration': '0.2s'});
+
+        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
+        $('#flugzeug').css({'transition-timing-function': 'ease-in'});
+        
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
+        window.setTimeout(flying.touchStartDownMove, 200);
+        
     },
     
-    touchEnd: function(e) {
+    touchStartDownMove: function() {
+        
+        if (stillTouching == 1) {
+        
+            onSpeed = 1;
+            
+            var flugzeugCoords = $('#flugzeug').position().top;
+    
+            var dist = 100 * yFlugzeug;
+    
+            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+        
+            $('#flugzeug').css({'-webkit-transition-duration': '100s'});
+            $('#flugzeug').css({'transition-duration': '100s'});
+
+            $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
+            $('#flugzeug').css({'transition-timing-function': 'linear'});
+        
+            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            
+        } else {
+            
+            flying.touchEndDown();
+            
+        }
+        
+    },
+    
+    touchEndU: function(e) {
         
         e.preventDefault();
         
-        stillTouching = 0;
+        if (onSpeed == 1) {
+            
+            flying.touchEndUp();
+            onSpeed = 0;
+            
+        } else {
+            
+            stillTouching = 0;
+            
+        }
+        
+    },
+    
+    touchEndD: function(e) {
+        
+        e.preventDefault();
+        
+        if (onSpeed == 1) {
+            
+            flying.touchEndDown();
+            onSpeed = 0;
+            
+        } else {
+            
+            stillTouching = 0;
+            
+        }
         
     },
     
     touchEndUp: function() {
         
-        e.preventDefault();
-        
         var flugzeugCoords = $('#flugzeug').position().top;
         
-        var dist = -0.232 * yFlugzeug;
+        var dist = -0.116 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css({'-webkit-transition-duration': '0.4s'});
-        $('#flugzeug').css({'transition-duration': '0.4s'});
+        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
+        $('#flugzeug').css({'transition-duration': '0.2s'});
         
+        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-out'});
+        $('#flugzeug').css({'transition-timing-function': 'ease-out'});
+        
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        
+    },
+    
+    touchEndDown: function() {
+        
+        var flugzeugCoords = $('#flugzeug').position().top;
+    
+        var dist = 0.116 * yFlugzeug;
+    
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+        
+        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
+        $('#flugzeug').css({'transition-duration': '0.2s'});
+
         $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-out'});
         $('#flugzeug').css({'transition-timing-function': 'ease-out'});
         
@@ -483,9 +568,9 @@ back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})}
 back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
 flyUp.addEventListener('touchstart', flying.touchStartUp);
-flyUp.addEventListener('touchend', flying.touchEnd);
+flyUp.addEventListener('touchend', flying.touchEndU);
 flyDown.addEventListener('touchstart', flying.touchStartDown);
-flyDown.addEventListener('touchend', flying.touchEnd);
+flyDown.addEventListener('touchend', flying.touchEndD);
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
