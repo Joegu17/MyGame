@@ -74,8 +74,8 @@ table {
     background-image: url(../images/flugzeug1.png);
     background-size: cover;
     background-repeat: no-repeat;
-    -webkit-transition-duration: 100s;
-    transition-duration: 100s;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
     -webkit-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
 }

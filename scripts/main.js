@@ -305,7 +305,7 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
 
-        var dist = -100 * yFlugzeug;
+        var dist = -1 * yFlugzeug;
 
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
@@ -320,7 +320,7 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = 100 * yFlugzeug;
+        var dist = 1 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
