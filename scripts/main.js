@@ -21,9 +21,7 @@ var speed = 100,
     flugzeugDist = 0,
     flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
-    hindernisMove = 0,
-    stillTouching = 0,
-    onSpeed = 0;
+    hindernisMove = 0;
 var ursprung = h*11/25,
     fac = 100/ursprung;
 
@@ -305,176 +303,39 @@ var flying = {
         
         e.preventDefault();
         
-        stillTouching = 1;
-        
         var flugzeugCoords = $('#flugzeug').position().top;
-    
-        var dist = -0.116 * yFlugzeug;
-    
+
+        var dist = -100 * yFlugzeug;
+
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-        
-        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
-        $('#flugzeug').css({'transition-duration': '0.2s'});
-        
-        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
-        $('#flugzeug').css({'transition-timing-function': 'ease-in'});
         
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
-        window.setTimeout(flying.touchStartUpMove, 200);
-        
-    },
-    
-    touchStartUpMove: function() {
-        
-        onSpeed = 1;
-        
-        if (stillTouching == 1) {
-
-            var flugzeugCoords = $('#flugzeug').position().top;
-
-            var dist = -100 * yFlugzeug;
-
-            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-
-            $('#flugzeug').css({'-webkit-transition-duration': '100s'});
-            $('#flugzeug').css({'transition-duration': '100s'});
-
-            $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
-            $('#flugzeug').css({'transition-timing-function': 'linear'});
-
-            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)')
-        
-        } else {
-            
-            flying.touchEndUp();
-            
-        }
-    
     },
     
     touchStartDown: function(e) {
         
         e.preventDefault();
         
-        stillTouching = 1;
-        
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = 0.116 * yFlugzeug;
+        var dist = 100 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-        
-        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
-        $('#flugzeug').css({'transition-duration': '0.2s'});
-
-        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-in'});
-        $('#flugzeug').css({'transition-timing-function': 'ease-in'});
-        
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-        
-        window.setTimeout(flying.touchStartDownMove, 200);
-        
-    },
-    
-    touchStartDownMove: function() {
-        
-        if (stillTouching == 1) {
-        
-            onSpeed = 1;
-            
-            var flugzeugCoords = $('#flugzeug').position().top;
-    
-            var dist = 100 * yFlugzeug;
-    
-            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-        
-            $('#flugzeug').css({'-webkit-transition-duration': '100s'});
-            $('#flugzeug').css({'transition-duration': '100s'});
-
-            $('#flugzeug').css({'-webkit-transition-timing-function': 'linear'});
-            $('#flugzeug').css({'transition-timing-function': 'linear'});
-        
-            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-            
-        } else {
-            
-            flying.touchEndDown();
-            
-        }
-        
-    },
-    
-    touchEndU: function(e) {
-        
-        e.preventDefault();
-        
-        if (onSpeed == 1) {
-            
-            flying.touchEndUp();
-            onSpeed = 0;
-            
-        } else {
-            
-            stillTouching = 0;
-            
-        }
-        
-    },
-    
-    touchEndD: function(e) {
-        
-        e.preventDefault();
-        
-        if (onSpeed == 1) {
-            
-            flying.touchEndDown();
-            onSpeed = 0;
-            
-        } else {
-            
-            stillTouching = 0;
-            
-        }
-        
-    },
-    
-    touchEndUp: function() {
-        
-        var flugzeugCoords = $('#flugzeug').position().top;
-        
-        var dist = -0.116 * yFlugzeug;
-    
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
-        
-        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
-        $('#flugzeug').css({'transition-duration': '0.2s'});
-        
-        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-out'});
-        $('#flugzeug').css({'transition-timing-function': 'ease-out'});
         
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         
     },
     
-    touchEndDown: function() {
+    touchEnd: function(e) {
+        
+        e.preventDefault();
         
         var flugzeugCoords = $('#flugzeug').position().top;
-    
-        var dist = 0.116 * yFlugzeug;
-    
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css({'-webkit-transition-duration': '0.2s'});
-        $('#flugzeug').css({'transition-duration': '0.2s'});
-
-        $('#flugzeug').css({'-webkit-transition-timing-function': 'ease-out'});
-        $('#flugzeug').css({'transition-timing-function': 'ease-out'});
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
         
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
@@ -568,9 +429,9 @@ back1.addEventListener('touchstart', function(){$('#back1').css({opacity: 0.1})}
 back1.addEventListener('touchend', function(){startBild.init(); $('#back1').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
 
 flyUp.addEventListener('touchstart', flying.touchStartUp);
-flyUp.addEventListener('touchend', flying.touchEndU);
+flyUp.addEventListener('touchend', flying.touchEnd);
 flyDown.addEventListener('touchstart', flying.touchStartDown);
-flyDown.addEventListener('touchend', flying.touchEndD);
+flyDown.addEventListener('touchend', flying.touchEnd);
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
