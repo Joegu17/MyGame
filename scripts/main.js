@@ -157,8 +157,6 @@ function panic() {
 
 function collision() {
     
-    $('#test3').html(newTyp);
-    
     switch (newTyp) {
         case 1:
             
@@ -166,11 +164,15 @@ function collision() {
             
             if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
                 
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h-bergh-fh && flugzeugY < h) {
+                
                 $('#test2').html('Kollision mit: '+newTyp);
+                    
+                }
                 
-            } else {
-                
-                $('#test2').html('keine Kollision möglich');
+                if 
                 
             }
             break;
@@ -180,11 +182,13 @@ function collision() {
             
             if (hindernisCoords > h*0.05 - turmw && hindernisCoords < h*0.05 + fw) {
                 
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h-turmh-fh && flugzeugY < h) {
+                
                 $('#test2').html('Kollision mit: '+newTyp);
-                
-            } else {
-                
-                $('#test2').html('keine Kollision möglich');
+                    
+                }
                 
             }
             break;
@@ -194,11 +198,13 @@ function collision() {
             
             if (hindernisCoords > h*0.05 - ballonw && hindernisCoords < h*0.05 + fw) {
                 
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h*0.1 - fh && flugzeugY < h*0.1 + ballonh) {
+                
                 $('#test2').html('Kollision mit: '+newTyp);
-                
-            } else {
-                
-                $('#test2').html('keine Kollision möglich');
+                    
+                }
                 
             }
             break;
