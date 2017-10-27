@@ -161,7 +161,7 @@ function collision() {
     
     var hindernisCoords = $('#hindernis'+newTyp).position().left;
     
-    switch (newTyp) {
+    /*switch (newTyp) {
         case 1:
             if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
                 
@@ -196,7 +196,7 @@ function collision() {
             }
             break;
             
-        }
+        }*/
     
 }
 
@@ -226,7 +226,7 @@ function gameLoop(timestamp) {
     while (delta >= timestep) {
         
         steuerungLoop();
-        //collision();
+        collision();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
