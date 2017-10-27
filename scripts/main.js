@@ -114,9 +114,16 @@ function hindernisLoop(typ) {
 //Erkennung der Position des Reglers
 function steuerungLoop() {
     
-    var reglerCoords = $('#regler').position().top - h*9/20;
+    var flugzeugCoords = $('#flugzeug').position().top;
     
-    speed = reglerCoords*fac;
+    if (flugzeugCoords < h*0.02 || flugzeugCoords > h*0.98) {
+        
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+        
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        
+    }
     
 }
 
@@ -154,11 +161,10 @@ function gameLoop(timestamp) {
     
     framesThisSecond++;
     
-    /*var numUpdatesSteps = 0;
+    var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
         steuerungLoop();
-        animation();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
@@ -167,7 +173,7 @@ function gameLoop(timestamp) {
             
         }
         
-    }*/
+    }
     
     animation();
     
@@ -305,7 +311,7 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
 
-        var dist = -1 * yFlugzeug;
+        var dist = -10 * yFlugzeug;
 
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
@@ -320,7 +326,7 @@ var flying = {
         
         var flugzeugCoords = $('#flugzeug').position().top;
     
-        var dist = 1 * yFlugzeug;
+        var dist = 10 * yFlugzeug;
     
         flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
