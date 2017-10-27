@@ -159,7 +159,7 @@ function collision() {
     
     $('#test3').html(newTyp);
     
-    var hindernisCoords = $('#hindernis1').position().left;
+    var hindernisCoords = $('#hindernis'+newTyp).position().left;
     
     switch (newTyp) {
         case 1:
