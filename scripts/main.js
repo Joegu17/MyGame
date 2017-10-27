@@ -107,7 +107,9 @@ function hindernisLoop(typ) {
     }
     
     hindernis.move(newTyp);
-        
+    
+    $('#test4').html(newTyp);
+    
     window.setTimeout(hindernisLoop, 2000, newTyp);
     
 }
