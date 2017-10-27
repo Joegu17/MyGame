@@ -163,6 +163,10 @@ function collision() {
                 
                 $('#test2').html('Kollision mit: '+newTyp);
                 
+            } else {
+                
+                $('#test2').html('keine Kollision möglich');
+                
             }
             break;
         case 2:
@@ -170,12 +174,20 @@ function collision() {
                 
                 $('#test2').html('Kollision mit: '+newTyp);
                 
+            } else {
+                
+                $('#test2').html('keine Kollision möglich');
+                
             }
             break;
         case 3:
             if (hindernisCoords > h*0.05 - ballonw && hindernisCoords < h*0.05 + fw) {
                 
                 $('#test2').html('Kollision mit: '+newTyp);
+                
+            } else {
+                
+                $('#test2').html('keine Kollision möglich');
                 
             }
             break;
