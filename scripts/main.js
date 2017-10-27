@@ -222,11 +222,11 @@ function gameLoop(timestamp) {
     
     framesThisSecond++;
     
-    /*var numUpdatesSteps = 0;
+    var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
         steuerungLoop();
-        collision();
+        //collision();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
@@ -235,7 +235,7 @@ function gameLoop(timestamp) {
             
         }
         
-    }*/
+    }
     
     animation();
     
