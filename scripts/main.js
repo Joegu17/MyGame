@@ -155,7 +155,7 @@ function panic() {
     
 }
 
-function collision(newTyp) {
+function collision() {
     
     $('#test3').html(newTyp);
     
@@ -195,7 +195,8 @@ function collision(newTyp) {
                 
             }
             break;
-    }
+            
+        }
     
 }
 
@@ -221,11 +222,11 @@ function gameLoop(timestamp) {
     
     framesThisSecond++;
     
-    var numUpdatesSteps = 0;
+    /*var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
         steuerungLoop();
-        collision(newTyp);
+        collision();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
@@ -234,7 +235,7 @@ function gameLoop(timestamp) {
             
         }
         
-    }
+    }*/
     
     animation();
     
