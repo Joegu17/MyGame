@@ -155,7 +155,7 @@ function panic() {
     
 }
 
-function collision() {
+function collision(newTyp) {
     
     $('#test3').html(newTyp);
     
@@ -225,7 +225,7 @@ function gameLoop(timestamp) {
     while (delta >= timestep) {
         
         steuerungLoop();
-        collision();
+        collision(newTyp);
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
