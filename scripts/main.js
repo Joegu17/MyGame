@@ -155,7 +155,31 @@ function panic() {
 
 function collision() {
     
-    var hindernisCoords = $('#hindernis'+newTyp).position().top;
+    var hindernisCoords = $('#hindernis'+newTyp).position().left;
+    
+    switch (newTyp) {
+        case 1:
+            if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
+                
+                $('#test2').html('Kollision mit: '+newTyp);
+                
+            }
+            break;
+        case 2:
+            if (hindernisCoords > h*0.05 - turmw && hindernisCoords < h*0.05 + fw) {
+                
+                $('#test2').html('Kollision mit: '+newTyp);
+                
+            }
+            break;
+        case 3:
+            if (hindernisCoords > h*0.05 - ballonw && hindernisCoords < h*0.05 + fw) {
+                
+                $('#test2').html('Kollision mit: '+newTyp);
+                
+            }
+            break;
+    }
     
 }
 
@@ -185,6 +209,7 @@ function gameLoop(timestamp) {
     while (delta >= timestep) {
         
         steuerungLoop();
+        collision();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
