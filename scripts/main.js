@@ -310,13 +310,17 @@ var flying = {
         e.preventDefault();
         
         var flugzeugCoords = $('#flugzeug').position().top;
-
-        var dist = -10 * yFlugzeug;
-
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        if (flugzeugCoords > h*0.02) {
+            
+            var dist = -10 * yFlugzeug;
+
+            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+
+            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            
+        }
         
     },
     
@@ -325,13 +329,17 @@ var flying = {
         e.preventDefault();
         
         var flugzeugCoords = $('#flugzeug').position().top;
-    
-        var dist = 10 * yFlugzeug;
-    
-        flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
         
-        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        if (flugzeugCoords < h*0.98) {
+            
+            var dist = 10 * yFlugzeug;
+
+            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+
+            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            
+        }
         
     },
     
