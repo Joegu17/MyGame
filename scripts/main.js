@@ -172,8 +172,6 @@ function collision() {
                     
                 }
                 
-                if 
-                
             }
             break;
         case 2:
