@@ -155,17 +155,18 @@ function panic() {
     
 }
 
-function collision(typ) {
+function collision() {
     
-    $('#test3').html(typ);
+    $('#test3').html(newTyp);
     
-    var hindernisCoords = $('#hindernis'+typ).position().left;
-    
-    switch (typ) {
+    switch (newTyp) {
         case 1:
+            
+            var hindernisCoords = $('#hindernis1').position().left;
+            
             if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
                 
-                $('#test2').html('Kollision mit: '+typ);
+                $('#test2').html('Kollision mit: '+newTyp);
                 
             } else {
                 
@@ -174,9 +175,12 @@ function collision(typ) {
             }
             break;
         case 2:
+            
+            var hindernisCoords = $('#hindernis2').position().left;
+            
             if (hindernisCoords > h*0.05 - turmw && hindernisCoords < h*0.05 + fw) {
                 
-                $('#test2').html('Kollision mit: '+typ);
+                $('#test2').html('Kollision mit: '+newTyp);
                 
             } else {
                 
@@ -185,9 +189,12 @@ function collision(typ) {
             }
             break;
         case 3:
+            
+            var hindernisCoords = $('#hindernis3').position().left;
+            
             if (hindernisCoords > h*0.05 - ballonw && hindernisCoords < h*0.05 + fw) {
                 
-                $('#test2').html('Kollision mit: '+typ);
+                $('#test2').html('Kollision mit: '+newTyp);
                 
             } else {
                 
@@ -226,7 +233,7 @@ function gameLoop(timestamp) {
     while (delta >= timestep) {
         
         steuerungLoop();
-        collision(newTyp);
+        collision();
         delta -= timestep;
         if (++numUpdatesSteps >= 240) {
             
