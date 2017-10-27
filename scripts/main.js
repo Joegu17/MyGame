@@ -159,9 +159,9 @@ function collision() {
     
     $('#test3').html(newTyp);
     
-    //var hindernisCoords = $('#hindernis'+newTyp).position().left;
+    var hindernisCoords = $('#hindernis1').position().left;
     
-    /*switch (newTyp) {
+    switch (newTyp) {
         case 1:
             if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
                 
@@ -196,7 +196,7 @@ function collision() {
             }
             break;
             
-        }*/
+        }
     
 }
 
