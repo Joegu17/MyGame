@@ -79,7 +79,7 @@ table {
     -webkit-transition-timing-function: linear;
     transition-timing-function: linear;
 }
-#berg {
+#hindernis1 {
     position: absolute;
     left: 110%;
     bottom: 0px;
@@ -92,7 +92,7 @@ table {
     -webkit-transition-timing-function: linear;
     transition-timing-function: linear;
 }
-#turm {
+#hindernis2 {
     position: absolute;
     left: 110%;
     bottom: 0px;
@@ -105,7 +105,7 @@ table {
     -webkit-transition-timing-function: linear;
     transition-timing-function: linear;
 }
-#ballon {
+#hindernis3 {
     position: absolute;
     left: 110%;
     top: 10%;

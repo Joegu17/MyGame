@@ -23,7 +23,8 @@ var speed = 0,
     hindernisSpeed = 0.01,
     hindernisMove = 0;
 var ursprung = h*11/25,
-    fac = 100/ursprung;
+    fac = 100/ursprung,
+    newTyp = 0;
 
 var score = 0;
 
@@ -76,9 +77,9 @@ $('#flyUp').css({width: w+'px', height: h/2+'px', top: '0px'});
 $('#flyDown').css({width: w+'px', height: h/2+'px', top: h/2+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: realFlugzeugCoords+'px'});
 //$('#flugzeug').css('background-image', 'url(flugzeug1.png)');
-$('#berg').css({width: bergw+'px', height: bergh+'px'});
-$('#turm').css({width: turmw+'px', height: turmh+'px'});
-$('#ballon').css({width: ballonw+'px', height: ballonh+'px'});
+$('#hindernis1').css({width: bergw+'px', height: bergh+'px'});
+$('#hindernis2').css({width: turmw+'px', height: turmh+'px'});
+$('#hindernis3').css({width: ballonw+'px', height: ballonh+'px'});
 $('#score').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
@@ -97,7 +98,7 @@ $('#test4').css({'font-size': h/20+'px'});
 
 function hindernisLoop(typ) {
     
-    var newTyp = getRandomInt(1, 3);
+    newTyp = getRandomInt(1, 3);
     
     while (newTyp == typ) {
         
@@ -127,7 +128,7 @@ function steuerungLoop() {
         
     }
     
-    if (flugzeugCoords > h*0.98 && speed == 10) {
+    if (flugzeugCoords > h*0.98-fh && speed == 10) {
         
         flugzeugDist = flugzeugCoords - realFlugzeugCoords;
         
@@ -149,6 +150,12 @@ function animation() {
 function panic() {
     
     delta = 0;
+    
+}
+
+function collision() {
+    
+    var hindernisCoords = $('#hindernis'+newTyp).position().top;
     
 }
 
@@ -383,26 +390,11 @@ var hindernis = {
         
         var x = -(w/5 + w + bergw);
         
-        switch (typ) {
-            case 1:
-                $('#berg').css({'-webkit-transition-duration': '2s'});
-                $('#berg').css({'transition-duration': '2s'});
-                $('#berg').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
-                $('#berg').css('transform', 'translate3d('+x+'px, 0px, 0px)');
-                break;
-            case 2:
-                $('#turm').css({'-webkit-transition-duration': '2s'});
-                $('#turm').css({'transition-duration': '2s'});
-                $('#turm').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
-                $('#turm').css('transform', 'translate3d('+x+'px, 0px, 0px)');
-                break;
-            case 3:
-                $('#ballon').css({'-webkit-transition-duration': '2s'});
-                $('#ballon').css({'transition-duration': '2s'});
-                $('#ballon').css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
-                $('#ballon').css('transform', 'translate3d('+x+'px, 0px, 0px)');
-                break;
-        }
+        $('#hindernis'+typ).css({'-webkit-transition-duration': '2s'});
+        $('#hindernis'+typ).css({'transition-duration': '2s'});
+        $('#hindernis'+typ).css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+        $('#hindernis'+typ).css('transform', 'translate3d('+x+'px, 0px, 0px)');
+        
     
         window.setTimeout('hindernis.reset('+typ+')', 2010);
                  
@@ -414,30 +406,10 @@ var hindernis = {
         
         $('#score').html('Score: '+score);
         
-        var w = window.innerWidth,
-            h = window.innerHeight,
-            x = w/10 + w;
-        
-        switch (typ) {
-            case 1:
-                $('#berg').css({'-webkit-transition-duration': '1ms'});
-                $('#berg').css({'transition-duration': '1ms'});
-                $('#berg').css('-webkit-transform', 'none');
-                $('#berg').css('transform', 'none');
-                break;
-            case 2:
-                $('#turm').css({'-webkit-transition-duration': '1ms'});
-                $('#turm').css({'transition-duration': '1ms'});
-                $('#turm').css('-webkit-transform', 'none');
-                $('#turm').css('transform', 'none');
-                break;
-            case 3:
-                $('#ballon').css({'-webkit-transition-duration': '1ms'});
-                $('#ballon').css({'transition-duration': '1ms'});
-                $('#ballon').css('-webkit-transform', 'none');
-                $('#ballon').css('transform', 'none');
-                break;
-        }
+        $('#hindernis'+typ).css({'-webkit-transition-duration': 'initial'});
+        $('#hindernis'+typ).css({'transition-duration': 'initial'});
+        $('#hindernis'+typ).css('-webkit-transform', 'none');
+        $('#hindernis'+typ).css('transform', 'none');
         
     }
     
