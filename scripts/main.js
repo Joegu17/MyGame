@@ -14,7 +14,7 @@ var startButtonw = w/5,
     startButtonh = h/5;
 var iconw = h*0.15,
     iconh = h*0.15;
-var speed = 100,
+var speed = 0,
     yFlugzeug = h - 0.12*h,
     realFlugzeugCoords = h/2-fh/2,
     facFlugzeug = 100/yFlugzeug,
@@ -116,9 +116,22 @@ function steuerungLoop() {
     
     var flugzeugCoords = $('#flugzeug').position().top;
     
-    if (flugzeugCoords < h*0.02 || flugzeugCoords > h*0.98) {
+    if (flugzeugCoords < h*0.02 && speed == -10) {
         
         flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+        
+        speed = 0;
+        
+        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+        
+    }
+    
+    if (flugzeugCoords > h*0.98 && speed == 10) {
+        
+        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+        
+        speed = 0;
         
         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
@@ -161,7 +174,7 @@ function gameLoop(timestamp) {
     
     framesThisSecond++;
     
-    /*var numUpdatesSteps = 0;
+    var numUpdatesSteps = 0;
     while (delta >= timestep) {
         
         steuerungLoop();
@@ -173,7 +186,7 @@ function gameLoop(timestamp) {
             
         }
         
-    }*/
+    }
     
     animation();
     
@@ -314,6 +327,8 @@ var flying = {
         if (flugzeugCoords > h*0.02) {
             
             var dist = -10 * yFlugzeug;
+            
+            speed = -10;
 
             flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
 
@@ -333,6 +348,8 @@ var flying = {
         if (flugzeugCoords < h*0.98) {
             
             var dist = 10 * yFlugzeug;
+            
+            speed = 10;
 
             flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
 
@@ -348,6 +365,8 @@ var flying = {
         e.preventDefault();
         
         var flugzeugCoords = $('#flugzeug').position().top;
+        
+        speed = 0;
         
         flugzeugDist = flugzeugCoords - realFlugzeugCoords;
         
