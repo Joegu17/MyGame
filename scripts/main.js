@@ -155,6 +155,8 @@ function panic() {
 
 function collision() {
     
+    $('#test3').html(newTyp);
+    
     var hindernisCoords = $('#hindernis'+newTyp).position().left;
     
     switch (newTyp) {
