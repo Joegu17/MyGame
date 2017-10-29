@@ -78,10 +78,6 @@ var bergPoints = [
     
 ];
 
-var x = flugzeugPoints[0][0];
-
-alert(x);
-
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
     op = document.getElementById('options'),
@@ -257,9 +253,9 @@ function collisionDetection(points, hindernis) {
     var flugzeugCoords = $('#flugzeug').position().top;
     var hindernisCoords = $(hindernis).position().left;
     
-    /*for(var i = 0; i < (flugzeugPoints.length-1); i++) {
+    for(var i = 0; i < (flugzeugPoints.length-1); i++) {
         
-        for(var j = 0; j < (points.length-1); i++) {
+       /* for(var j = 0; j < (points.length-1); i++) {
             
             var ax1 = flugzeugPoints[i][0],
                 ay1 = flugzeugCoords + flugzeugPoints[i][1],
@@ -286,9 +282,9 @@ function collisionDetection(points, hindernis) {
                 
             }
             
-        }
+        }*/
         
-    }*/
+    }
     
 }
 
