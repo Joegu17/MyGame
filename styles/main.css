@@ -83,7 +83,7 @@ table {
     position: absolute;
     left: 110%;
     bottom: 0px;
-    background-image: url(../images/berg.svg);
+    background-image: url(../images/berg.jpg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
@@ -96,7 +96,7 @@ table {
     position: absolute;
     left: 110%;
     bottom: 0px;
-    background-image: url(../images/turm.svg);
+    background-image: url(../images/turm.jpg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@ table {
     position: absolute;
     left: 110%;
     top: 10%;
-    background-image: url(../images/ballon.svg);
+    background-image: url(../images/ballon.jpg);
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;

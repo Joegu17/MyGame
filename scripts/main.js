@@ -264,6 +264,7 @@ var startBild = {
         $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
+        
     
     }
     
