@@ -255,7 +255,7 @@ function collisionDetection(points, hindernis) {
     
     for(var i = 0; i < (flugzeugPoints.length-1); i++) {
         
-       for(var j = 0; j < (points.length-1); i++) {
+       for(var j = 0; j < (points.length-1); j++) {
             
             var ax1 = flugzeugPoints[i][0],
                 ay1 = flugzeugCoords + flugzeugPoints[i][1],
@@ -266,7 +266,7 @@ function collisionDetection(points, hindernis) {
                 bx2 = hindernisCoords + points[j+1][0],
                 by2 = points[j+1][1];
             
-            /*var f1 = (ay2-ay1)*(bx1-ax2)-(by1-ay2)*(ax2-ax1),
+            var f1 = (ay2-ay1)*(bx1-ax2)-(by1-ay2)*(ax2-ax1),
                 f2 = (ay2-ay1)*(bx2-ax2)-(by2-ay2)*(ax2-ax1);
             
             if (Math.sign(f1) != Math.sign(f2)) {
@@ -280,7 +280,7 @@ function collisionDetection(points, hindernis) {
                     
                 }
                 
-            }*/
+            }
             
         }
         
