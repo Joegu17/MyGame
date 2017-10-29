@@ -29,7 +29,8 @@ var ursprung = h*11/25,
     fac = 100/ursprung,
     newTyp = 0;
 
-var score = 0;
+var score = 0,
+    hits = 0;
 
 var fpsw = 0;
 
@@ -276,7 +277,9 @@ function collisionDetection(points, hindernis) {
                 
                 if (Math.sign(g1) != Math.sign(g2)) {
                     
-                    $('#test3').html('Kollision mit: '+newTyp);
+                    hits++
+                    
+                    $('#test3').html('Kollision mit: '+newTyp+'   '+hits);
                     
                 }
                 
