@@ -3,9 +3,12 @@
 var w = window.innerWidth,
     h = window.innerHeight;
 var fw = h/10*215/67,
-    fh = h/10;
+    fh = h/10,
+    fpoints = fh/302;
 var bergw = h*0.7/430*768,
-    bergh = h*0.7;
+    bergh = h*0.7,
+    bpoints = bergh/1000,
+    bergtop = h-bergh;
 var turmw = h*0.5/555*73,
     turmh = h*0.5;
 var ballonw = h*0.6/328*225,
@@ -42,6 +45,42 @@ var lastFrameTimeMs = 0,
     lastHindernis = 0,
     hindernisTime = 2000,
     hindernisTyp = 0;
+
+
+var flugzeugPoints = [
+    
+    //[left, top]
+    [33*fpoints+w*0.05, 39*fpoints],[55*fpoints+w*0.05, 16*fpoints],[102*fpoints+w*0.05, 17*fpoints],
+    [124*fpoints+w*0.05, 32*fpoints],[138*fpoints+w*0.05, 52*fpoints],[202*fpoints+w*0.05, 130*fpoints],
+    [443*fpoints+w*0.05, 48*fpoints],[632*fpoints+w*0.05, 30*fpoints],[670*fpoints+w*0.05, 43*fpoints],
+    [731*fpoints+w*0.05, 92*fpoints],[857*fpoints+w*0.05, 93*fpoints],[901*fpoints+w*0.05, 19*fpoints],
+    [913*fpoints+w*0.05, 3*fpoints],[923*fpoints+w*0.05, 3*fpoints],[947*fpoints+w*0.05, 143*fpoints],
+    [926*fpoints+w*0.05, 281*fpoints],[917*fpoints+w*0.05+w*0.05, 281*fpoints],[825*fpoints+w*0.05, 201*fpoints],
+    [743*fpoints+w*0.05, 209*fpoints],[669*fpoints+w*0.05, 283*fpoints],[645*fpoints+w*0.05, 282*fpoints],
+    [564*fpoints+w*0.05, 216*fpoints],[336*fpoints+w*0.05, 224*fpoints],[235*fpoints+w*0.05, 297*fpoints],
+    [217*fpoints+w*0.05, 293*fpoints],[167*fpoints+w*0.05, 227*fpoints],[111*fpoints+w*0.05, 223*fpoints],
+    [81*fpoints+w*0.05, 205*fpoints],[61*fpoints+w*0.05, 176*fpoints],[32*fpoints+w*0.05, 49*fpoints]
+    
+];
+
+var bergPoints = [
+    
+    [0*bpoints, 996*bpoints+bergtop],[111*bpoints, 843*bpoints+bergtop],[137*bpoints, 767*bpoints+bergtop],
+    [156*bpoints, 747*bpoints+bergtop],[190*bpoints, 730*bpoints+bergtop],[222*bpoints, 652*bpoints+bergtop],
+    [240*bpoints, 543*bpoints+bergtop],[272*bpoints, 537*bpoints+bergtop],[304*bpoints, 471*bpoints+bergtop],
+    [338*bpoints, 433*bpoints+bergtop],[438*bpoints, 446*bpoints+bergtop],[466*bpoints, 408*bpoints+bergtop],
+    [507*bpoints, 312*bpoints+bergtop],[552*bpoints, 227*bpoints+bergtop],[587*bpoints, 177*bpoints+bergtop],
+    [615*bpoints, 147*bpoints+bergtop],[636*bpoints, 105*bpoints+bergtop],[654*bpoints, 82*bpoints+bergtop],
+    [666*bpoints, 46*bpoints+bergtop],[691*bpoints, 9*bpoints+bergtop],[705*bpoints, 1*bpoints+bergtop],
+    [733*bpoints, 29*bpoints+bergtop],[880*bpoints, 324*bpoints+bergtop],[1093*bpoints, 293*bpoints+bergtop],
+    [1114*bpoints, 309*bpoints+bergtop],[1175*bpoints, 382*bpoints+bergtop],[1221*bpoints, 464*bpoints+bergtop],
+    [1407*bpoints, 588*bpoints+bergtop],[1586*bpoints, 724*bpoints+bergtop],[1785*bpoints, 999*bpoints+bergtop]
+    
+];
+
+var x = flugzeugPoints[0][0];
+
+alert(x);
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
@@ -167,8 +206,10 @@ function collision() {
                 var flugzeugY = $('#flugzeug').position().top;
                 
                 if (flugzeugY > h-bergh-fh && flugzeugY < h) {
+                    
+                    collisionDetection(bergPoints, '#hindernis1');
                 
-                $('#test2').html('Kollision mit: '+newTyp);
+                    $('#test2').html('Kollision möglich mit: '+newTyp);
                     
                 }
                 
@@ -184,7 +225,7 @@ function collision() {
                 
                 if (flugzeugY > h-turmh-fh && flugzeugY < h) {
                 
-                $('#test2').html('Kollision mit: '+newTyp);
+                    $('#test2').html('Kollision mit: '+newTyp);
                     
                 }
                 
@@ -200,7 +241,7 @@ function collision() {
                 
                 if (flugzeugY > h*0.1 - fh && flugzeugY < h*0.1 + ballonh) {
                 
-                $('#test2').html('Kollision mit: '+newTyp);
+                    $('#test2').html('Kollision mit: '+newTyp);
                     
                 }
                 
@@ -208,6 +249,46 @@ function collision() {
             break;
             
         }
+    
+}
+
+function collisionDetection(points, hindernis) {
+    
+    var flugzeugCoords = $('#flugzeug').position().top;
+    var hindernisCoords = $(hindernis).position().left;
+    
+    for(var i = 0; i < (flugzeugPoints.length-1); i++) {
+        
+        for(var j = 0; j < (points.length-1); i++) {
+            
+            var ax1 = flugzeugPoints[i][0],
+                ay1 = flugzeugCoords + flugzeugPoints[i][1],
+                ax2 = flugzeugPoints[i+1][0],
+                ay2 = flugzeugCoords + flugzeugPoints[i+1][1],
+                bx1 = hindernisCoords + points[j][0],
+                by1 = points[j][1],
+                bx2 = hindernisCoords + points[j+1][0],
+                by2 = points[j+1][1];
+            
+            var f1 = (ay2-ay1)*(bx1-ax2)-(by1-ay2)*(ax2-ax1),
+                f2 = (ay2-ay1)*(bx2-ax2)-(by2-ay2)*(ax2-ax1);
+            
+            if (Math.sign(f1) != Math.sign(f2)) {
+                
+                var g1 = (by2-by1)*(ax1-bx2)-(ay1-by2)*(bx2-bx1),
+                    g2 = (by2-by1)*(ax2-bx2)-(ay2-by2)*(bx2-bx1);
+                
+                if (Math.sign(g1) != Math.sign(g2)) {
+                    
+                    $('#test2').html('Kollision mit: '+newTyp);
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
     
 }
 
