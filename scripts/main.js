@@ -203,10 +203,7 @@ function collision() {
                 
                 if (flugzeugY > h-bergh-fh && flugzeugY < h) {
                     
-                    var t0 = performance.now();
                     collisionDetection(bergPoints, '#hindernis1');
-                    var t1 = performance.now(),
-                        t = t1-t0;
                 
                     $('#test2').html('Kollision möglich mit: '+newTyp+' Zeit: '+t);
                     
@@ -256,9 +253,9 @@ function collisionDetection(points, hindernis) {
     var flugzeugCoords = $('#flugzeug').position().top;
     var hindernisCoords = $(hindernis).position().left;
     
-    for(var i = 0; i < (flugzeugPoints.length-1); i++) {
+    for (var i = 0; i < (flugzeugPoints.length-1); i++) {
         
-       for(var j = 0; j < (points.length-1); j++) {
+       for (var j = 0; j < (points.length-1); j++) {
             
             var ax1 = flugzeugPoints[i][0],
                 ay1 = flugzeugCoords + flugzeugPoints[i][1],
@@ -279,7 +276,7 @@ function collisionDetection(points, hindernis) {
                 
                 if (Math.sign(g1) != Math.sign(g2)) {
                     
-                    $('#test2').html('Kollision mit: '+newTyp);
+                    $('#test3').html('Kollision mit: '+newTyp);
                     
                 }
                 
