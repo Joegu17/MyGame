@@ -276,7 +276,7 @@ function collisionDetection(points, hindernis) {
                 
                 if (Math.sign(g1) != Math.sign(g2)) {
                     
-                    $('#test3').html('Kollision mit: '+newTyp);
+                    //$('#test3').html('Kollision mit: '+newTyp);
                     
                 }
                 
