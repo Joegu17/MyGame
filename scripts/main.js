@@ -203,9 +203,12 @@ function collision() {
                 
                 if (flugzeugY > h-bergh-fh && flugzeugY < h) {
                     
+                    var t0 = performance.now();
                     collisionDetection(bergPoints, '#hindernis1');
+                    var t1 = performance.now(),
+                        t = t1-t0;
                 
-                    $('#test2').html('Kollision möglich mit: '+newTyp);
+                    $('#test2').html('Kollision möglich mit: '+newTyp+' Zeit: '+t);
                     
                 }
                 
