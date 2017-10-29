@@ -257,7 +257,7 @@ function collisionDetection(points, hindernis) {
     var flugzeugCoords = $('#flugzeug').position().top;
     var hindernisCoords = $('#hindernis1').position().left;
     
-    for(var i = 0; i < (flugzeugPoints.length-1); i++) {
+    /*for(var i = 0; i < (flugzeugPoints.length-1); i++) {
         
         for(var j = 0; j < (points.length-1); i++) {
             
@@ -288,7 +288,7 @@ function collisionDetection(points, hindernis) {
             
         }
         
-    }
+    }*/
     
 }
 
