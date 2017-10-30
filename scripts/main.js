@@ -58,7 +58,8 @@ var ursprung = h*11/25,
     newTyp = 0;
 
 var score = 0,
-    hits = 0;
+    hits = 0,
+    activ = 1;
 
 var fpsw = 0;
 
@@ -191,13 +192,13 @@ $('#flyUp').css({width: w+'px', height: h/2+'px', top: '0px'});
 $('#flyDown').css({width: w+'px', height: h/2+'px', top: h/2+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: realFlugzeugCoords+'px'});
 //$('#flugzeug').css('background-image', 'url(flugzeug1.png)');
-$('#hindernis1').css({width: berg1w+'px', height: berg1h+'px'});
-$('#hindernis2').css({width: turm1w+'px', height: turm1h+'px'});
-$('#hindernis3').css({width: ballon1w+'px', height: ballon1h+'px'});
-$('#hindernis4').css({width: haus1w+'px', height: haus1h+'px'});
-$('#hindernis5').css({width: drachen1w+'px', height: drachen1h+'px'});
-$('#hindernis6').css({width: baum1w+'px', height: baum1h+'px'});
-$('#hindernis7').css({width: baum2w+'px', height: baum2h+'px'});
+$('#hindernis1').css({width: berg1w+'px', height: berg1h+'px', left: w*1.1+'px'});
+$('#hindernis2').css({width: turm1w+'px', height: turm1h+'px', left: w*1.1+'px'});
+$('#hindernis3').css({width: ballon1w+'px', height: ballon1h+'px', left: w*1.1+'px'});
+$('#hindernis4').css({width: haus1w+'px', height: haus1h+'px', left: w*1.1+'px'});
+$('#hindernis5').css({width: drachen1w+'px', height: drachen1h+'px', left: w*1.1+'px'});
+$('#hindernis6').css({width: baum1w+'px', height: baum1h+'px', left: w*1.1+'px'});
+$('#hindernis7').css({width: baum2w+'px', height: baum2h+'px', left: w*1.1+'px'});
 $('#score').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
@@ -216,19 +217,23 @@ $('#test4').css({'font-size': h/20+'px'});
 
 function hindernisLoop(typ) {
     
-    newTyp = getRandomInt(4, 7);
-    
-    while (newTyp == typ) {
+    if (activ == 1) {
         
         newTyp = getRandomInt(4, 7);
-            
+
+        while (newTyp == typ) {
+
+            newTyp = getRandomInt(4, 7);
+
+        }
+
+        hindernis.move(newTyp);
+
+        $('#test4').html(newTyp);
+
+        window.setTimeout(hindernisLoop, 2000, newTyp);
+        
     }
-    
-    hindernis.move(newTyp);
-    
-    $('#test4').html(newTyp);
-    
-    window.setTimeout(hindernisLoop, 2000, newTyp);
     
 }
 
@@ -411,28 +416,48 @@ function collisionDetection(points, hindernis) {
         
        for (var j = 0; j < (points.length-1); j++) {
             
-            var ax1 = flugzeugPoints[i][0],
-                ay1 = flugzeugCoords + flugzeugPoints[i][1],
-                ax2 = flugzeugPoints[i+1][0],
-                ay2 = flugzeugCoords + flugzeugPoints[i+1][1],
-                bx1 = hindernisCoords + points[j][0],
-                by1 = points[j][1],
-                bx2 = hindernisCoords + points[j+1][0],
-                by2 = points[j+1][1];
-            
-            var f1 = (ay2-ay1)*(bx1-ax2)-(by1-ay2)*(ax2-ax1),
-                f2 = (ay2-ay1)*(bx2-ax2)-(by2-ay2)*(ax2-ax1);
-            
-            if (Math.sign(f1) != Math.sign(f2)) {
-                
-                var g1 = (by2-by1)*(ax1-bx2)-(ay1-by2)*(bx2-bx1),
-                    g2 = (by2-by1)*(ax2-bx2)-(ay2-by2)*(bx2-bx1);
-                
-                if (Math.sign(g1) != Math.sign(g2)) {
-                    
-                    hits++
-                    
-                    $('#test3').html('Kollision mit: '+newTyp+'   '+hits);
+           if (activ == 1) {
+               
+                var ax1 = flugzeugPoints[i][0],
+                    ay1 = flugzeugCoords + flugzeugPoints[i][1],
+                    ax2 = flugzeugPoints[i+1][0],
+                    ay2 = flugzeugCoords + flugzeugPoints[i+1][1],
+                    bx1 = hindernisCoords + points[j][0],
+                    by1 = points[j][1],
+                    bx2 = hindernisCoords + points[j+1][0],
+                    by2 = points[j+1][1];
+
+                var f1 = (ay2-ay1)*(bx1-ax2)-(by1-ay2)*(ax2-ax1),
+                    f2 = (ay2-ay1)*(bx2-ax2)-(by2-ay2)*(ax2-ax1);
+
+                if (Math.sign(f1) != Math.sign(f2)) {
+
+                    var g1 = (by2-by1)*(ax1-bx2)-(ay1-by2)*(bx2-bx1),
+                        g2 = (by2-by1)*(ax2-bx2)-(ay2-by2)*(bx2-bx1);
+
+                    if (Math.sign(g1) != Math.sign(g2)) {
+
+                        hits++
+
+                        $('#test3').html('Kollision mit: '+newTyp+'   '+hits);
+
+                        activ = 0;
+
+                        var x = -((w*1.1)-hindernisCoords);
+
+                        $(hindernis).css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+                        $(hindernis).css('transform', 'translate3d('+x+'px, 0px, 0px)');
+
+                        speed = 0;
+
+                        flugzeugDist = flugzeugCoords - realFlugzeugCoords;
+
+                        $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+                        $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+
+                        window.setTimeout(reset, 2000, hindernis);
+
+                    }
                     
                 }
                 
@@ -441,6 +466,24 @@ function collisionDetection(points, hindernis) {
         }
         
     }
+    
+}
+
+function reset(hindernis) {
+    
+    activ = 1;
+    
+    score = 0;
+    
+    $('#flugzeug').css('-webkit-transform', 'none');
+    $('#flugzeug').css('transform', 'none');
+    
+    $(hindernis).css({'-webkit-transition-duration': 'initial'});
+    $(hindernis).css({'transition-duration': 'initial'});
+    $(hindernis).css('-webkit-transform', 'none');
+    $(hindernis).css('transform', 'none');
+    
+    startBild.init();
     
 }
 
@@ -467,7 +510,7 @@ function gameLoop(timestamp) {
     framesThisSecond++;
     
     var numUpdatesSteps = 0;
-    while (delta >= timestep) {
+    while (delta >= timestep && activ == 1) {
         
         steuerungLoop();
         collision();
@@ -483,7 +526,9 @@ function gameLoop(timestamp) {
     
     animation();
     
-    requestAnimationFrame(gameLoop);
+    if (activ == 1) {
+        requestAnimationFrame(gameLoop);
+    }
     
 }
 
@@ -613,20 +658,24 @@ var flying = {
     
     touchStartUp: function(e) {
         
-        e.preventDefault();
-        
-        var flugzeugCoords = $('#flugzeug').position().top;
-        
-        if (flugzeugCoords > h*0.02) {
+        if (activ == 1) {
             
-            var dist = -10 * yFlugzeug;
-            
-            speed = -10;
+            e.preventDefault();
 
-            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+            var flugzeugCoords = $('#flugzeug').position().top;
 
-            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            if (flugzeugCoords > h*0.02) {
+
+                var dist = -10 * yFlugzeug;
+
+                speed = -10;
+
+                flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+
+                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+                $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+
+            }
             
         }
         
@@ -634,20 +683,24 @@ var flying = {
     
     touchStartDown: function(e) {
         
-        e.preventDefault();
-        
-        var flugzeugCoords = $('#flugzeug').position().top;
-        
-        if (flugzeugCoords < h*0.98) {
+        if (activ == 1) {
             
-            var dist = 10 * yFlugzeug;
-            
-            speed = 10;
+            e.preventDefault();
 
-            flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+            var flugzeugCoords = $('#flugzeug').position().top;
 
-            $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-            $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+            if (flugzeugCoords < h*0.98) {
+
+                var dist = 10 * yFlugzeug;
+
+                speed = 10;
+
+                flugzeugDist = flugzeugCoords - realFlugzeugCoords + dist;
+
+                $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+                $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
+
+            }
             
         }
         
@@ -674,28 +727,36 @@ var hindernis = {
     
     move: function(typ) {
         
-        var x = -(w/5 + w + berg1w);
-        
-        $('#hindernis'+typ).css({'-webkit-transition-duration': '2s'});
-        $('#hindernis'+typ).css({'transition-duration': '2s'});
-        $('#hindernis'+typ).css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
-        $('#hindernis'+typ).css('transform', 'translate3d('+x+'px, 0px, 0px)');
-        
-    
-        window.setTimeout('hindernis.reset('+typ+')', 2010);
+        if (activ == 1) {
+            
+            var x = -(w*1.2 + berg1w);
+
+            $('#hindernis'+typ).css({'-webkit-transition-duration': '2s'});
+            $('#hindernis'+typ).css({'transition-duration': '2s'});
+            $('#hindernis'+typ).css('-webkit-transform', 'translate3d('+x+'px, 0px, 0px)');
+            $('#hindernis'+typ).css('transform', 'translate3d('+x+'px, 0px, 0px)');
+
+
+            window.setTimeout('hindernis.reset('+typ+')', 2010);
+            
+        }
                  
     },
     
     reset: function(typ) {
         
-        score += 1;
+        if (activ == 1) {
         
-        $('#score').html('Score: '+score);
-        
-        $('#hindernis'+typ).css({'-webkit-transition-duration': 'initial'});
-        $('#hindernis'+typ).css({'transition-duration': 'initial'});
-        $('#hindernis'+typ).css('-webkit-transform', 'none');
-        $('#hindernis'+typ).css('transform', 'none');
+            score += 1;
+
+            $('#score').html('Score: '+score);
+
+            $('#hindernis'+typ).css({'-webkit-transition-duration': 'initial'});
+            $('#hindernis'+typ).css({'transition-duration': 'initial'});
+            $('#hindernis'+typ).css('-webkit-transform', 'none');
+            $('#hindernis'+typ).css('transform', 'none');
+            
+        }
         
     }
     
