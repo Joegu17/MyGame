@@ -168,7 +168,8 @@ var s = document.getElementById('startButton'),
     so = document.getElementById('soundIcon'),
     plane = document.getElementById('flugzeug'),
     flyUp = document.getElementById('flyUp'),
-    flyDown = document.getElementById('flyDown');
+    flyDown = document.getElementById('flyDown'),
+    re = document.getElementById('reset');
 
 $('#startBild').css({width: w+'px', height: h+'px'});
 $('#startButton').css({width: startButtonw+'px', height: startButtonh+'px', left: (w/2 - startButtonw/2)+'px', top: (h/2 - startButtonh/2)+'px', 'font-size': h*0.15+'px'});
