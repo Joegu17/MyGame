@@ -208,6 +208,8 @@ $('#musicIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top
 $('#soundText').css({width: w/5+'px', height: h/10+'px', left: w/10*3+'px', top: h/10*5+'px'});
 $('#soundIcon').css({width: w/10+'px', height: h/10+'px', left: w/10*6+'px', top: h/10*5+'px'});
 
+$('#reset').css({width: w+'px', height: h+'px'});
+
 $('#test1').css({'font-size': h/20+'px'});
 $('#test2').css({'font-size': h/20+'px'});
 $('#test3').css({'font-size': h/20+'px'});
@@ -454,8 +456,8 @@ function collisionDetection(points, hindernis) {
 
                         $('#flugzeug').css('-webkit-transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
                         $('#flugzeug').css('transform', 'translate3d(0px, '+flugzeugDist+'px, 0px)');
-
-                        window.setTimeout(reset, 2000, hindernis);
+                        
+                        $('#reset').css({display: 'inherit'});
 
                     }
                     
@@ -469,7 +471,7 @@ function collisionDetection(points, hindernis) {
     
 }
 
-function reset(hindernis) {
+function reset(typ) {
     
     activ = 1;
     
@@ -478,10 +480,14 @@ function reset(hindernis) {
     $('#flugzeug').css('-webkit-transform', 'none');
     $('#flugzeug').css('transform', 'none');
     
-    $(hindernis).css({'-webkit-transition-duration': 'initial'});
-    $(hindernis).css({'transition-duration': 'initial'});
-    $(hindernis).css('-webkit-transform', 'none');
-    $(hindernis).css('transform', 'none');
+    $('#score').html('Score: '+score);
+
+    $('#hindernis'+typ).css({'-webkit-transition-duration': 'initial'});
+    $('#hindernis'+typ).css({'transition-duration': 'initial'});
+    $('#hindernis'+typ).css('-webkit-transform', 'none');
+    $('#hindernis'+typ).css('transform', 'none');
+                      
+    $('#reset').css({display: 'none'});
     
     startBild.init();
     
@@ -541,6 +547,7 @@ var startBild = {
         $('#flugzeugAuswahl').css({display: 'none'});
         $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
+        $('#reset').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
     
     }
@@ -787,3 +794,5 @@ flyDown.addEventListener('touchend', flying.touchEnd);
 
 back2.addEventListener('touchstart', function(){$('#back2').css({opacity: 0.1})});
 back2.addEventListener('touchend', function(){startBild.init(); $('#back2').css({opacity: 0.5})/*; $('#flugzeug').css({'background-image': 'url(../images/flugzeug'+fAPosition+'.svg)'})*/});
+
+re.addEventListener('touchend', function(){reset(newTyp);});

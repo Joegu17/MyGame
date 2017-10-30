@@ -384,3 +384,15 @@ table {
     background-color: blue;
     opacity: 0.5;
 }
+
+/*-------------------------------------------------------------------------------*/
+
+#reset {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-color: skyblue;
+    display: none;
+    opacity: 0;
+}
