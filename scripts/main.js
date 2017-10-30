@@ -1,18 +1,47 @@
 // JavaScript Document
 
+/*
+
+hindernis:  1 = berg1
+            2 = turm1
+            3 = ballon1
+            4 = haus1
+            5 = drachen1
+            6 = baum1
+            7 = baum2
+
+*/
+
 var w = window.innerWidth,
     h = window.innerHeight;
 var fw = h/10*215/67,
     fh = h/10,
     fpoints = fh/302;
-var bergw = h*0.7/430*768,
-    bergh = h*0.7,
-    bpoints = bergh/1000,
-    bergtop = h-bergh;
-var turmw = h*0.5/555*73,
-    turmh = h*0.5;
-var ballonw = h*0.6/328*225,
-    ballonh = h*0.6;
+var berg1w = h*0.7/430*768,
+    berg1h = h*0.7,
+    b1points = berg1h/1000,
+    berg1top = h-berg1h;
+var turm1w = h*0.5/555*73,
+    turm1h = h*0.5;
+var ballon1w = h*0.6/328*225,
+    ballon1h = h*0.6;
+var haus1w = h*0.75/1049*1269,
+    haus1h = h*0.75,
+    h1points = haus1h/1049,
+    h1top = h-haus1h;
+var drachen1w = h*0.3/373*175,
+    drachen1h = h*0.3,
+    d1points = drachen1h/373,
+    d1top = h*0.1;
+var baum1w = h*0.6/836*586,
+    baum1h = h*0.6,
+    ba1points = baum1h/836,
+    ba1top = h-baum1h;
+var baum2w = h*0.6/813*498,
+    baum2h = h*0.6,
+    ba2points = baum2h/813,
+    ba2top = h-baum2h;
+
 var startButtonw = w/5,
     startButtonh = h/5;
 var iconw = h*0.15,
@@ -22,7 +51,6 @@ var speed = 0,
     realFlugzeugCoords = h/2-fh/2,
     facFlugzeug = 100/yFlugzeug,
     flugzeugDist = 0,
-    flugzeugMax = (h - 0.16*h) / 2,
     hindernisSpeed = 0.01,
     hindernisMove = 0;
 var ursprung = h*11/25,
@@ -64,20 +92,70 @@ var flugzeugPoints = [
     
 ];
 
-var bergPoints = [
+var berg1Points = [
     
-    [0*bpoints, 996*bpoints+bergtop],[111*bpoints, 843*bpoints+bergtop],[137*bpoints, 767*bpoints+bergtop],
-    [156*bpoints, 747*bpoints+bergtop],[190*bpoints, 730*bpoints+bergtop],[222*bpoints, 652*bpoints+bergtop],
-    [240*bpoints, 543*bpoints+bergtop],[272*bpoints, 537*bpoints+bergtop],[304*bpoints, 471*bpoints+bergtop],
-    [338*bpoints, 433*bpoints+bergtop],[438*bpoints, 446*bpoints+bergtop],[466*bpoints, 408*bpoints+bergtop],
-    [507*bpoints, 312*bpoints+bergtop],[552*bpoints, 227*bpoints+bergtop],[587*bpoints, 177*bpoints+bergtop],
-    [615*bpoints, 147*bpoints+bergtop],[636*bpoints, 105*bpoints+bergtop],[654*bpoints, 82*bpoints+bergtop],
-    [666*bpoints, 46*bpoints+bergtop],[691*bpoints, 9*bpoints+bergtop],[705*bpoints, 1*bpoints+bergtop],
-    [733*bpoints, 29*bpoints+bergtop],[880*bpoints, 324*bpoints+bergtop],[1093*bpoints, 293*bpoints+bergtop],
-    [1114*bpoints, 309*bpoints+bergtop],[1175*bpoints, 382*bpoints+bergtop],[1221*bpoints, 464*bpoints+bergtop],
-    [1407*bpoints, 588*bpoints+bergtop],[1586*bpoints, 724*bpoints+bergtop],[1785*bpoints, 999*bpoints+bergtop]
+    [0*b1points, 996*b1points+berg1top],[111*b1points, 843*b1points+berg1top],[137*b1points, 767*b1points+berg1top],
+    [156*b1points, 747*b1points+berg1top],[190*b1points, 730*b1points+berg1top],[222*b1points, 652*b1points+berg1top],
+    [240*b1points, 543*b1points+berg1top],[272*b1points, 537*b1points+berg1top],[304*b1points, 471*b1points+berg1top],
+    [338*b1points, 433*b1points+berg1top],[438*b1points, 446*b1points+berg1top],[466*b1points, 408*b1points+berg1top],
+    [507*b1points, 312*b1points+berg1top],[552*b1points, 227*b1points+berg1top],[587*b1points, 177*b1points+berg1top],
+    [615*b1points, 147*b1points+berg1top],[636*b1points, 105*b1points+berg1top],[654*b1points, 82*b1points+berg1top],
+    [666*b1points, 46*b1points+berg1top],[691*b1points, 9*b1points+berg1top],[705*b1points, 1*b1points+berg1top],
+    [733*b1points, 29*b1points+berg1top],[880*b1points, 324*b1points+berg1top],[1093*b1points, 293*b1points+berg1top],
+    [1114*b1points, 309*b1points+berg1top],[1175*b1points, 382*b1points+berg1top],[1221*b1points, 464*b1points+berg1top],
+    [1407*b1points, 588*b1points+berg1top],[1586*b1points, 724*b1points+berg1top],[1785*b1points, 999*b1points+berg1top]
     
 ];
+
+var haus1Points = [
+    
+    [82*h1points, 1048*h1points+h1top],[81*h1points, 488*h1points+h1top],[0*h1points, 506*h1points+h1top],
+    [2*h1points, 451*h1points+h1top],[297*h1points, 240*h1points+h1top],[298*h1points, 130*h1points+h1top],
+    [373*h1points, 131*h1points+h1top],[402*h1points, 162*h1points+h1top],[634*h1points, 0*h1points+h1top],
+    [1268*h1points, 445*h1points+h1top],[1265*h1points, 501*h1points+h1top]
+    
+];
+
+var drachen1Points = [
+    
+    [170*d1points, 372*d1points+d1top],[0*d1points, 188*d1points+d1top],[28*d1points, 0*d1points+d1top],
+    [155*d1points, 72*d1points+d1top],[170*d1points, 372*d1points+d1top]
+    
+]
+
+var baum1Points = [
+    
+    [238*ba1points, 835*ba1points+ba1top],[253*ba1points, 782*ba1points+ba1top],[259*ba1points, 706*ba1points+ba1top],
+    [263*ba1points, 521*ba1points+ba1top],[173*ba1points, 501*ba1points+ba1top],[117*ba1points, 465*ba1points+ba1top],
+    [74*ba1points, 457*ba1points+ba1top],[50*ba1points, 428*ba1points+ba1top],[51*ba1points, 403*ba1points+ba1top],
+    [25*ba1points, 373*ba1points+ba1top],[17*ba1points, 341*ba1points+ba1top],[18*ba1points, 329*ba1points+ba1top],
+    [4*ba1points, 315*ba1points+ba1top],[0*ba1points, 298*ba1points+ba1top],[1*ba1points, 276*ba1points+ba1top],
+    [6*ba1points, 227*ba1points+ba1top],[14*ba1points, 214*ba1points+ba1top],[30*ba1points, 199*ba1points+ba1top],
+    [42*ba1points, 176*ba1points+ba1top],[43*ba1points, 148*ba1points+ba1top],[72*ba1points, 108*ba1points+ba1top],
+    [88*ba1points, 106*ba1points+ba1top],[135*ba1points, 57*ba1points+ba1top],[155*ba1points, 58*ba1points+ba1top],
+    [173*ba1points, 42*ba1points+ba1top],[224*ba1points, 22*ba1points+ba1top],[238*ba1points, 23*ba1points+ba1top],
+    [278*ba1points, 1*ba1points+ba1top],[310*ba1points, 14*ba1points+ba1top],[372*ba1points, 13*ba1points+ba1top],
+    [421*ba1points, 33*ba1points+ba1top],[443*ba1points, 31*ba1points+ba1top],[520*ba1points, 99*ba1points+ba1top],
+    [573*ba1points, 180*ba1points+ba1top],[585*ba1points, 243*ba1points+ba1top]
+    
+];
+
+var baum2Points = [
+    
+    [190*ba2points, 812*ba2points+ba2top],[205*ba2points, 781*ba2points+ba2top],[212*ba2points, 734*ba2points+ba2top],
+    [203*ba2points, 609*ba2points+ba2top],[138*ba2points, 580*ba2points+ba2top],[122*ba2points, 553*ba2points+ba2top],
+    [91*ba2points, 535*ba2points+ba2top],[49*ba2points, 485*ba2points+ba2top],[53*ba2points, 459*ba2points+ba2top],
+    [23*ba2points, 434*ba2points+ba2top],[26*ba2points, 411*ba2points+ba2top],[9*ba2points, 375*ba2points+ba2top],
+    [8*ba2points, 358*ba2points+ba2top],[0*ba2points, 339*ba2points+ba2top],[7*ba2points, 324*ba2points+ba2top],
+    [16*ba2points, 315*ba2points+ba2top],[6*ba2points, 285*ba2points+ba2top],[10*ba2points, 266*ba2points+ba2top],
+    [25*ba2points, 248*ba2points+ba2top],[28*ba2points, 182*ba2points+ba2top],[40*ba2points, 160*ba2points+ba2top],
+    [46*ba2points, 100*ba2points+ba2top],[78*ba2points, 79*ba2points+ba2top],[93*ba2points, 44*ba2points+ba2top],
+    [113*ba2points, 30*ba2points+ba2top],[174*ba2points, 29*ba2points+ba2top],[230*ba2points, 3*ba2points+ba2top],
+    [251*ba2points, 0*ba2points+ba2top],[284*ba2points, 10*ba2points+ba2top],[313*ba2points, 6*ba2points+ba2top],
+    [351*ba2points, 21*ba2points+ba2top],[386*ba2points, 58*ba2points+ba2top],[434*ba2points, 81*ba2points+ba2top],
+    [486*ba2points, 198*ba2points+ba2top],[497*ba2points, 279*ba2points+ba2top]
+    
+]
 
 var s = document.getElementById('startButton'),
     f = document.getElementById('choosePlane'),
@@ -113,9 +191,13 @@ $('#flyUp').css({width: w+'px', height: h/2+'px', top: '0px'});
 $('#flyDown').css({width: w+'px', height: h/2+'px', top: h/2+'px'});
 $('#flugzeug').css({width: fw+'px', height: fh+'px', top: realFlugzeugCoords+'px'});
 //$('#flugzeug').css('background-image', 'url(flugzeug1.png)');
-$('#hindernis1').css({width: bergw+'px', height: bergh+'px'});
-$('#hindernis2').css({width: turmw+'px', height: turmh+'px'});
-$('#hindernis3').css({width: ballonw+'px', height: ballonh+'px'});
+$('#hindernis1').css({width: berg1w+'px', height: berg1h+'px'});
+$('#hindernis2').css({width: turm1w+'px', height: turm1h+'px'});
+$('#hindernis3').css({width: ballon1w+'px', height: ballon1h+'px'});
+$('#hindernis4').css({width: haus1w+'px', height: haus1h+'px'});
+$('#hindernis5').css({width: drachen1w+'px', height: drachen1h+'px'});
+$('#hindernis6').css({width: baum1w+'px', height: baum1h+'px'});
+$('#hindernis7').css({width: baum2w+'px', height: baum2h+'px'});
 $('#score').css({'font-size': h/10+'px'});
 
 $('#optionen').css({width: w+'px', height: h+'px'});
@@ -134,11 +216,11 @@ $('#test4').css({'font-size': h/20+'px'});
 
 function hindernisLoop(typ) {
     
-    newTyp = getRandomInt(1, 3);
+    newTyp = getRandomInt(4, 7);
     
     while (newTyp == typ) {
         
-        newTyp = getRandomInt(1, 3);
+        newTyp = getRandomInt(4, 7);
             
     }
     
@@ -150,7 +232,6 @@ function hindernisLoop(typ) {
     
 }
 
-//Erkennung der Position des Reglers
 function steuerungLoop() {
     
     var flugzeugCoords = $('#flugzeug').position().top;
@@ -198,13 +279,13 @@ function collision() {
             
             var hindernisCoords = $('#hindernis1').position().left;
             
-            if (hindernisCoords > h*0.05 - bergw && hindernisCoords < h*0.05 + fw) {
+            if (hindernisCoords > h*0.05 - berg1w && hindernisCoords < h*0.05 + fw) {
                 
                 var flugzeugY = $('#flugzeug').position().top;
                 
-                if (flugzeugY > h-bergh-fh && flugzeugY < h) {
+                if (flugzeugY > h-berg1h-fh && flugzeugY < h) {
                     
-                    collisionDetection(bergPoints, '#hindernis1');
+                    collisionDetection(berg1Points, '#hindernis1');
                 
                     $('#test2').html('Kollision möglich mit: '+newTyp);
                     
@@ -216,11 +297,11 @@ function collision() {
             
             var hindernisCoords = $('#hindernis2').position().left;
             
-            if (hindernisCoords > h*0.05 - turmw && hindernisCoords < h*0.05 + fw) {
+            if (hindernisCoords > h*0.05 - turm1w && hindernisCoords < h*0.05 + fw) {
                 
                 var flugzeugY = $('#flugzeug').position().top;
                 
-                if (flugzeugY > h-turmh-fh && flugzeugY < h) {
+                if (flugzeugY > h-turm1h-fh && flugzeugY < h) {
                 
                     $('#test2').html('Kollision mit: '+newTyp);
                     
@@ -232,13 +313,85 @@ function collision() {
             
             var hindernisCoords = $('#hindernis3').position().left;
             
-            if (hindernisCoords > h*0.05 - ballonw && hindernisCoords < h*0.05 + fw) {
+            if (hindernisCoords > h*0.05 - ballon1w && hindernisCoords < h*0.05 + fw) {
                 
                 var flugzeugY = $('#flugzeug').position().top;
                 
-                if (flugzeugY > h*0.1 - fh && flugzeugY < h*0.1 + ballonh) {
+                if (flugzeugY > h*0.1 - fh && flugzeugY < h*0.1 + ballon1h) {
                 
                     $('#test2').html('Kollision mit: '+newTyp);
+                    
+                }
+                
+            }
+            break;
+        case 4:
+            
+            var hindernisCoords = $('#hindernis4').position().left;
+            
+            if (hindernisCoords > h*0.05 - haus1w && hindernisCoords < h*0.05 + fw) {
+                
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h-haus1h-fh && flugzeugY < h) {
+                    
+                    collisionDetection(haus1Points, '#hindernis4');
+                
+                    $('#test2').html('Kollision möglich mit: '+newTyp);
+                    
+                }
+                
+            }
+            break;
+        case 5:
+            
+            var hindernisCoords = $('#hindernis5').position().left;
+            
+            if (hindernisCoords > h*0.05 - drachen1w && hindernisCoords < h*0.05 + fw) {
+                
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h*0.1 - fh && flugzeugY < h*0.1 + drachen1h) {
+                    
+                    collisionDetection(drachen1Points, '#hindernis5');
+                
+                    $('#test2').html('Kollision möglich mit: '+newTyp);
+                    
+                }
+                
+            }
+            break;
+        case 6:
+            
+            var hindernisCoords = $('#hindernis6').position().left;
+            
+            if (hindernisCoords > h*0.05 - baum1w && hindernisCoords < h*0.05 + fw) {
+                
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h-baum1h-fh && flugzeugY < h) {
+                    
+                    collisionDetection(baum1Points, '#hindernis6');
+                
+                    $('#test2').html('Kollision möglich mit: '+newTyp);
+                    
+                }
+                
+            }
+            break;
+        case 7:
+            
+            var hindernisCoords = $('#hindernis7').position().left;
+            
+            if (hindernisCoords > h*0.05 - baum2w && hindernisCoords < h*0.05 + fw) {
+                
+                var flugzeugY = $('#flugzeug').position().top;
+                
+                if (flugzeugY > h-baum2h-fh && flugzeugY < h) {
+                    
+                    collisionDetection(baum2Points, '#hindernis7');
+                
+                    $('#test2').html('Kollision möglich mit: '+newTyp);
                     
                 }
                 
@@ -344,7 +497,6 @@ var startBild = {
         $('#optionen').css({display: 'none'});
         $('#hintergrund').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
-        
     
     }
     
@@ -522,7 +674,7 @@ var hindernis = {
     
     move: function(typ) {
         
-        var x = -(w/5 + w + bergw);
+        var x = -(w/5 + w + berg1w);
         
         $('#hindernis'+typ).css({'-webkit-transition-duration': '2s'});
         $('#hindernis'+typ).css({'transition-duration': '2s'});
