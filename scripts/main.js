@@ -550,8 +550,6 @@ var startBild = {
         $('#hintergrund').css({display: 'none'});
         $('#reset').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
-        
-        game.init();
     
     }
     
