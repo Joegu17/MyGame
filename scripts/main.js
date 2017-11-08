@@ -12,9 +12,9 @@ hindernis:  1 = berg1
 
 */
 
-var w = window.innerWidth,
-    h = window.innerHeight;
-var fw = h/10*215/67,
+var w = screen.width,
+    h = screen.height;
+var fw = h/10*3,
     fh = h/10,
     fpoints = fh/302;
 var berg1w = h*0.7/430*768,
@@ -550,6 +550,8 @@ var startBild = {
         $('#hintergrund').css({display: 'none'});
         $('#reset').css({display: 'none'});
         $('#startBild').css({display: 'inherit'});
+        
+        game.init();
     
     }
     
